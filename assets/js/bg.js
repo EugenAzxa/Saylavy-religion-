@@ -45,8 +45,17 @@
     var ctx = canvas.getContext("2d");
     var accent = hexToRgb(canvas.getAttribute("data-accent") || "#c99a4a");
     var shape = canvas.getAttribute("data-shape") || "mote";
-    var warm = [230, 196, 131], cream = [243, 236, 223];
-    var palette = shape === "mote" ? [accent, warm, cream, accent] : [accent, warm, accent, cream];
+    var light = (canvas.getAttribute("data-mode") || "dark") === "light";
+    var palette;
+    if (light) {
+      // darker specks so they read on a warm light background
+      var gold = [176, 132, 60], deep = [140, 108, 60];
+      palette = [accent, gold, deep, accent];
+    } else {
+      var warm = [230, 196, 131], cream = [243, 236, 223];
+      palette = shape === "mote" ? [accent, warm, cream, accent] : [accent, warm, accent, cream];
+    }
+    var maxA = light ? 0.32 : (shape === "mote" ? 0.7 : 0.5);
     var w, h, dpr, parts = [], raf;
 
     function resize() {
@@ -65,7 +74,7 @@
         r: shape === "mote" ? rnd(0.6, 2.6) : rnd(4, 10),
         c: palette[Math.floor(Math.random() * palette.length)],
         vy: rnd(-0.06, -0.3), vx: rnd(-0.08, 0.08),
-        a: rnd(0.12, shape === "mote" ? 0.7 : 0.5),
+        a: rnd(light ? 0.08 : 0.12, maxA),
         tw: rnd(0.004, 0.02), tp: rnd(0, Math.PI * 2),
         rot: rnd(0, Math.PI * 2), vr: rnd(-0.012, 0.012)
       };

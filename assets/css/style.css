@@ -1014,3 +1014,173 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 /* keep the per-faith ambience gentle, never bright-edged */
 .faith-explore::before, .faith-close::before, .faith-people::before { opacity: .07; }
 .pm-glow { opacity: .12; }
+
+/* ============================================================
+   LIGHT MID-TONE THEME  (Soft UI Evolution, warm stone)
+   Whole site, per UI/UX Pro Max guidance. Overrides the dark
+   layer above. Warm taupe base, white soft-shadow cards,
+   faith colour as accent, WCAG AA text.
+   ============================================================ */
+:root {
+  --base:      #e8e3d8;   /* warm taupe mid-tone page */
+  --base-2:    #f0ebe1;   /* raised band */
+  --surface:   #fdfbf6;   /* card / panel */
+  --surface-2: #f6f1e8;
+  --ink-d:     #2a251f;   /* headings / strong */
+  --ink-dim:   #574f43;   /* body */
+  --line-d:    #dbd3c4;   /* visible warm border */
+  --soft-1: 0 1px 2px rgba(58,48,33,.05), 0 6px 18px rgba(58,48,33,.07);
+  --soft-2: 0 3px 8px rgba(58,48,33,.07), 0 18px 44px rgba(58,48,33,.10);
+}
+
+body, body.faith-page { background: var(--base); color: var(--ink-d); }
+h1, h2, h3, h4 { color: var(--ink-d); }
+p, .lead { color: var(--ink-dim); }
+.eyebrow { color: var(--gold-deep); }
+.eyebrow::before { background: var(--gold); }
+.faith-page .eyebrow { color: var(--accent-deep); }
+.faith-page .eyebrow::before { background: var(--accent); }
+
+/* ---- luminous light hero ---- */
+.hero-cosmos { color: var(--ink-d);
+  background: radial-gradient(120% 92% at 50% -18%, #ffffff 0%, var(--accent-soft) 34%, var(--base) 76%); }
+.faith-hero.hero-cosmos {
+  background: radial-gradient(120% 96% at 78% -16%, var(--accent-soft) 0%, #fbf8f2 44%, var(--base) 100%); }
+.hero-cosmos h1, .faith-hero.hero-cosmos h1 { color: var(--accent-ink); }
+.hero-cosmos .lead, .faith-hero.hero-cosmos .lead { color: var(--ink-dim); }
+.hero-cosmos .eyebrow { color: var(--gold-deep); }
+.hero-cosmos .eyebrow::before { background: var(--gold); }
+.faith-hero.hero-cosmos .faith-kicker { color: var(--accent-deep); }
+.faith-hero.hero-cosmos .faith-kicker::before { background: var(--accent); }
+.hero-cosmos .btn-ghost { color: var(--ink-d); border-color: var(--line-d); }
+.hero-cosmos .btn-ghost:hover { border-color: var(--ink-d); }
+.serif-accent { background: linear-gradient(100deg, #b98526, #9a6a1e 45%, #c99a4a 60%, #9a6a1e); -webkit-background-clip: text; background-clip: text; }
+
+/* aurora tints the light bg via multiply; motes handled in bg.js */
+.aurora { mix-blend-mode: multiply; opacity: .2; filter: blur(90px); }
+.grain { opacity: .04; }
+
+/* ---- faith emblem / aura on light ---- */
+.faith-hero.hero-cosmos .faith-emblem { background: var(--surface); border-color: var(--line-d); box-shadow: var(--soft-1); }
+.faith-hero.hero-cosmos .faith-emblem svg { color: var(--accent); filter: none; }
+.faith-hero.hero-cosmos .approve-pill { background: var(--surface); border-color: var(--accent-soft); color: var(--accent-deep); }
+.faith-hero.hero-cosmos .back-link { color: var(--accent-deep); }
+.faith-aura .halo-lg { opacity: .14; mix-blend-mode: multiply; }
+.faith-aura .big-sym { opacity: .16; }
+.faith-aura .rr, .faith-aura .rr2, .faith-aura .rr3 { border-color: rgba(58,48,33,.1); }
+
+/* ---- circle of eight on light ---- */
+.hero-cosmos .circle-ring { border-color: rgba(58,48,33,.14); }
+.hero-cosmos .circle-ring::after { border-color: rgba(201,154,74,.3); }
+.circle-glow { background: radial-gradient(circle, rgba(201,154,74,.2), transparent 66%); }
+.circle-lines line { stroke: rgba(58,48,33,.16); }
+.hero-cosmos .circle-hub { background: var(--surface); border-color: var(--line-d); color: var(--ink-d); box-shadow: var(--soft-2); }
+.hero-cosmos .circle-hub strong { color: var(--ink-d); }
+.hero-cosmos .circle-hub small { color: var(--ink-dim); }
+.hero-cosmos .circle-hub .mark { color: var(--gold-deep); }
+.hero-cosmos .faith-node { background: var(--surface); border-color: var(--line-d); box-shadow: var(--soft-1); }
+.hero-cosmos .faith-node .sym { color: var(--accent); }
+.hero-cosmos .faith-node .label { color: var(--ink-dim); text-shadow: none; }
+.hero-cosmos .faith-node .halo { opacity: .16; }
+.hero-cosmos .faith-node:hover .halo, .hero-cosmos .faith-node:focus-visible .halo { opacity: .5; }
+.hero-cosmos .faith-node:hover { border-color: var(--accent); box-shadow: var(--soft-2); }
+.circle-fallback a { background: var(--surface); border-color: var(--line-d); }
+.circle-fallback a strong { color: var(--ink-d); }
+.circle-fallback a small { color: var(--ink-dim); }
+
+/* ---- sections ---- */
+.section.band { background: var(--base-2); }
+.faith-explore, .faith-people { background: var(--base); }
+.faith-close { background: radial-gradient(130% 115% at 50% -12%, var(--accent-soft), var(--base) 74%); }
+.section.band::before { display: none !important; }
+.faith-explore::before, .faith-close::before, .faith-people::before { opacity: .08; mix-blend-mode: multiply; }
+.faith-watermark { color: var(--accent); opacity: .05; }
+
+/* ---- cards (soft white, multi-layer shadow) ---- */
+.step, .learn-card, .scan-card, .person, .badge { background: var(--surface); border-color: var(--line-d); box-shadow: var(--soft-1); }
+.step:hover, .learn-card:hover, .person:hover { box-shadow: var(--soft-2); }
+.step h3, .learn-card h3, .trust .t h3, .person h3,
+.faith-close h2, .faith-explore .sec-head h2, .faith-people .sec-head h2 { color: var(--ink-d); }
+.step p, .learn-card p, .trust .t p, .person p, .feature-list li { color: var(--ink-dim); }
+.step .num, .learn-card .kind, .learn-card .kind svg { color: var(--accent-deep); }
+.step .ico, .trust .t .ico { background: var(--accent-soft); }
+.step .ico svg, .trust .t .ico svg, .feature-list li svg { color: var(--accent-deep); }
+.faith-page .learn-card { border-top: 2px solid var(--accent); }
+.learn-card .original { background: var(--accent-soft); color: var(--accent-ink); }
+.listen-btn { border-color: var(--line-d); color: var(--ink-d); }
+.listen-btn:hover { border-color: var(--accent); color: var(--accent-deep); }
+.scan-head span, .qr-caption, .voice-note, .foot-bottom, .foot-col h4 { color: var(--ink-dim); }
+.person .mono, .pm-mono { color: var(--accent-deep);
+  background: radial-gradient(circle at 32% 28%, #ffffff, var(--accent-soft)); border-color: var(--accent); }
+.person-cta, .person .ptag, .pm-tag { color: var(--accent-deep); }
+.close-emblem { color: var(--accent); }
+
+/* ---- header ---- */
+.site-header:not(.scrolled) { background: transparent; }
+.site-header:not(.scrolled) .brand, .site-header.scrolled .brand { color: var(--ink-d); }
+.site-header:not(.scrolled) .brand small, .site-header.scrolled .brand small { color: var(--gold-deep); }
+.site-header:not(.scrolled) .brand .mark, .site-header.scrolled .brand .mark { color: var(--gold-deep) !important; }
+.site-header:not(.scrolled) .nav-links a, .site-header.scrolled .nav-links a { color: var(--ink-dim); }
+.site-header:not(.scrolled) .nav-links a:hover, .site-header.scrolled .nav-links a:hover { color: var(--ink-d); }
+.site-header:not(.scrolled) .nav-toggle, .site-header.scrolled .nav-toggle { color: var(--ink-d); }
+.site-header:not(.scrolled) .btn-primary { background: var(--ink); border-color: transparent; color: var(--paper); }
+.site-header.scrolled { background: rgba(240,235,225,.86); border-bottom-color: var(--line-d); box-shadow: 0 1px 0 rgba(58,48,33,.03); }
+.nav-links.open { background: var(--base); border-color: var(--line-d); }
+.site-header:not(.scrolled) .nav-links.open a { color: var(--ink-dim); }
+
+/* ---- footer ---- */
+.site-footer { background: var(--base-2); border-top-color: var(--line-d); }
+.site-footer .brand { color: var(--ink-d); }
+.foot-brand p, .foot-col a { color: var(--ink-dim); }
+.foot-col a:hover { color: var(--ink-d); }
+.foot-bottom { border-top-color: var(--line-d); }
+.powered a { color: var(--ink-d); border-color: var(--line-d); }
+
+/* ---- buttons ---- */
+.btn-ghost { color: var(--ink-d); border-color: var(--line-d); }
+.btn-ghost:hover { border-color: var(--ink-d); }
+
+/* ---- chat (light) : override .ask-dark ---- */
+.ask.ask-dark { background: var(--surface); border-color: var(--line-d); box-shadow: var(--soft-2); backdrop-filter: none; }
+.ask-dark .ask-head { background: linear-gradient(var(--surface), var(--surface-2)); border-bottom-color: var(--line-d); }
+.ask-dark .ask-head .av { background: var(--accent-soft); color: var(--accent-deep); }
+.ask-dark .ask-head .av svg { color: var(--accent-deep); }
+.ask-dark .ask-head .meta strong { color: var(--ink-d); }
+.ask-dark .ask-head .meta small { color: var(--ink-dim); }
+.ask-dark .msg.bot { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.ask-dark .msg.bot .speak-again { color: var(--accent-deep); }
+.ask-dark .msg.me { background: var(--ink); color: var(--paper); }
+.ask-dark .typing i { background: var(--accent-deep); }
+.ask-dark .chip { background: var(--accent-soft); color: var(--accent-deep); border-color: transparent; }
+.ask-dark .chip:hover { background: var(--surface); border-color: var(--accent-soft); }
+.ask-dark .ask-input { border-top-color: var(--line-d); }
+.ask-dark .ask-input input { background: var(--base); border-color: var(--line-d); color: var(--ink-d); }
+.ask-dark .ask-input input::placeholder { color: var(--ink-dim); }
+.ask-dark .icon-btn { background: var(--surface); border-color: var(--line-d); }
+.ask-dark .icon-btn svg { color: var(--ink-dim); }
+.ask-dark .icon-btn.send { background: var(--accent); border-color: var(--accent); }
+.ask-dark .icon-btn.send svg { color: #fff; }
+.ask-dark .ask-foot { color: var(--ink-dim); }
+
+/* ---- person modal (light) ---- */
+.pm-backdrop { background: rgba(42,37,31,.42); backdrop-filter: blur(5px); }
+.pm-card { background: var(--surface); border-color: var(--line-d); box-shadow: 0 40px 110px rgba(42,37,31,.28); }
+.pm-close { border-color: var(--line-d); background: var(--surface-2); color: var(--ink-d); }
+.pm-close:hover { background: var(--base); }
+.pm-left { border-right-color: var(--line-d); }
+.pm-name { color: var(--ink-d); }
+.pm-bio { color: var(--ink-dim); }
+.pm-quote { color: var(--accent-ink); border-left-color: var(--accent); }
+.pm-glow { opacity: .1; mix-blend-mode: multiply; }
+@media (max-width: 780px) { .pm-left { border-bottom-color: var(--line-d); } }
+
+/* ---- focus rings darker on light ---- */
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible, .btn:focus-visible,
+.chip:focus-visible, .icon-btn:focus-visible, .faith-node:focus-visible, .listen-btn:focus-visible,
+.person:focus-visible, input:focus-visible { outline-color: var(--accent-deep); }
+
+/* warm the dashboard hero aurora on light (faith heroes override to accent) */
+.hero-cosmos { --auroraA: #d8b877; --auroraB: #c99a4a; --auroraC: #e6d4a6; }
+
+/* WCAG nudge: Hindu small accent text to clear 4.5:1 */
+.theme-hindu { --accent-deep: #9c5016; }

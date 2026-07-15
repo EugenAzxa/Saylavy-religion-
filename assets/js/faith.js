@@ -188,7 +188,7 @@
 
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
-      <canvas class="motes" data-accent="${f.accent}" data-shape="${f.shape || "mote"}" aria-hidden="true"></canvas>
+      <canvas class="motes" data-accent="${f.accent}" data-shape="${f.shape || "mote"}" data-mode="light" aria-hidden="true"></canvas>
       <span class="aurora a1"></span><span class="aurora a2"></span><span class="aurora a3"></span>
       <span class="grain"></span>
       <div class="faith-aura" aria-hidden="true">
