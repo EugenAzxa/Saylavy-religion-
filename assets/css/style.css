@@ -762,3 +762,19 @@ body.faith-page { background: var(--tint); }
 .faith-close h2 { color: var(--accent-ink); }
 .faith-close .lead { max-width: 54ch; margin-inline: auto; }
 .close-qr { display: flex; justify-content: center; margin: 2rem 0 1.6rem; }
+
+/* =========================================================
+   Clean hero-to-content transition
+   Kill the muddy fade; let the first light section rise over
+   the dark hero as a rounded sheet with a soft top shadow.
+   ========================================================= */
+.fade-b { display: none !important; }
+
+.hero-cosmos + .section {
+  position: relative; z-index: 5; margin-top: clamp(-48px, -4vw, -34px);
+  border-top-left-radius: 36px; border-top-right-radius: 36px;
+  box-shadow: 0 -26px 54px rgba(0,0,0,.18);
+}
+/* give the hero a little more calm space above the rising sheet */
+.hero-cosmos { padding-bottom: clamp(4.5rem, 8vw, 7rem); }
+.faith-hero.hero-cosmos { padding-bottom: clamp(5rem, 9vw, 8rem); }
