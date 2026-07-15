@@ -52,35 +52,21 @@
       </p>
     </div>
 
-    <div class="wrap" style="margin-top:clamp(2rem,5vw,3.5rem);position:relative;z-index:3">
-      <div class="circle-wrap reveal" aria-hidden="false">
-        <svg class="circle-lines" id="circleLines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
-        <span class="circle-glow"></span>
-        <div class="circle-ring"></div>
-        <div class="circle-hub">
-          <svg class="mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-            <circle cx="16" cy="16" r="2.6"/><circle cx="27" cy="16" r="1.6"/><circle cx="23.8" cy="23.8" r="1.6"/><circle cx="16" cy="27" r="1.6"/><circle cx="8.2" cy="23.8" r="1.6"/><circle cx="5" cy="16" r="1.6"/><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="16" cy="5" r="1.6"/><circle cx="23.8" cy="8.2" r="1.6"/>
-          </svg>
-          <strong>Choose a path</strong>
-          <small>Eight faiths, one welcome</small>
-        </div>
-        <!-- faith nodes injected by main.js (#circle) -->
-        <div id="circle"></div>
-      </div>
-
-      <!-- Small-screen fallback list, also filled by main.js is not needed; static links: -->
-      <div class="circle-fallback" id="circleFallback">
-        <a class="theme-protestant" href="protestant.html"><span class="sym"></span><span><strong>Protestant</strong><small>Bible, verses, the gospel</small></span></a>
-        <a class="theme-catholic" href="catholic.html"><span class="sym"></span><span><strong>Catholic</strong><small>Prayers, saints, sacraments</small></span></a>
-        <a class="theme-orthodox" href="orthodox.html"><span class="sym"></span><span><strong>Orthodox</strong><small>Icons, saints, the liturgy</small></span></a>
-        <a class="theme-muslim" href="muslim.html"><span class="sym"></span><span><strong>Muslim</strong><small>Qur'an, Arabic, the Pillars</small></span></a>
-        <a class="theme-hindu" href="hindu.html"><span class="sym"></span><span><strong>Hindu</strong><small>Stories, shlokas, festivals</small></span></a>
-        <a class="theme-sikh" href="sikh.html"><span class="sym"></span><span><strong>Sikh</strong><small>Gurbani, the Gurus, seva</small></span></a>
-        <a class="theme-jewish" href="jewish.html"><span class="sym"></span><span><strong>Jewish</strong><small>Torah, Hebrew, the holidays</small></span></a>
-        <a class="theme-buddhist" href="buddhist.html"><span class="sym"></span><span><strong>Buddhist</strong><small>The Buddha, mindfulness</small></span></a>
-      </div>
+    <div class="wrap center" style="margin-top:2.4rem;position:relative;z-index:3">
+      <a class="journey-cue reveal" href="#journey" aria-label="Scroll to the faiths">
+        <span>Scroll to walk through the eight faiths</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
     </div>
-    <span class="fade-b"></span>
+  </section>
+
+  <!-- ================= Journey: scroll through the eight faiths ================= -->
+  <section class="journey" id="journey" aria-label="The eight faiths">
+    <div class="journey-sticky">
+      <div class="journey-track" id="journeyTrack"><!-- panels injected by main.js --></div>
+      <div class="journey-progress" id="journeyProgress" aria-hidden="true"></div>
+      <span class="journey-count" id="journeyCount"></span>
+    </div>
   </section>
 
   <!-- ================= How it works ================= -->
@@ -245,15 +231,5 @@
   <script src="assets/js/qr.js"></script>
   <script src="assets/js/bg.js"></script>
   <script src="assets/js/main.js"></script>
-  <script>
-    // Fill the small-screen fallback symbols from the shared data.
-    (function () {
-      document.querySelectorAll("#circleFallback a").forEach(function (a) {
-        var slug = a.getAttribute("href").replace(".html", "");
-        var f = window.FAITHS && window.FAITHS[slug];
-        if (f) a.querySelector(".sym").innerHTML = f.symbol;
-      });
-    })();
-  </script>
 </body>
 </html>

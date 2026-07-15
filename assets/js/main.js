@@ -1,7 +1,7 @@
 /* =========================================================
    Saylavy - shared site behaviour
    Header scroll state, mobile nav, reveal-on-scroll, and the
-   circular "circle of eight" faith selector on the dashboard.
+   scroll-driven journey through the eight faiths on the dashboard.
    ========================================================= */
 (function () {
   "use strict";
@@ -33,35 +33,96 @@
   window.SaylavyReveal = reveal;
   reveal();
 
-  /* ---------- build the circle of eight ---------- */
-  const circle = document.getElementById("circle");
-  if (circle && window.FAITHS && window.FAITH_ORDER) {
+  /* ---------- Journey: scroll through the eight faiths ---------- */
+  const BLURB = {
+    protestant: "Bible stories, memory verses, and the good news, in real voices.",
+    catholic: "Prayers, the saints, the sacraments, and the Catechism.",
+    orthodox: "The holy icons, the saints, the feasts, and the Divine Liturgy.",
+    muslim: "Qur'an recitation, the Arabic letters, and the Five Pillars.",
+    hindu: "The great stories, the shlokas, and the festivals of light.",
+    sikh: "Gurbani and Kirtan, the Ten Gurus, and the gift of seva.",
+    jewish: "Torah stories, the Hebrew letters, and the joy of the holidays.",
+    buddhist: "The Buddha's life, gentle mindfulness, and loving kindness."
+  };
+  const journey = document.getElementById("journey");
+  const track = document.getElementById("journeyTrack");
+  if (journey && track && window.FAITHS && window.FAITH_ORDER) {
     const order = window.FAITH_ORDER;
     const n = order.length;
-    const R = 39; // percent radius, relative to wrap centre
-    const lines = document.getElementById("circleLines");
-    let lineSvg = "";
-    const nodesHtml = order.map((slug, i) => {
+    journey.style.setProperty("--n", n);
+
+    track.innerHTML = order.map((slug, i) => {
       const f = window.FAITHS[slug];
-      // start at top (-90deg), go clockwise
-      const angle = (-90 + (360 / n) * i) * Math.PI / 180;
-      const x = Math.cos(angle) * R;
-      const y = Math.sin(angle) * R;
-      // constellation line from centre (50,50) to the node, in the 0..100 viewBox
-      lineSvg += `<line x1="50" y1="50" x2="${(50 + x).toFixed(2)}" y2="${(50 + y).toFixed(2)}" style="animation-delay:${(i * -3)}s"/>`;
-      const fd = (5.5 + (i % 4) * 0.7).toFixed(1); // varied float duration
-      const dl = (i * 0.4).toFixed(1);             // staggered start
-      return `<span class="node-pos" style="--x:calc(${x.toFixed(3)} * 1cqw); --y:calc(${y.toFixed(3)} * 1cqw)">
-                <a class="faith-node ${f.theme}" href="${slug}.html"
-                   style="--fd:${fd}s; --dl:${dl}s" aria-label="${f.name}">
-                  <span class="halo"></span>
-                  <span class="sym">${f.symbol}</span>
-                  <span class="label">${f.name}</span>
-                </a>
-              </span>`;
+      const num = String(i + 1).padStart(2, "0");
+      return `<article class="jpanel ${f.theme}" data-i="${i}">
+                <span class="jpanel-bg"></span>
+                <span class="jpanel-sym" aria-hidden="true">${f.symbol}</span>
+                <div class="jpanel-inner">
+                  <div class="jpanel-emblem">${f.symbol}</div>
+                  <span class="jnum">${num} / ${String(n).padStart(2, "0")}</span>
+                  <h2>${f.name}</h2>
+                  <p class="jblurb">${BLURB[slug] || ""}</p>
+                  <a class="btn btn-gold btn-lg" href="${slug}.html">Enter ${f.name}</a>
+                </div>
+              </article>`;
     }).join("");
-    circle.innerHTML = nodesHtml;
-    if (lines) lines.innerHTML = lineSvg;
+
+    const prog = document.getElementById("journeyProgress");
+    if (prog) {
+      prog.innerHTML = order.map((s, i) => `<button type="button" data-i="${i}" aria-label="Go to ${window.FAITHS[s].name}"></button>`).join("");
+    }
+    const countEl = document.getElementById("journeyCount");
+    const sticky = journey.querySelector(".journey-sticky");
+    const panels = Array.prototype.slice.call(track.children);
+    const dots = prog ? Array.prototype.slice.call(prog.children) : [];
+    const accents = order.map(s => window.FAITHS[s].accent);
+
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isPinned = () => window.innerWidth > 820 && !reduce;
+
+    let maxX = 0, ticking = false, active = -1;
+    function measure() { maxX = Math.max(0, track.scrollWidth - window.innerWidth); }
+
+    function render() {
+      ticking = false;
+      if (!isPinned()) { track.style.transform = ""; return; }
+      const total = journey.offsetHeight - window.innerHeight;
+      const p = total > 0 ? Math.min(1, Math.max(0, -journey.getBoundingClientRect().top / total)) : 0;
+      track.style.transform = "translate3d(" + (-p * maxX) + "px,0,0)";
+
+      const vw = window.innerWidth, cx = vw / 2;
+      let cur = Math.round(p * (n - 1));
+      panels.forEach((panel, i) => {
+        const center = (i + 0.5) * vw - p * maxX;
+        const dist = Math.abs(center - cx) / vw;             // 0 centred .. 1+ away
+        const focus = Math.max(0, 1 - dist * 1.5);
+        panel.style.setProperty("--focus", focus.toFixed(3));
+        const sym = panel.querySelector(".jpanel-sym");
+        if (sym) sym.style.transform = "translateX(" + ((center - cx) * -0.12) + "px)";
+      });
+      if (cur !== active) {
+        active = cur;
+        dots.forEach((d, i) => d.classList.toggle("active", i === cur));
+        if (sticky) sticky.style.setProperty("--accent", accents[cur]);
+        if (countEl) countEl.textContent = String(cur + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") + "  " + window.FAITHS[order[cur]].name;
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+
+    measure(); render();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => { measure(); render(); }, { passive: true });
+
+    dots.forEach((d) => d.addEventListener("click", () => {
+      const i = +d.dataset.i;
+      if (isPinned()) {
+        const total = journey.offsetHeight - window.innerHeight;
+        const targetTop = journey.offsetTop + (i / (n - 1)) * total;
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+      } else {
+        panels[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }));
   }
 
   /* ---------- contact form (mailto handoff, no backend) ---------- */
