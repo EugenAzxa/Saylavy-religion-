@@ -51,14 +51,17 @@
     const n = order.length;
     journey.style.setProperty("--n", n);
 
+    const person = (x, d) => `<g class="person" style="transform:translate(${x}px,164px)"><circle cx="0" cy="-16" r="4.5"/><rect x="-4" y="-11" width="8" height="15" rx="3.5"/><rect class="arm" x="3" y="-11" width="3" height="11" rx="1.5" style="animation-delay:${d}s"/></g>`;
+    const PEOPLE = `<g class="jppl" fill="currentColor">${person(44, 0.1)}${person(198, 0.5)}${person(120, 0.9)}</g>`;
+
     track.innerHTML = order.map((slug, i) => {
       const f = window.FAITHS[slug];
       const num = String(i + 1).padStart(2, "0");
+      const bld = (window.BUILDINGS && window.BUILDINGS[slug]) || "";
       return `<article class="jpanel ${f.theme}" data-i="${i}">
                 <span class="jpanel-bg"></span>
-                <span class="jpanel-sym" aria-hidden="true">${f.symbol}</span>
                 <div class="jpanel-inner">
-                  <div class="jpanel-emblem">${f.symbol}</div>
+                  <div class="jscene"><svg class="scene-svg" viewBox="0 0 240 196" aria-hidden="true"><g class="bld">${bld}</g>${PEOPLE}</svg></div>
                   <span class="jnum">${num} / ${String(n).padStart(2, "0")}</span>
                   <h2>${f.name}</h2>
                   <p class="jblurb">${BLURB[slug] || ""}</p>
@@ -85,7 +88,7 @@
 
     function render() {
       ticking = false;
-      if (!isPinned()) { track.style.transform = ""; return; }
+      if (!isPinned()) { track.style.transform = ""; panels.forEach(p => p.classList.add("is-live")); return; }
       const total = journey.offsetHeight - window.innerHeight;
       const p = total > 0 ? Math.min(1, Math.max(0, -journey.getBoundingClientRect().top / total)) : 0;
       track.style.transform = "translate3d(" + (-p * maxX) + "px,0,0)";
@@ -97,8 +100,9 @@
         const dist = Math.abs(center - cx) / vw;             // 0 centred .. 1+ away
         const focus = Math.max(0, 1 - dist * 1.5);
         panel.style.setProperty("--focus", focus.toFixed(3));
-        const sym = panel.querySelector(".jpanel-sym");
-        if (sym) sym.style.transform = "translateX(" + ((center - cx) * -0.12) + "px)";
+        panel.classList.toggle("is-live", focus > 0.5);
+        const bld = panel.querySelector(".bld");
+        if (bld) bld.style.transform = "translateX(" + ((center - cx) * -0.1) + "px)";
       });
       if (cur !== active) {
         active = cur;

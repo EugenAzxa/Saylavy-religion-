@@ -1251,3 +1251,29 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, .btn:focus
   .jpanel-inner > * { opacity: 1 !important; transform: none !important; }
   .journey-cue svg { animation: none; }
 }
+
+/* ---- Journey scenes: animated houses of worship ---- */
+.jpanel-emblem, .jpanel-sym { display: none; }
+.jscene { width: min(440px, 84vw); margin: 0 auto 1.4rem; }
+.scene-svg { width: 100%; height: auto; display: block; overflow: visible; color: var(--accent); }
+.bld { clip-path: inset(100% 0 0 0); }
+.is-live .bld { clip-path: inset(-12% 0 0 0); transition: clip-path 1.1s cubic-bezier(.2,.75,.2,1); }
+.jhalo { fill: var(--accent-soft); opacity: .6; transform-box: fill-box; transform-origin: center; animation: hbreath 6s ease-in-out infinite; }
+@keyframes hbreath { 50% { opacity: .9; transform: scale(1.06); } }
+.jground { fill: var(--accent); opacity: .14; }
+.jband { fill: var(--accent-soft); opacity: .75; }
+.jwheel { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.jwin { fill: #ffce85; opacity: .28; filter: drop-shadow(0 0 3px rgba(255,190,110,.85)); }
+.is-live .jwin { opacity: 1; transition: opacity .6s .95s; }
+.jcloud { fill: var(--accent-soft); opacity: .7; transform-box: fill-box; }
+.c1 { animation: sway 9s ease-in-out infinite; } .c2 { animation: sway 12s ease-in-out infinite reverse; }
+@keyframes sway { 50% { transform: translateX(16px); } }
+.jbird { fill: none; stroke: var(--accent-deep); stroke-width: 1.6; opacity: .5; transform-box: fill-box; }
+.b1 { animation: fly 15s linear infinite; } .b2 { animation: fly 19s linear infinite 4s; }
+@keyframes fly { from { transform: translate(6px,32px); } to { transform: translate(214px,12px); } }
+.person .arm { transform-box: fill-box; transform-origin: top center; animation: wave .9s ease-in-out infinite alternate; }
+@keyframes wave { from { transform: rotate(8deg); } to { transform: rotate(-42deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .bld { clip-path: none !important; }
+  .jhalo, .jcloud, .jbird, .person .arm { animation: none !important; }
+}
