@@ -1000,3 +1000,17 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
   .person:hover, .faith-node:hover, .learn-card:hover, .step:hover,
   .scan-card:hover, .btn:hover, .chip:hover, .listen-btn:hover { transform: none !important; }
 }
+
+/* ============================================================
+   Remove harsh light-theme glow blobs on the dark UI
+   (the cream/amber domes read as ugly edges on near-black)
+   ============================================================ */
+.scan-card .glow { display: none !important; }
+.section.band::before { display: none !important; }
+.cta-card .glow {
+  inset: auto 0 -40% 0; height: 55%; opacity: .5;
+  background: radial-gradient(50% 55% at 50% 100%, rgba(184,134,59,.14), transparent 72%);
+}
+/* keep the per-faith ambience gentle, never bright-edged */
+.faith-explore::before, .faith-close::before, .faith-people::before { opacity: .07; }
+.pm-glow { opacity: .12; }
