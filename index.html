@@ -54,19 +54,26 @@
 
     <div class="wrap center" style="margin-top:2.4rem;position:relative;z-index:3">
       <a class="journey-cue reveal" href="#journey" aria-label="Scroll to the faiths">
-        <span>Scroll to walk through the eight faiths</span>
+        <span>Scroll down to the sea of faiths</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
     </div>
   </section>
 
-  <!-- ================= Journey: scroll through the eight faiths ================= -->
-  <section class="journey" id="journey" aria-label="The eight faiths">
-    <div class="journey-sticky">
-      <div class="journey-track" id="journeyTrack"><!-- panels injected by main.js --></div>
-      <div class="journey-progress" id="journeyProgress" aria-hidden="true"></div>
-      <span class="journey-count" id="journeyCount"></span>
+  <!-- ================= Ocean: eight faiths as boats ================= -->
+  <section class="ocean" id="journey" aria-label="The eight faiths">
+    <div class="ocean-head reveal">
+      <p class="eyebrow center-line">Eight faiths, one sea</p>
+      <h2>Choose a boat to meet a faith</h2>
     </div>
+    <span class="o-sun" aria-hidden="true"></span>
+    <span class="o-cloud oc1" aria-hidden="true"></span><span class="o-cloud oc2" aria-hidden="true"></span><span class="o-cloud oc3" aria-hidden="true"></span>
+    <div class="fleet" id="fleet"><!-- boats injected by main.js --></div>
+    <svg class="waves" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <path class="wave w1" d="M0 70 C240 30 480 110 720 70 S1200 30 1440 70 L1440 200 L0 200 Z"/>
+      <path class="wave w2" d="M0 95 C240 60 520 130 760 95 S1220 60 1440 95 L1440 200 L0 200 Z"/>
+      <path class="wave w3" d="M0 120 C260 90 520 150 780 120 S1240 95 1440 120 L1440 200 L0 200 Z"/>
+    </svg>
   </section>
 
   <!-- ================= How it works ================= -->
@@ -230,7 +237,6 @@
   <script src="assets/js/qrcode.min.js"></script>
   <script src="assets/js/qr.js"></script>
   <script src="assets/js/bg.js"></script>
-  <script src="assets/js/buildings.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

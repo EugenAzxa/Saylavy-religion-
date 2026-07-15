@@ -1277,3 +1277,58 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, .btn:focus
   .bld { clip-path: none !important; }
   .jhalo, .jcloud, .jbird, .person .arm { animation: none !important; }
 }
+
+/* ============================================================
+   OCEAN - eight faiths as boats. A calm scene you can play in
+   or simply scroll past. Sea reads blue; boats carry the colour.
+   ============================================================ */
+.ocean { position: relative; height: 90vh; min-height: 560px; overflow: hidden;
+  background: linear-gradient(#f4eee2 0%, #ece7db 30%, #e0e8e2 50%, #cfe0e2 61%, #b9d5dc 61%, #a4c9d2 100%); }
+.ocean-head { position: absolute; top: clamp(84px, 12vh, 150px); left: 0; right: 0; text-align: center; z-index: 4; padding: 0 5vw; }
+.ocean-head h2 { color: var(--ink-d); }
+.o-sun { position: absolute; top: 11%; right: 15%; width: 92px; height: 92px; border-radius: 50%; z-index: 1;
+  background: radial-gradient(circle, #fff3d0, #f6d98a 70%); box-shadow: 0 0 70px rgba(246,217,138,.65);
+  transform-box: fill-box; transform-origin: center; animation: hbreath 7s ease-in-out infinite; }
+.o-cloud { position: absolute; background: #fff; opacity: .78; border-radius: 40px; filter: blur(1px); z-index: 1; }
+.oc1 { width: 120px; height: 24px; top: 15%; left: 11%; animation: sway 11s ease-in-out infinite; }
+.oc2 { width: 92px; height: 20px; top: 25%; left: 58%; animation: sway 14s ease-in-out infinite reverse; }
+.oc3 { width: 70px; height: 17px; top: 9%; left: 40%; animation: sway 16s ease-in-out infinite; }
+.waves { position: absolute; left: -2%; right: 0; bottom: 0; width: 104%; height: 44%; z-index: 2; }
+.w1 { fill: #a8ccd4; opacity: .92; animation: waveSway 7s ease-in-out infinite; }
+.w2 { fill: #90bcc8; opacity: .82; animation: waveSway 9s ease-in-out infinite reverse; }
+.w3 { fill: #7cadba; opacity: .9; animation: waveSway 6s ease-in-out infinite; }
+.wave { transform-box: view-box; }
+@keyframes waveSway { 50% { transform: translateX(-26px); } }
+
+.fleet { position: absolute; inset: 0; z-index: 3; }
+.boat { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column;
+  align-items: center; gap: .35rem; text-decoration: none; }
+.boat-art { position: relative; width: calc(116px * var(--s, 1)); cursor: pointer; will-change: transform;
+  animation: bob var(--d, 5s) ease-in-out infinite; transition: transform .3s var(--ease); }
+.boat-svg { width: 100%; height: auto; display: block; overflow: visible;
+  filter: drop-shadow(0 8px 10px rgba(40,60,70,.18)); }
+.boat .mast { stroke: var(--accent-deep); stroke-width: 3; stroke-linecap: round; }
+.boat .sail { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+.boat .sail2 { fill: var(--accent); opacity: .9; stroke: none; }
+.boat .hull { fill: var(--accent-deep); }
+.boat-sym { position: absolute; top: 40%; left: 33%; transform: translate(-50%, -50%);
+  width: calc(24px * var(--s, 1)); height: calc(24px * var(--s, 1)); color: var(--accent-deep); }
+.boat-sym svg { width: 100%; height: 100%; }
+.boat-name { font-size: .84rem; font-weight: 700; color: var(--ink-d);
+  background: rgba(253,251,246,.82); padding: .16rem .7rem; border-radius: 999px;
+  box-shadow: var(--soft-1); opacity: .92; transition: opacity .2s, transform .2s; }
+.boat:hover { z-index: 40 !important; }
+.boat:hover .boat-art, .boat:focus-visible .boat-art { animation-play-state: paused; transform: translateY(-12px) scale(1.14); }
+.boat:hover .boat-name { opacity: 1; transform: translateY(2px); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2.5deg); } 50% { transform: translateY(-9px) rotate(2.5deg); } }
+
+@media (max-width: 640px) {
+  .ocean { height: auto; min-height: 0; padding: clamp(96px,20vh,150px) 0 20vh; }
+  .fleet { position: static; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0; padding: 1rem 4vw 0; }
+  .boat { position: static; transform: none; }
+  .boat-art { width: calc(104px * 1); animation-duration: 5s; }
+  .waves { position: absolute; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boat-art, .o-sun, .o-cloud, .wave { animation: none !important; }
+}
