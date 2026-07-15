@@ -102,7 +102,7 @@
         </div>
         <div class="ask-log" aria-live="polite"></div>
         <div class="ask-suggest">${opts.chips}</div>
-        <form class="ask-form" autocomplete="off">
+        <form class="ask-input ask-form" autocomplete="off">
           <button type="button" class="icon-btn mic mic-btn" title="Ask out loud" aria-label="Ask out loud">${ICON.mic}</button>
           <input class="ask-text" type="text" placeholder="Ask a question..." aria-label="Type your question">
           <button type="submit" class="icon-btn send" title="Send" aria-label="Send">${ICON.send}</button>

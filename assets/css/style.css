@@ -962,3 +962,41 @@ p, .lead { color: rgba(240,233,220,.72); }
   .pm-body { grid-template-columns: 1fr; }
   .pm-left { border-right: 0; border-bottom: 1px solid rgba(247,241,228,.1); }
 }
+
+/* ============================================================
+   POLISH PASS - guided by UI/UX Pro Max pre-delivery checklist
+   Focus visibility, touch targets, anchor offsets, contrast,
+   reduced-motion coverage.
+   ============================================================ */
+
+/* Visible keyboard focus (we removed some default outlines) */
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
+.btn:focus-visible, .chip:focus-visible, .icon-btn:focus-visible,
+.faith-node:focus-visible, .listen-btn:focus-visible, .person:focus-visible {
+  outline: 2px solid var(--accent-lt);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+.ask-input input:focus-visible, .cta-form input:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-lt); outline-offset: 1px;
+}
+
+/* Touch targets closer to 44px */
+.chip { min-height: 40px; display: inline-flex; align-items: center; }
+.listen-btn { min-height: 42px; }
+.pm-close { width: 44px; height: 44px; }
+.speak-again { min-height: 24px; }
+
+/* Anchor targets clear the sticky header */
+[id] { scroll-margin-top: 92px; }
+
+/* Slightly stronger secondary-text contrast on dark */
+.ask-dark .ask-foot, .qr-caption, .scan-head span, .voice-note,
+.foot-bottom, .foot-col h4 { color: rgba(240,233,220,.64); }
+
+/* Reduced motion: cover the newer pieces too */
+@media (prefers-reduced-motion: reduce) {
+  .pm-card, .pm-backdrop, .btn::after { animation: none !important; }
+  .person:hover, .faith-node:hover, .learn-card:hover, .step:hover,
+  .scan-card:hover, .btn:hover, .chip:hover, .listen-btn:hover { transform: none !important; }
+}
