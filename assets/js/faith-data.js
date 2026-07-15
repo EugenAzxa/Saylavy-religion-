@@ -294,6 +294,57 @@ const FAITHS = {
 
 };
 
+/* --- People of each faith (typographic monograms, no depictions) --- */
+FAITHS.protestant.people = [
+  { mono: "ML", name: "Martin Luther", tag: "Reformer, 1500s", note: "Began the Reformation and put the Bible into the language of the people." },
+  { mono: "JW", name: "John Wesley", tag: "Preacher, 1700s", note: "Founded the Methodist movement and preached grace to the crowds." },
+  { mono: "CS", name: "C. S. Lewis", tag: "Writer, 1900s", note: "Explained the faith with clarity and imagination for a modern age." },
+  { mono: "BG", name: "Billy Graham", tag: "Evangelist, 1900s", note: "Shared the gospel with millions across the world." }
+];
+FAITHS.catholic.people = [
+  { mono: "FA", name: "St. Francis of Assisi", tag: "Saint, 1200s", note: "Loved the poor and all of creation, and lived the gospel simply." },
+  { mono: "AU", name: "St. Augustine", tag: "Doctor, 400s", note: "A great teacher of the Church whose writings still guide the faith." },
+  { mono: "MT", name: "Mother Teresa", tag: "Saint, 1900s", note: "Served the poorest of the poor with tireless love." },
+  { mono: "JP", name: "Pope John Paul II", tag: "Pope, 1900s", note: "Travelled the world as a shepherd of peace and hope." }
+];
+FAITHS.orthodox.people = [
+  { mono: "JC", name: "St. John Chrysostom", tag: "Father, 300s", note: "The golden-mouthed preacher whose Divine Liturgy is still sung." },
+  { mono: "BA", name: "St. Basil the Great", tag: "Father, 300s", note: "Shaped the faith and cared for the sick and the poor." },
+  { mono: "SS", name: "St. Seraphim of Sarov", tag: "Monk, 1700s", note: "A gentle Russian saint known for his joy and deep prayer." },
+  { mono: "NI", name: "St. Nicholas", tag: "Bishop, 300s", note: "A kind bishop remembered for his quiet generosity." }
+];
+FAITHS.muslim.peopleNote = "Above all we honour the Prophet Muhammad, peace be upon him. Here are a few who walked his path.";
+FAITHS.muslim.people = [
+  { mono: "RU", name: "Jalaluddin Rumi", tag: "Poet, 1200s", note: "A beloved poet whose verses turn the heart toward the divine." },
+  { mono: "IS", name: "Ibn Sina", tag: "Scholar, 1000s", note: "A great physician and thinker of the golden age of learning." },
+  { mono: "KH", name: "Al-Khwarizmi", tag: "Scholar, 800s", note: "A pioneer of algebra whose name gave us the word algorithm." },
+  { mono: "SA", name: "Salahuddin", tag: "Leader, 1100s", note: "Remembered across the world for his justice and his mercy." }
+];
+FAITHS.hindu.people = [
+  { mono: "VI", name: "Swami Vivekananda", tag: "Teacher, 1800s", note: "Carried the wisdom of Vedanta to the world with courage and grace." },
+  { mono: "SH", name: "Adi Shankara", tag: "Philosopher, 700s", note: "Renewed and united the tradition through his teaching." },
+  { mono: "MI", name: "Mirabai", tag: "Poet-saint, 1500s", note: "A poet-saint whose songs of devotion are still sung today." },
+  { mono: "MG", name: "Mahatma Gandhi", tag: "Leader, 1900s", note: "Lived ahimsa, non-harming, and moved a nation with truth." }
+];
+FAITHS.sikh.people = [
+  { mono: "GN", name: "Guru Nanak Dev Ji", tag: "First Guru", note: "Taught that there is one God for all and that everyone is equal." },
+  { mono: "GG", name: "Guru Gobind Singh Ji", tag: "Tenth Guru", note: "Gave the Khalsa its form, its courage, and its sense of justice." },
+  { mono: "PS", name: "Bhagat Puran Singh", tag: "Servant, 1900s", note: "A tireless servant who cared for the sick and the abandoned." },
+  { mono: "RS", name: "Maharaja Ranjit Singh", tag: "Ruler, 1800s", note: "A just ruler remembered for his tolerance and his strength." }
+];
+FAITHS.jewish.people = [
+  { mono: "MO", name: "Moshe (Moses)", tag: "Torah", note: "Led the people out of Egypt and received the Torah at Sinai." },
+  { mono: "RM", name: "Maimonides", tag: "Sage, 1100s", note: "A physician and sage whose teachings still shape Jewish thought." },
+  { mono: "RA", name: "Rashi", tag: "Commentator, 1000s", note: "The great commentator who opened the Torah for every generation." },
+  { mono: "GM", name: "Golda Meir", tag: "Leader, 1900s", note: "A leader remembered for her courage and conviction." }
+];
+FAITHS.buddhist.people = [
+  { mono: "BU", name: "The Buddha", tag: "The awakened teacher", note: "Showed the path to a calm and compassionate heart." },
+  { mono: "AS", name: "Emperor Ashoka", tag: "Ruler, 200s BCE", note: "Turned from war to compassion and spread the Dharma widely." },
+  { mono: "TN", name: "Thich Nhat Hanh", tag: "Monk, 1900s", note: "A gentle monk who taught mindfulness to the whole world." },
+  { mono: "DL", name: "The Dalai Lama", tag: "Teacher, today", note: "A voice for compassion and kindness across the earth." }
+];
+
 const FAITH_ORDER = ["protestant", "catholic", "orthodox", "muslim", "hindu", "sikh", "jewish", "buddhist"];
 
 if (typeof window !== "undefined") { window.FAITHS = FAITHS; window.FAITH_ORDER = FAITH_ORDER; }

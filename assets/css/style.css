@@ -778,3 +778,119 @@ body.faith-page { background: var(--tint); }
 /* give the hero a little more calm space above the rising sheet */
 .hero-cosmos { padding-bottom: clamp(4.5rem, 8vw, 7rem); }
 .faith-hero.hero-cosmos { padding-bottom: clamp(5rem, 9vw, 8rem); }
+
+/* ============================================================
+   UNIFIED DARK THEME - the whole site matches the hero.
+   Lightened accent per faith for readable text on dark.
+   ============================================================ */
+:root { --accent-lt: #e9cb8c; }
+.theme-protestant { --accent-lt: #7ba0e0; }
+.theme-catholic   { --accent-lt: #e08594; }
+.theme-orthodox   { --accent-lt: #e8c073; }
+.theme-muslim     { --accent-lt: #54c39b; }
+.theme-hindu      { --accent-lt: #f0a468; }
+.theme-sikh       { --accent-lt: #8892e2; }
+.theme-jewish     { --accent-lt: #79c0e8; }
+.theme-buddhist   { --accent-lt: #e0916a; }
+
+body { background: #0d0a14; color: #ece4d6; }
+body.faith-page { background: #0b0912; }
+
+h1, h2, h3, h4 { color: #f6efe2; }
+p, .lead { color: rgba(240,233,220,.72); }
+
+/* eyebrows readable on dark */
+.eyebrow { color: #e9cb8c; }
+.eyebrow::before { background: #c99a4a; }
+.faith-page .eyebrow { color: var(--accent-lt); }
+.faith-page .eyebrow::before { background: var(--accent); }
+
+/* seamless dark sections, no rising sheet needed */
+.section.band, .faith-explore, .faith-close, .faith-people { background: transparent; position: relative; }
+.hero-cosmos + .section { margin-top: 0; border-radius: 0; box-shadow: none; }
+.section.band > .wrap { position: relative; z-index: 1; }
+
+/* faith-colour ambience so dark content stays alive */
+.faith-explore::before, .faith-close::before, .faith-people::before {
+  content: ""; position: absolute; top: -18%; right: -12%; width: 70%; height: 85%;
+  background: radial-gradient(circle, var(--accent), transparent 62%);
+  opacity: .1; filter: blur(70px); pointer-events: none; z-index: 0;
+}
+.faith-people::before { right: auto; left: -12%; }
+.section.band::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(70% 55% at 50% 0%, rgba(201,154,74,.07), transparent 70%);
+}
+
+/* cards as dark glass */
+.step, .learn-card, .scan-card, .person, .badge {
+  background: rgba(255,255,255,.045); border-color: rgba(247,241,228,.1);
+  box-shadow: 0 18px 46px rgba(0,0,0,.36);
+}
+.step h3, .learn-card h3, .trust .t h3, .person h3,
+.faith-close h2, .faith-explore .sec-head h2, .faith-people .sec-head h2 { color: #f6efe2; }
+.step p, .learn-card p, .trust .t p, .person p, .feature-list li { color: rgba(240,233,220,.68); }
+.step .num, .learn-card .kind, .learn-card .kind svg { color: var(--accent-lt); }
+.step .ico { background: rgba(255,255,255,.06); }
+.step .ico svg, .trust .t .ico svg, .feature-list li svg { color: var(--accent-lt); }
+.trust .t .ico { background: rgba(255,255,255,.06); }
+.faith-page .learn-card { border-top: 2px solid var(--accent); }
+.learn-card .original { background: rgba(255,255,255,.06); color: #f4ecdd; }
+.listen-btn { border-color: rgba(247,241,228,.18); color: #ece4d6; }
+.listen-btn:hover { border-color: var(--accent); color: var(--accent-lt); }
+
+/* QR card stays legible; keep the code itself on white */
+.scan-head span, .qr-caption, .voice-note { color: rgba(240,233,220,.55); }
+.qr-box { background: #ffffff; }
+
+/* header + footer dark */
+.site-header.scrolled { background: rgba(13,10,20,.82); border-bottom-color: rgba(247,241,228,.08); box-shadow: none; }
+.site-header.scrolled .brand { color: #f6efe2; }
+.site-header.scrolled .brand small { color: #e9cb8c; }
+.site-header.scrolled .brand .mark { color: #e9cb8c !important; }
+.site-header.scrolled .nav-links a { color: rgba(240,233,220,.75); }
+.site-header.scrolled .nav-links a:hover { color: #fff; }
+.site-header.scrolled .nav-toggle { color: #f6efe2; }
+.site-header.scrolled .btn-primary { background: rgba(247,241,228,.12); border: 1px solid rgba(247,241,228,.28); color: #f7f1e4; }
+.nav-links.open { background: #12101c; border-color: rgba(247,241,228,.1); }
+
+.site-footer { background: #0a0810; border-top-color: rgba(247,241,228,.1); }
+.site-footer .brand { color: #f6efe2; }
+.foot-brand p { color: rgba(240,233,220,.6); }
+.foot-col h4 { color: rgba(240,233,220,.5); }
+.foot-col a { color: rgba(240,233,220,.7); }
+.foot-col a:hover { color: #fff; }
+.foot-bottom { border-top-color: rgba(247,241,228,.1); color: rgba(240,233,220,.5); }
+.powered a { color: rgba(240,233,220,.82); border-color: rgba(247,241,228,.22); }
+
+/* ghost buttons on dark */
+.btn-ghost { color: #ece4d6; border-color: rgba(247,241,228,.22); }
+.btn-ghost:hover { border-color: #f7f1e4; }
+
+/* mobile fallback list on dark */
+.circle-fallback a { background: rgba(255,255,255,.05); border-color: rgba(247,241,228,.1); }
+.circle-fallback a strong { color: #f6efe2; }
+.circle-fallback a small { color: rgba(240,233,220,.6); }
+
+/* ---- People of the faith ---- */
+.faith-people .sec-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.people-note { max-width: 46rem; margin: .4rem auto 0; font-size: .96rem; color: rgba(240,233,220,.6); }
+.people-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; position: relative; z-index: 1; }
+.person { border-radius: var(--radius); padding: 1.6rem 1.3rem; text-align: center;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+.person:hover { transform: translateY(-5px); box-shadow: 0 26px 60px rgba(0,0,0,.46); border-color: var(--accent); }
+.person .mono {
+  width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 1rem;
+  font-family: var(--serif); font-size: 1.35rem; color: var(--accent-lt);
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.1), rgba(255,255,255,.02));
+  border: 1px solid var(--accent);
+}
+.person h3 { font-size: 1.05rem; margin-bottom: .15rem; }
+.person .ptag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent-lt); display: block; margin-bottom: .6rem; }
+.person p { font-size: .88rem; margin: 0; }
+.faith-people .wrap { position: relative; z-index: 1; }
+@media (max-width: 940px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .people-grid { grid-template-columns: 1fr; } }
+
+.faith-people { overflow: hidden; }

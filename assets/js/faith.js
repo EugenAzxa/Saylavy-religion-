@@ -84,6 +84,14 @@
 
   const chips = f.suggest.map(s => `<button class="chip" data-q="${esc(s)}">${esc(s)}</button>`).join("");
 
+  const peopleCards = (f.people || []).map(p => `
+    <article class="person reveal">
+      <span class="mono">${esc(p.mono)}</span>
+      <h3>${esc(p.name)}</h3>
+      <span class="ptag">${esc(p.tag)}</span>
+      <p>${esc(p.note)}</p>
+    </article>`).join("");
+
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
       <canvas class="motes" data-accent="${f.accent}" data-shape="${f.shape || "mote"}" aria-hidden="true"></canvas>
@@ -138,6 +146,17 @@
         </div>
         <div class="learn-grid">${learnCards}</div>
         <p class="voice-note" id="voiceNote"></p>
+      </div>
+    </section>
+
+    <section class="section faith-people">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Voices of this faith</p>
+          <h2>People who carried it</h2>
+          ${f.peopleNote ? `<p class="people-note">${esc(f.peopleNote)}</p>` : ""}
+        </div>
+        <div class="people-grid">${peopleCards}</div>
       </div>
     </section>
 
