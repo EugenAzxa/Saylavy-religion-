@@ -534,3 +534,175 @@ body.faith-page { background: var(--tint); }
 .powered { display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; color: var(--muted); }
 .powered a { color: var(--ink-soft); font-weight:600; border-bottom:1px solid var(--line); }
 .powered a:hover { color: var(--accent-deep); border-color: var(--accent); }
+
+/* =========================================================
+   PREMIUM LAYER - animated cosmos hero, glowing circle,
+   per-faith emblem, and richer motion.
+   Appended last so it overrides the base where needed.
+   ========================================================= */
+
+/* ---- Cosmos hero (dark, animated) ---- */
+.hero-cosmos {
+  position: relative; overflow: hidden; color: #f4ecdd;
+  --auroraA: #6b46b0; --auroraB: #c99a4a; --auroraC: #3a4f8a;
+  background: radial-gradient(130% 105% at 50% -18%, #2a2138 0%, #171021 46%, #0d0a14 100%);
+}
+.hero-cosmos > .wrap { position: relative; z-index: 3; }
+.hero-cosmos .eyebrow { color: #e9cb8c; }
+.hero-cosmos .eyebrow::before { background: #c99a4a; }
+.hero-cosmos h1 { color: #f7f1e4; }
+.hero-cosmos .lead { color: rgba(247,241,228,.74); }
+.hero-cosmos .btn-ghost { color: #f7f1e4; border-color: rgba(247,241,228,.28); }
+.hero-cosmos .btn-ghost:hover { border-color: #f7f1e4; }
+
+.motes { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; display: block; }
+.aurora {
+  position: absolute; border-radius: 50%; filter: blur(80px);
+  opacity: .5; mix-blend-mode: screen; pointer-events: none; z-index: 0; will-change: transform;
+}
+.a1 { width: 48vw; height: 48vw; top: -16%; left: -10%; background: radial-gradient(circle, var(--auroraA), transparent 62%); animation: drift1 24s ease-in-out infinite; }
+.a2 { width: 42vw; height: 42vw; bottom: -20%; right: -10%; background: radial-gradient(circle, var(--auroraB), transparent 62%); animation: drift2 30s ease-in-out infinite; }
+.a3 { width: 34vw; height: 34vw; top: 26%; left: 42%; background: radial-gradient(circle, var(--auroraC), transparent 64%); animation: drift3 27s ease-in-out infinite; }
+@keyframes drift1 { 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(6%,4%) scale(1.12);} }
+@keyframes drift2 { 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(-5%,-3%) scale(1.1);} }
+@keyframes drift3 { 0%,100%{ transform: translate(-50%,0) scale(1);} 50%{ transform: translate(-46%,5%) scale(1.15);} }
+
+.grain {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.fade-b { position: absolute; left: 0; right: 0; bottom: -1px; height: 130px; z-index: 2; pointer-events: none; background: linear-gradient(transparent, var(--paper)); }
+.faith-page .hero-cosmos .fade-b { background: linear-gradient(transparent, var(--tint)); }
+
+/* ---- Glowing circle inside cosmos ---- */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 0%,100%{ opacity:.45; transform: translate(-50%,-50%) scale(.9);} 50%{ opacity:.85; transform: translate(-50%,-50%) scale(1.08);} }
+@keyframes float { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-7px);} }
+@keyframes dash { to { stroke-dashoffset: -200; } }
+
+.hero-cosmos .circle-ring { border-color: rgba(247,241,228,.10); animation: spin 100s linear infinite; }
+.hero-cosmos .circle-ring::after { border-color: rgba(201,154,74,.18); animation: spin 78s linear infinite reverse; }
+.circle-glow {
+  position: absolute; top: 50%; left: 50%; width: 52%; aspect-ratio: 1;
+  transform: translate(-50%,-50%); border-radius: 50%; z-index: 1; pointer-events: none;
+  background: radial-gradient(circle, rgba(201,154,74,.30), transparent 66%);
+  filter: blur(12px); animation: breathe 6.5s ease-in-out infinite;
+}
+.circle-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; overflow: visible; pointer-events: none; }
+.circle-lines line { stroke: rgba(247,241,228,.14); stroke-width: 1; stroke-dasharray: 2 6; animation: dash 40s linear infinite; }
+
+.hero-cosmos .circle-hub {
+  background: rgba(26,20,36,.5); backdrop-filter: blur(12px); border-color: rgba(247,241,228,.16);
+  color: #f7f1e4; box-shadow: 0 10px 50px rgba(0,0,0,.45), inset 0 0 34px rgba(201,154,74,.12);
+}
+.hero-cosmos .circle-hub strong { color: #f7f1e4; }
+.hero-cosmos .circle-hub small { color: rgba(247,241,228,.62); }
+.hero-cosmos .circle-hub .mark { color: #e9cb8c; }
+
+/* node positioning wrapper + gentle float (transform freed from positioning) */
+.node-pos { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transform: translate(var(--x), var(--y)); z-index: 3; }
+.faith-node {
+  position: absolute; top: -48px; left: -48px; width: 96px; height: 96px; margin: 0;
+  transform: none; animation: float var(--fd, 6s) ease-in-out var(--dl, 0s) infinite;
+}
+.faith-node:hover, .faith-node:focus-visible { transform: translateY(-4px) scale(1.14); animation-play-state: paused; }
+.faith-node .halo { inset: -10px; filter: blur(8px); background: radial-gradient(circle, var(--accent), transparent 68%); }
+
+.hero-cosmos .faith-node {
+  background: rgba(24,18,33,.5); backdrop-filter: blur(9px); border-color: rgba(247,241,228,.14);
+  box-shadow: 0 10px 34px rgba(0,0,0,.42);
+}
+.hero-cosmos .faith-node .sym { color: var(--accent); }
+.hero-cosmos .faith-node .label { color: rgba(247,241,228,.74); text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.hero-cosmos .faith-node .halo { opacity: .24; }
+.hero-cosmos .faith-node:hover .halo, .hero-cosmos .faith-node:focus-visible .halo { opacity: .9; }
+.hero-cosmos .faith-node:hover { border-color: var(--accent); box-shadow: 0 18px 52px rgba(0,0,0,.5); }
+
+/* ---- Per-faith emblem animation behind faith hero ---- */
+.faith-aura { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.faith-aura .halo-lg {
+  position: absolute; top: -12%; right: -6%; width: min(560px, 62vw); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent), transparent 60%); opacity: .34; filter: blur(48px);
+  animation: breathe 9s ease-in-out infinite; will-change: transform, opacity;
+}
+.faith-aura .spin-wrap { position: absolute; top: -6%; right: -3%; width: min(460px, 54vw); aspect-ratio: 1; display: grid; place-items: center; }
+.faith-aura .rr { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed rgba(247,241,228,.12); animation: spin 120s linear infinite; }
+.faith-aura .rr2 { inset: 13%; border-style: solid; border-color: rgba(247,241,228,.08); animation: spin 90s linear infinite reverse; }
+.faith-aura .rr3 { inset: 26%; border-color: rgba(247,241,228,.06); animation: spin 150s linear infinite; }
+.faith-aura .big-sym { width: 42%; color: var(--accent); opacity: .55; animation: emblemPulse 7s ease-in-out infinite; }
+.faith-aura .big-sym svg { width: 100%; height: 100%; }
+@keyframes emblemPulse { 0%,100%{ opacity:.4; filter: drop-shadow(0 0 10px transparent);} 50%{ opacity:.7; filter: drop-shadow(0 0 26px var(--accent));} }
+
+/* ---- Faith hero in cosmos (accent-tinted dark) ---- */
+.faith-hero.hero-cosmos {
+  --auroraA: var(--accent); --auroraB: #c99a4a; --auroraC: var(--accent-deep);
+  background: radial-gradient(130% 105% at 78% -20%, var(--accent-ink) 0%, #15111d 56%, #0c0a12 100%);
+  border-bottom: 0;
+}
+.faith-hero.hero-cosmos h1 { color: #f8f2e6; }
+.faith-hero.hero-cosmos .lead { color: rgba(248,242,230,.76); }
+.faith-hero.hero-cosmos .faith-kicker { color: #f0d6a3; }
+.faith-hero.hero-cosmos .faith-kicker::before { background: var(--accent); }
+.faith-hero.hero-cosmos .faith-emblem {
+  background: rgba(255,255,255,.07); border-color: rgba(248,242,230,.18); backdrop-filter: blur(8px);
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+.faith-hero.hero-cosmos .faith-emblem svg { color: #f4d9a6; filter: drop-shadow(0 0 12px var(--accent)); }
+.faith-hero.hero-cosmos .approve-pill {
+  background: rgba(255,255,255,.08); border-color: rgba(248,242,230,.2); color: #f4ecdd;
+}
+.faith-hero.hero-cosmos .back-link { color: #f0d6a3; }
+
+/* ---- Motion: reveal with soft blur + stagger ---- */
+.reveal { opacity: 0; transform: translateY(26px) scale(.986); filter: blur(6px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; filter: none; }
+.steps .step:nth-child(2), .learn-grid .learn-card:nth-child(2), .trust .t:nth-child(2) { transition-delay: .08s; }
+.steps .step:nth-child(3), .learn-grid .learn-card:nth-child(3), .trust .t:nth-child(3) { transition-delay: .16s; }
+.steps .step:nth-child(4) { transition-delay: .24s; }
+
+/* ---- Shimmering gold accent word ---- */
+.hero-cosmos .serif-accent, .serif-accent {
+  background: linear-gradient(100deg, #e9cb8c, #c99a4a 40%, #f2ddb0 60%, #c99a4a);
+  background-size: 220% auto; -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer { to { background-position: 220% center; } }
+
+/* ---- Button sheen ---- */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent);
+  transform: skewX(-18deg); pointer-events: none;
+}
+.btn:hover::after { animation: sheen .85s ease; }
+@keyframes sheen { to { left: 140%; } }
+
+/* ---- Glass cards get a touch more depth on hover ---- */
+.learn-card, .step, .faith-card { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .a1, .a2, .a3, .circle-glow, .circle-ring, .circle-ring::after, .circle-lines line,
+  .faith-node, .faith-aura .halo-lg, .faith-aura .rr, .faith-aura .rr2, .faith-aura .rr3,
+  .faith-aura .big-sym, .serif-accent { animation: none !important; }
+  .reveal { filter: none; }
+}
+
+/* ---- Transparent header over the dark hero, solid on scroll ---- */
+.site-header:not(.scrolled) { background: transparent; backdrop-filter: none; }
+.site-header:not(.scrolled) .brand { color: #f7f1e4; }
+.site-header:not(.scrolled) .brand small { color: #e9cb8c; }
+.site-header:not(.scrolled) .brand .mark { color: #e9cb8c !important; }
+.site-header:not(.scrolled) .nav-links a { color: rgba(247,241,228,.82); }
+.site-header:not(.scrolled) .nav-links a:hover { color: #fff; }
+.site-header:not(.scrolled) .nav-toggle { color: #f7f1e4; }
+.site-header:not(.scrolled) .btn-primary {
+  background: rgba(247,241,228,.12); border: 1px solid rgba(247,241,228,.32);
+  color: #f7f1e4; backdrop-filter: blur(6px); box-shadow: none;
+}
+.site-header:not(.scrolled) .btn-primary:hover { background: rgba(247,241,228,.2); }
+/* keep the open mobile menu readable on its ivory panel */
+.site-header:not(.scrolled) .nav-links.open a { color: var(--ink-soft); }
+.site-header:not(.scrolled) .nav-links.open a:hover { color: var(--ink); }

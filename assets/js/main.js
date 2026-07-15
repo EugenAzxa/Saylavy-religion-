@@ -38,22 +38,30 @@
   if (circle && window.FAITHS && window.FAITH_ORDER) {
     const order = window.FAITH_ORDER;
     const n = order.length;
+    const R = 39; // percent radius, relative to wrap centre
+    const lines = document.getElementById("circleLines");
+    let lineSvg = "";
     const nodesHtml = order.map((slug, i) => {
       const f = window.FAITHS[slug];
       // start at top (-90deg), go clockwise
       const angle = (-90 + (360 / n) * i) * Math.PI / 180;
-      const R = 39; // percent radius, relative to wrap centre
       const x = Math.cos(angle) * R;
       const y = Math.sin(angle) * R;
-      return `<a class="faith-node ${f.theme}" href="${slug}.html"
-                 style="--x:calc(${x} * 1cqw); --y:calc(${y} * 1cqw)"
-                 aria-label="${f.name}">
-                <span class="halo"></span>
-                <span class="sym">${f.symbol}</span>
-                <span class="label">${f.name}</span>
-              </a>`;
+      // constellation line from centre (50,50) to the node, in the 0..100 viewBox
+      lineSvg += `<line x1="50" y1="50" x2="${(50 + x).toFixed(2)}" y2="${(50 + y).toFixed(2)}" style="animation-delay:${(i * -3)}s"/>`;
+      const fd = (5.5 + (i % 4) * 0.7).toFixed(1); // varied float duration
+      const dl = (i * 0.4).toFixed(1);             // staggered start
+      return `<span class="node-pos" style="--x:calc(${x.toFixed(3)} * 1cqw); --y:calc(${y.toFixed(3)} * 1cqw)">
+                <a class="faith-node ${f.theme}" href="${slug}.html"
+                   style="--fd:${fd}s; --dl:${dl}s" aria-label="${f.name}">
+                  <span class="halo"></span>
+                  <span class="sym">${f.symbol}</span>
+                  <span class="label">${f.name}</span>
+                </a>
+              </span>`;
     }).join("");
     circle.innerHTML = nodesHtml;
+    if (lines) lines.innerHTML = lineSvg;
   }
 
   /* ---------- contact form (mailto handoff, no backend) ---------- */

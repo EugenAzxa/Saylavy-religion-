@@ -39,7 +39,7 @@ const ICO = {
 const FAITHS = {
 
   protestant: {
-    slug: "protestant", theme: "theme-protestant", accent: "#3563a8",
+    slug: "protestant", theme: "theme-protestant", accent: "#3563a8", shape: "mote",
     name: "Protestant", tradition: "Evangelical & Protestant Christian",
     symbol: SYM.protestant,
     place: "your church",
@@ -70,7 +70,7 @@ const FAITHS = {
   },
 
   catholic: {
-    slug: "catholic", theme: "theme-catholic", accent: "#9b2d3c",
+    slug: "catholic", theme: "theme-catholic", accent: "#9b2d3c", shape: "mote",
     name: "Catholic", tradition: "Roman Catholic",
     symbol: SYM.catholic,
     place: "your parish",
@@ -102,7 +102,7 @@ const FAITHS = {
   },
 
   orthodox: {
-    slug: "orthodox", theme: "theme-orthodox", accent: "#b3852c",
+    slug: "orthodox", theme: "theme-orthodox", accent: "#b3852c", shape: "spark",
     name: "Orthodox", tradition: "Greek, Coptic & Orthodox Christian",
     symbol: SYM.orthodox,
     place: "your church",
@@ -133,7 +133,7 @@ const FAITHS = {
   },
 
   muslim: {
-    slug: "muslim", theme: "theme-muslim", accent: "#1f7a5a",
+    slug: "muslim", theme: "theme-muslim", accent: "#1f7a5a", shape: "star8",
     name: "Muslim", tradition: "Islam - masjid & Islamic centre",
     symbol: SYM.muslim,
     place: "your masjid",
@@ -165,7 +165,7 @@ const FAITHS = {
   },
 
   hindu: {
-    slug: "hindu", theme: "theme-hindu", accent: "#d9772a",
+    slug: "hindu", theme: "theme-hindu", accent: "#d9772a", shape: "petal",
     name: "Hindu", tradition: "Hindu - mandir",
     symbol: SYM.hindu,
     place: "your mandir",
@@ -197,7 +197,7 @@ const FAITHS = {
   },
 
   sikh: {
-    slug: "sikh", theme: "theme-sikh", accent: "#35408f",
+    slug: "sikh", theme: "theme-sikh", accent: "#35408f", shape: "spark",
     name: "Sikh", tradition: "Sikhi - gurdwara",
     symbol: SYM.sikh,
     place: "your gurdwara",
@@ -229,7 +229,7 @@ const FAITHS = {
   },
 
   jewish: {
-    slug: "jewish", theme: "theme-jewish", accent: "#2f7fb0",
+    slug: "jewish", theme: "theme-jewish", accent: "#2f7fb0", shape: "star6",
     name: "Jewish", tradition: "Judaism - synagogue & Hebrew school",
     symbol: SYM.jewish,
     place: "your synagogue",
@@ -261,7 +261,7 @@ const FAITHS = {
   },
 
   buddhist: {
-    slug: "buddhist", theme: "theme-buddhist", accent: "#9a4f2b",
+    slug: "buddhist", theme: "theme-buddhist", accent: "#9a4f2b", shape: "petal",
     name: "Buddhist", tradition: "Buddhist - temple",
     symbol: SYM.buddhist,
     place: "your temple",
