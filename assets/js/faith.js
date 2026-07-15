@@ -103,8 +103,8 @@
             <p class="lead">${esc(f.hero.lead)}</p>
             <span class="approve-pill">${ICON.check} ${esc(f.approve)}</span>
             <div class="hero-actions">
-              <a class="btn btn-gold btn-lg" href="#ask">Try the live sample</a>
-              <a class="btn btn-ghost" href="index.html#partner">Get your free page</a>
+              <a class="btn btn-gold btn-lg" href="#ask">Ask a question</a>
+              <a class="btn btn-ghost" href="#explore">See the lessons</a>
             </div>
           </div>
           <div class="reveal" style="transition-delay:.08s">
@@ -120,7 +120,7 @@
                 <input id="askText" type="text" placeholder="Ask a question..." aria-label="Type your question">
                 <button type="submit" class="icon-btn send" title="Send" aria-label="Send">${ICON.send}</button>
               </form>
-              <p class="ask-foot">A gentle demo voice. On a real page, children hear your own teachers.</p>
+              <p class="ask-foot">A gentle demo voice. On a real page, you hear your community's own teachers.</p>
             </div>
           </div>
         </div>
@@ -128,35 +128,36 @@
       <span class="fade-b"></span>
     </section>
 
-    <section class="section">
-      <div class="wrap">
+    <section class="section faith-explore" id="explore">
+      <span class="faith-watermark" aria-hidden="true">${f.symbol}</span>
+      <div class="wrap" style="position:relative;z-index:1">
         <div class="sec-head center">
           <p class="eyebrow center-line">Scan, listen, interact, learn</p>
-          <h2>What your children explore</h2>
-          <p class="lead">A taste of the page. Every card is heard in a real voice, and everything is approved by ${esc(f.place)} first.</p>
+          <h2>What you can explore</h2>
+          <p class="lead">A glimpse of the page. Every card is heard in a real voice, and shaped together with ${esc(f.place)}.</p>
         </div>
         <div class="learn-grid">${learnCards}</div>
         <p class="voice-note" id="voiceNote"></p>
       </div>
     </section>
 
-    <section class="section band">
-      <div class="wrap center">
-        <div class="sec-head center" style="margin-bottom:1.5rem">
-          <p class="eyebrow center-line">The free offer</p>
-          <h2>One free QR code for ${esc(f.place)}</h2>
-          <p class="lead">We build this page for you, your teachers approve it, and you get a free QR code to place in the bulletin, on the wall, or on a take-home card. No app to buy. No subscription. No cost.</p>
-        </div>
-        <div class="scan-card" style="max-width:300px">
-          <div class="scan-inner">
-            <div class="scan-head"><span class="dot"></span><span>This page, as a QR code</span></div>
-            <div class="qr-box"><div data-qr="" data-size="150"></div></div>
-            <p class="qr-caption">Scan to open this ${esc(f.name)} sample</p>
+    <section class="section faith-close">
+      <span class="faith-watermark soft" aria-hidden="true">${f.symbol}</span>
+      <div class="wrap center" style="position:relative;z-index:1">
+        <div class="close-emblem">${f.symbol}</div>
+        <p class="eyebrow center-line">A living example</p>
+        <h2>Made with ${esc(f.place)}, in your own voice</h2>
+        <p class="lead">The stories, the prayers, the voices, and the answers here are all shaped together with your teachers. This page is a demonstration of what we can build together.</p>
+        <div class="close-qr">
+          <div class="scan-card" style="max-width:280px">
+            <div class="scan-inner">
+              <div class="scan-head"><span class="dot"></span><span>This page, as a QR code</span></div>
+              <div class="qr-box"><div data-qr="" data-size="140"></div></div>
+              <p class="qr-caption">Scan to open this ${esc(f.name)} example</p>
+            </div>
           </div>
         </div>
-        <div style="margin-top:1.6rem">
-          <a class="btn btn-gold btn-lg" href="index.html#partner">Request your free page ${ICON.qr}</a>
-        </div>
+        <a class="btn btn-ghost" href="index.html">${ICON.back} Explore the other faiths</a>
       </div>
     </section>
   `;

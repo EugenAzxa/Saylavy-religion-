@@ -44,17 +44,17 @@ const FAITHS = {
     symbol: SYM.protestant,
     place: "your church",
     hero: {
-      kicker: "For your kids ministry",
-      title: "Bible stories your children will remember",
-      lead: "A free, interactive page where kids hear Scripture in real voices, listen to memory verses, and ask questions about the stories they are learning. Your leaders approve every word."
+      kicker: "For your congregation",
+      title: "Bible stories that stay with you",
+      lead: "An interactive page where your community hears Scripture in real voices, listens to memory verses, and asks about the stories they are learning. Your leaders approve every word."
     },
     approve: "Every story and verse is reviewed by your pastors before it goes live.",
     guide: { name: "Miss Grace", role: "your Bible story guide" },
     greeting: "Hello. I am Miss Grace, your Bible story helper. Ask me about a Bible story, a memory verse, or what it means to follow Jesus.",
     learn: [
       { kind: "Bible story", icon: ICO.story, title: "David and Goliath", body: "A shepherd boy trusted God and faced a giant with just a sling and a stone. It teaches us that God gives courage to the small and the brave." },
-      { kind: "Memory verse", icon: ICO.prayer, title: "John 3:16", original: "For God so loved the world that he gave his one and only Son.", body: "A verse kids can hear, repeat, and carry with them all week." },
-      { kind: "The gospel", icon: ICO.language, title: "The good news", body: "Jesus died and rose again, and salvation is a free gift received by faith. Told simply, in a child's language." }
+      { kind: "Memory verse", icon: ICO.prayer, title: "John 3:16", original: "For God so loved the world that he gave his one and only Son.", body: "A verse to hear, repeat, and carry with you all week." },
+      { kind: "The gospel", icon: ICO.language, title: "The good news", body: "Jesus died and rose again, and salvation is a free gift received by faith. Told simply and warmly." }
     ],
     suggest: ["Tell me a Bible story", "What is a memory verse?", "Who is Jesus?"],
     qa: [
@@ -77,21 +77,21 @@ const FAITHS = {
     hero: {
       kicker: "For sacrament prep & faith formation",
       title: "Prayers, saints, and the Catechism, made to stick",
-      lead: "A free, interactive page for First Communion and Confirmation prep, the prayers, and the lives of the saints. Kids listen, pray along, and ask questions. Reviewed by your parish first."
+      lead: "An interactive page for First Communion and Confirmation prep, the prayers, and the lives of the saints. You listen, pray along, and ask questions. Reviewed by your parish first."
     },
     approve: "Every prayer, saint's story, and Catechism answer is reviewed by your parish before it goes live.",
     guide: { name: "Sister Clara", role: "your catechism guide" },
     greeting: "Peace be with you. I am Sister Clara, your catechism helper. Ask me about a prayer, a saint, the sacraments, or the Mass.",
     learn: [
-      { kind: "Prayer", icon: ICO.prayer, title: "The Hail Mary", original: "Hail Mary, full of grace, the Lord is with thee.", body: "We ask the Blessed Mother to pray for us. A prayer children learn early and keep for life." },
+      { kind: "Prayer", icon: ICO.prayer, title: "The Hail Mary", original: "Hail Mary, full of grace, the Lord is with thee.", body: "We ask the Blessed Mother to pray for us. A prayer learned early and kept for life." },
       { kind: "A saint", icon: ICO.story, title: "Saint Francis of Assisi", body: "A joyful saint who loved the poor and all of God's creatures. His life shows us how to live simply and kindly." },
-      { kind: "Catechism", icon: ICO.language, title: "Who made me?", original: "God made me to know him, love him, and serve him.", body: "The Catechism in a simple question and answer a child can hold onto." }
+      { kind: "Catechism", icon: ICO.language, title: "Who made me?", original: "God made me to know him, love him, and serve him.", body: "The Catechism in a simple question and answer you can hold onto." }
     ],
     suggest: ["Teach me the Hail Mary", "Tell me about a saint", "What is First Communion?"],
     qa: [
       { keys: ["hail mary", "mary", "our lady"], a: "The Hail Mary is a beautiful prayer. We honour the Blessed Virgin Mary and ask her to pray for us. It begins, Hail Mary, full of grace, the Lord is with thee. We do not worship Mary, we ask her to pray with us to God." },
       { keys: ["saint", "francis"], a: "Saints are holy friends of God who lived good lives and are now in heaven. Saint Francis of Assisi loved the poor and every creature. We ask the saints to pray for us." },
-      { keys: ["first communion", "communion", "eucharist"], a: "First Communion is a very special day, usually around age seven, when a child receives Jesus in the Eucharist for the first time. We prepare our hearts with prayer and confession." },
+      { keys: ["first communion", "communion", "eucharist"], a: "First Communion is a very special day, a milestone when someone receives Jesus in the Eucharist for the first time. We prepare our hearts with prayer and confession." },
       { keys: ["confirmation"], a: "In Confirmation we receive the gifts of the Holy Spirit and become fuller members of the Church. It is a step of growing up in the faith." },
       { keys: ["rosary"], a: "The Rosary is a prayer we count on beads, remembering moments from the lives of Jesus and Mary. It is a gentle, peaceful way to pray." },
       { keys: ["mass"], a: "The Mass is the heart of Catholic worship, where we listen to God's word and receive Jesus in Holy Communion. We gather as one family of God." },
@@ -109,7 +109,7 @@ const FAITHS = {
     hero: {
       kicker: "For Sunday & language school",
       title: "The saints, the icons, and the faith of the fathers",
-      lead: "A free, interactive page for the lives of the saints, the meaning of the holy icons, the feasts and fasts, and prayers in the language of your liturgy. Reviewed by your priest first."
+      lead: "An interactive page for the lives of the saints, the meaning of the holy icons, the feasts and fasts, and prayers in the language of your liturgy. Reviewed by your priest first."
     },
     approve: "Every icon, saint's life, and prayer is reviewed by your priest before it goes live.",
     guide: { name: "Kyria Sophia", role: "your Sunday school guide" },
@@ -117,7 +117,7 @@ const FAITHS = {
     learn: [
       { kind: "The icons", icon: ICO.story, title: "Why we venerate icons", body: "An icon is a window to heaven. We venerate the holy image, honouring the person it shows, and through them we lift our hearts to God." },
       { kind: "The Theotokos", icon: ICO.prayer, title: "Mary, the God-bearer", original: "Most Holy Theotokos, save us.", body: "We honour the Virgin Mary, the Theotokos, and ask her prayers, as the Church has done since the beginning." },
-      { kind: "Liturgical language", icon: ICO.language, title: "Kyrie eleison", original: "Kyrie eleison - Lord, have mercy.", body: "A prayer sung in the Divine Liturgy. Children hear it and learn to pray in the mother tongue of the Church." }
+      { kind: "Liturgical language", icon: ICO.language, title: "Kyrie eleison", original: "Kyrie eleison - Lord, have mercy.", body: "A prayer sung in the Divine Liturgy. You hear it and learn to pray in the mother tongue of the Church." }
     ],
     suggest: ["What is an icon?", "Who is the Theotokos?", "Tell me about a saint"],
     qa: [
@@ -127,7 +127,7 @@ const FAITHS = {
       { keys: ["liturgy", "divine liturgy"], a: "The Divine Liturgy is the great service of worship where the Church prays, sings, and receives Holy Communion. It is heaven on earth." },
       { keys: ["kyrie", "lord have mercy", "mercy"], a: "Kyrie eleison means Lord, have mercy. We sing it many times in the Liturgy. It is a short, humble prayer the whole Church shares." },
       { keys: ["fast", "feast", "pascha", "easter"], a: "The Church keeps feasts and fasts through the year. The greatest feast is Pascha, the Resurrection of Christ. We prepare for it with the fast of Great Lent." },
-      { keys: ["coptic", "greek", "language"], a: "Many Orthodox churches teach the language of their people and their liturgy, like Greek or Coptic, so children can pray the ancient prayers in the mother tongue." }
+      { keys: ["coptic", "greek", "language"], a: "Many Orthodox churches teach the language of their people and their liturgy, like Greek or Coptic, so the community can pray the ancient prayers in the mother tongue." }
     ],
     fallback: "A good question to bring to your Sunday school teacher and your priest, who guard the faith with love. Would you like to hear about a saint or a holy icon?"
   },
@@ -140,21 +140,21 @@ const FAITHS = {
     hero: {
       kicker: "For madrasah & weekend school",
       title: "Qur'an, Arabic, and the manners of the Prophet",
-      lead: "A free, interactive, audio-first page for Qur'an recitation, learning the Arabic letters, the stories of the Prophets, and the Five Pillars. Voice only, no music. Reviewed by your teachers first."
+      lead: "An interactive, audio-first page for Qur'an recitation, learning the Arabic letters, the stories of the Prophets, and the Five Pillars. Voice only, no music. Reviewed by your teachers first."
     },
     approve: "Every recitation, du'a, and lesson is reviewed by your teachers before it goes live. Audio-first, and no music.",
     guide: { name: "Ustadh Yusuf", role: "your Qur'an teacher" },
     greeting: "Assalamu alaikum. I am Ustadh Yusuf, your teacher. Ask me about the Qur'an, the Arabic letters, the Five Pillars, or a du'a.",
     learn: [
-      { kind: "Qur'an", icon: ICO.prayer, title: "Surah Al-Fatihah", original: "Bismillah ir-Rahman ir-Rahim", body: "The opening of the Qur'an, recited in every prayer. Children listen to the recitation and learn to repeat it, letter by letter." },
-      { kind: "Arabic letters", icon: ICO.language, title: "Alif, Ba, Ta", original: "ا  ب  ت", body: "The first Arabic letters, heard and traced, so a child can begin to read the Qur'an in its own language." },
-      { kind: "The Pillars", icon: ICO.story, title: "The Five Pillars", body: "Shahada, Salah, Zakat, Sawm, and Hajj. The five foundations of a Muslim's life, explained gently for children." }
+      { kind: "Qur'an", icon: ICO.prayer, title: "Surah Al-Fatihah", original: "Bismillah ir-Rahman ir-Rahim", body: "The opening of the Qur'an, recited in every prayer. You listen to the recitation and repeat it, letter by letter." },
+      { kind: "Arabic letters", icon: ICO.language, title: "Alif, Ba, Ta", original: "ا  ب  ت", body: "The first Arabic letters, heard and traced, so you can begin to read the Qur'an in its own language." },
+      { kind: "The Pillars", icon: ICO.story, title: "The Five Pillars", body: "Shahada, Salah, Zakat, Sawm, and Hajj. The five foundations of a Muslim's life, explained gently and clearly." }
     ],
     suggest: ["What are the Five Pillars?", "Teach me an Arabic letter", "What is a du'a?"],
     qa: [
       { keys: ["five pillars", "pillars"], a: "The Five Pillars are the foundations of Islam. Shahada, believing in one God, Allah, and that Muhammad, peace be upon him, is his Prophet. Salah, praying five times a day. Zakat, giving to those in need. Sawm, fasting in Ramadan. And Hajj, the pilgrimage to Makkah." },
       { keys: ["allah", "god"], a: "Muslims believe in one God, Allah, the Most Merciful, who created everything and cares for us. We turn to him alone in prayer." },
-      { keys: ["quran", "qur'an", "koran"], a: "The Qur'an is the holy book of Islam, the words of Allah revealed to the Prophet Muhammad, peace be upon him. We learn to recite it beautifully, and many children memorise it by heart." },
+      { keys: ["quran", "qur'an", "koran"], a: "The Qur'an is the holy book of Islam, the words of Allah revealed to the Prophet Muhammad, peace be upon him. We learn to recite it beautifully, and many memorise it by heart." },
       { keys: ["muhammad", "prophet"], a: "The Prophet Muhammad, peace be upon him, is the final Prophet of Islam. He taught kindness, honesty, and good manners. We follow his example, called the Sunnah." },
       { keys: ["arabic", "letter", "alif"], a: "The Arabic letters begin with Alif, Ba, Ta. We learn to hear them and trace them, so we can one day read the Qur'an in its own language. Listen and repeat after me." },
       { keys: ["dua", "du'a", "supplication"], a: "A du'a is a heartfelt prayer, when we ask Allah for something or thank him. A simple one before eating is, Bismillah, which means, In the name of Allah." },
@@ -172,7 +172,7 @@ const FAITHS = {
     hero: {
       kicker: "For balvihar & language classes",
       title: "The stories, the shlokas, and the festivals of light",
-      lead: "A free, interactive page for the great stories of the Ramayana and Gita, Sanskrit shlokas to hear and repeat, the festivals, and the values of dharma and ahimsa. Reviewed by your teachers first."
+      lead: "An interactive page for the great stories of the Ramayana and Gita, Sanskrit shlokas to hear and repeat, the festivals, and the values of dharma and ahimsa. Reviewed by your teachers first."
     },
     approve: "Every story, shloka, and lesson is reviewed by your teachers before it goes live.",
     guide: { name: "Guruji", role: "your shloka teacher" },
@@ -187,7 +187,7 @@ const FAITHS = {
       { keys: ["diwali", "lamp", "light"], a: "Diwali is the festival of lights. We remember Prince Rama returning home, welcomed by rows of little lamps called diyas. We light lamps to celebrate that goodness and light win over darkness." },
       { keys: ["ganesha", "ganesh"], a: "Ganesha is the beloved deity with the elephant head, honoured at the start of anything new because he clears away obstacles. We say, Om Gan Ganapataye Namah, to begin with a calm mind." },
       { keys: ["rama", "ramayana"], a: "The Ramayana tells the story of Prince Rama, his wife Sita, and the loyal Hanuman. It teaches courage, truth, and devotion. It is one of our greatest and most loved stories." },
-      { keys: ["krishna", "gita"], a: "Krishna is a much loved deity, playful as a child and wise as a teacher. In the Bhagavad Gita he teaches Arjuna to do his duty with a steady, devoted heart." },
+      { keys: ["krishna", "gita"], a: "Krishna is a much loved deity, playful and full of joy, and wise as a teacher. In the Bhagavad Gita he teaches Arjuna to do his duty with a steady, devoted heart." },
       { keys: ["dharma"], a: "Dharma means living the right way, doing your duty with honesty and goodness. It is like following the true path that keeps the world in balance." },
       { keys: ["ahimsa", "kind", "harm"], a: "Ahimsa means non-harming, being gentle and kind to every living being. It is one of the most important values we can practise every day." },
       { keys: ["shloka", "om", "sanskrit"], a: "A shloka is a short sacred verse in Sanskrit. We hear it and repeat it together. Om is a sacred sound we chant to calm and focus the mind." },
@@ -204,15 +204,15 @@ const FAITHS = {
     hero: {
       kicker: "For Gurmat & Punjabi classes",
       title: "Gurbani, the Gurus, and the gift of seva",
-      lead: "A free, interactive, audio-first page for Kirtan and Gurbani, learning Gurmukhi, the lives of the Ten Gurus, and Sikh values like seva and equality. Reviewed by your teachers first."
+      lead: "An interactive, audio-first page for Kirtan and Gurbani, learning Gurmukhi, the lives of the Ten Gurus, and Sikh values like seva and equality. Reviewed by your teachers first."
     },
     approve: "Every shabad, lesson, and story is reviewed by your teachers before it goes live.",
     guide: { name: "Bhai Sahib", role: "your Gurmat teacher" },
     greeting: "Sat Sri Akal. I am Bhai Sahib, your teacher. Ask me about the Gurus, Gurbani, learning Gurmukhi, or what seva means.",
     learn: [
       { kind: "The Gurus", icon: ICO.story, title: "Guru Nanak Dev Ji", body: "The first Guru, who taught that there is one God for everyone and that all people are equal. He walked far and wide sharing kindness and truth." },
-      { kind: "Gurbani", icon: ICO.prayer, title: "Ik Onkar", original: "Ik Onkar - There is one God.", body: "The very first words of the Guru Granth Sahib. God is one and formless. Children hear Kirtan and learn to sing along." },
-      { kind: "Gurmukhi", icon: ICO.language, title: "Learning the letters", original: "Oorraa, Airraa, Eerree", body: "The Gurmukhi letters, heard and traced, so children can read Gurbani in its own script." }
+      { kind: "Gurbani", icon: ICO.prayer, title: "Ik Onkar", original: "Ik Onkar - There is one God.", body: "The very first words of the Guru Granth Sahib. God is one and formless. You hear Kirtan and learn to sing along." },
+      { kind: "Gurmukhi", icon: ICO.language, title: "Learning the letters", original: "Oorraa, Airraa, Eerree", body: "The Gurmukhi letters, heard and traced, so you can read Gurbani in its own script." }
     ],
     suggest: ["Who was Guru Nanak?", "What is seva?", "What does Ik Onkar mean?"],
     qa: [
@@ -236,15 +236,15 @@ const FAITHS = {
     hero: {
       kicker: "For Hebrew school",
       title: "Torah, Hebrew, and the joy of the holidays",
-      lead: "A free, interactive page for Hebrew reading, the Torah stories, the holidays, the core prayers, and values like tikkun olam. Reviewed by your teachers first."
+      lead: "An interactive page for Hebrew reading, the Torah stories, the holidays, the core prayers, and values like tikkun olam. Reviewed by your teachers first."
     },
     approve: "Every prayer, story, and lesson is reviewed by your teachers before it goes live.",
     guide: { name: "Morah Rivka", role: "your Hebrew school guide" },
     greeting: "Shalom. I am Morah Rivka, your Hebrew school teacher. Ask me about a Torah story, a holiday, the Hebrew letters, or a prayer like the Shema.",
     learn: [
       { kind: "Torah story", icon: ICO.story, title: "Noah and the rainbow", body: "After the great flood, God set a rainbow in the sky as a sign of the promise to care for the world. A story of hope and new beginnings." },
-      { kind: "Prayer", icon: ICO.prayer, title: "The Shema", original: "Shema Yisrael, Adonai Eloheinu, Adonai Echad", body: "Hear, O Israel, the Lord is our God, the Lord is One. The heart of Jewish prayer, taught to every child." },
-      { kind: "Hebrew letters", icon: ICO.language, title: "Aleph, Bet, Gimel", original: "א  ב  ג", body: "The first Hebrew letters, heard and traced, so children can read the Torah and the prayers." }
+      { kind: "Prayer", icon: ICO.prayer, title: "The Shema", original: "Shema Yisrael, Adonai Eloheinu, Adonai Echad", body: "Hear, O Israel, the Lord is our God, the Lord is One. The heart of Jewish prayer, taught to every generation." },
+      { kind: "Hebrew letters", icon: ICO.language, title: "Aleph, Bet, Gimel", original: "א  ב  ג", body: "The first Hebrew letters, heard and traced, so you can read the Torah and the prayers." }
     ],
     suggest: ["What is the Shema?", "Tell me about a holiday", "Teach me a Hebrew letter"],
     qa: [
@@ -268,14 +268,14 @@ const FAITHS = {
     hero: {
       kicker: "For dharma classes",
       title: "The Buddha's life, mindfulness, and kind hearts",
-      lead: "A free, interactive page for the Buddha's life, the Jataka tales, gentle mindfulness for children, the Five Precepts, and loving kindness. Reviewed by your teachers first."
+      lead: "An interactive page for the Buddha's life, the Jataka tales, gentle mindfulness, the Five Precepts, and loving kindness. Reviewed by your teachers first."
     },
     approve: "Every story, chant, and lesson is reviewed by your teachers before it goes live.",
     guide: { name: "Teacher Metta", role: "your Dharma guide" },
     greeting: "A warm welcome to you. I am Teacher Metta, your Dharma helper. Ask me about the Buddha, a Jataka tale, mindful breathing, or loving kindness.",
     learn: [
       { kind: "The Buddha", icon: ICO.story, title: "The young prince who sought peace", body: "Prince Siddhartha left his palace to understand why people suffer, and became the Buddha, the awakened teacher. He showed a path to a calm and kind heart." },
-      { kind: "Mindfulness", icon: ICO.prayer, title: "Breathing calm", original: "Breathing in, I am calm. Breathing out, I smile.", body: "A gentle practice children can do anywhere, to settle a busy mind and a worried heart." },
+      { kind: "Mindfulness", icon: ICO.prayer, title: "Breathing calm", original: "Breathing in, I am calm. Breathing out, I smile.", body: "A gentle practice you can do anywhere, to settle a busy mind and a worried heart." },
       { kind: "Values", icon: ICO.language, title: "Metta, loving kindness", body: "Metta means wishing happiness for every living being. May all beings be happy, may all beings be safe. Kindness we can grow like a garden." }
     ],
     suggest: ["Who was the Buddha?", "Teach me mindful breathing", "What is a Jataka tale?"],

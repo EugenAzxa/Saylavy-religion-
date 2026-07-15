@@ -706,3 +706,59 @@ body.faith-page { background: var(--tint); }
 /* keep the open mobile menu readable on its ivory panel */
 .site-header:not(.scrolled) .nav-links.open a { color: var(--ink-soft); }
 .site-header:not(.scrolled) .nav-links.open a:hover { color: var(--ink); }
+
+/* =========================================================
+   FAITH PAGE POLISH - dark glass chat, themed sections,
+   symbol watermarks. Keeps each demo immersive, not white.
+   ========================================================= */
+
+/* faith hero bathed fully in its own colour (no muddy gold) */
+.faith-hero.hero-cosmos { --auroraB: var(--accent-deep); }
+
+/* ---- Ask widget as dark glass inside the cosmos ---- */
+.hero-cosmos .ask {
+  background: rgba(20,15,28,.55); backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(247,241,228,.14); box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.hero-cosmos .ask-head { background: linear-gradient(rgba(255,255,255,.05), transparent); border-bottom-color: rgba(247,241,228,.1); }
+.hero-cosmos .ask-head .av { background: rgba(247,241,228,.1); }
+.hero-cosmos .ask-head .av svg { color: #f4d9a6; }
+.hero-cosmos .ask-head .meta strong { color: #f7f1e4; }
+.hero-cosmos .ask-head .meta small { color: rgba(247,241,228,.62); }
+.hero-cosmos .msg.bot { background: rgba(247,241,228,.09); color: #f2ead9; border: 1px solid rgba(247,241,228,.08); }
+.hero-cosmos .msg.bot .speak-again { color: #f0d6a3; }
+.hero-cosmos .msg.me { background: var(--accent); color: #fff; }
+.hero-cosmos .typing i { background: #f0d6a3; }
+.hero-cosmos .chip { background: rgba(247,241,228,.08); color: #f2ead9; border: 1px solid rgba(247,241,228,.12); }
+.hero-cosmos .chip:hover { background: rgba(247,241,228,.16); border-color: rgba(247,241,228,.22); transform: translateY(-2px); }
+.hero-cosmos .ask-input { border-top-color: rgba(247,241,228,.1); }
+.hero-cosmos .ask-input input { background: rgba(247,241,228,.07); border-color: rgba(247,241,228,.16); color: #f7f1e4; }
+.hero-cosmos .ask-input input::placeholder { color: rgba(247,241,228,.5); }
+.hero-cosmos .icon-btn { background: rgba(247,241,228,.08); border-color: rgba(247,241,228,.16); }
+.hero-cosmos .icon-btn svg { color: #f4ecdd; }
+.hero-cosmos .icon-btn:hover { border-color: var(--accent); }
+.hero-cosmos .icon-btn.send { background: var(--accent); border-color: var(--accent); }
+.hero-cosmos .icon-btn.send svg { color: #fff; }
+.hero-cosmos .ask-foot { color: rgba(247,241,228,.5); }
+
+/* ---- Themed content sections (no flat white) ---- */
+.faith-explore { position: relative; overflow: hidden; background: var(--tint); }
+.faith-explore .sec-head h2 { color: var(--accent-ink); }
+.faith-page .learn-card { border-top: 2px solid var(--accent-soft); }
+
+.faith-watermark {
+  position: absolute; top: -5%; right: -6%; width: min(440px, 46vw);
+  color: var(--accent); opacity: .055; transform: rotate(6deg); z-index: 0; pointer-events: none;
+}
+.faith-watermark svg { width: 100%; height: 100%; }
+.faith-watermark.soft { top: auto; right: auto; bottom: -10%; left: -7%; transform: rotate(-9deg); opacity: .05; }
+
+.faith-close {
+  position: relative; overflow: hidden;
+  background: radial-gradient(130% 115% at 50% -12%, var(--accent-soft), var(--tint) 72%);
+}
+.faith-close .close-emblem { width: 62px; height: 62px; margin: 0 auto 1.3rem; color: var(--accent); }
+.faith-close .close-emblem svg { width: 100%; height: 100%; filter: drop-shadow(0 10px 22px rgba(0,0,0,.1)); }
+.faith-close h2 { color: var(--accent-ink); }
+.faith-close .lead { max-width: 54ch; margin-inline: auto; }
+.close-qr { display: flex; justify-content: center; margin: 2rem 0 1.6rem; }
