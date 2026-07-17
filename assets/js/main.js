@@ -48,6 +48,7 @@
       raf = requestAnimationFrame(step);
     };
     const onLoaded = () => { setOp(0); fadingOut = false; v.playbackRate = rate; v.play().catch(() => {}); fadeTo(1, 500); };
+    v.addEventListener("error", () => { const s = v.nextElementSibling; if (s && s.classList && s.classList.contains("cine-shade")) s.remove(); v.remove(); });
     v.addEventListener("loadeddata", onLoaded);
     v.addEventListener("timeupdate", () => {
       if (v.duration && v.duration - v.currentTime <= 0.55 && !fadingOut) { fadingOut = true; fadeTo(0, 500); }

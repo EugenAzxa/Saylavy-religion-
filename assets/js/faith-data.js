@@ -347,4 +347,10 @@ FAITHS.buddhist.people = [
 
 const FAITH_ORDER = ["protestant", "catholic", "orthodox", "muslim", "hindu", "sikh", "jewish", "buddhist"];
 
+
+// Each faith automatically uses its hero video when the file exists
+// in assets/video/ (protestant.mp4, catholic.mp4, ...). A missing file
+// is harmless: the player stays invisible until the video loads.
+FAITH_ORDER.forEach(function (k) { FAITHS[k].video = "assets/video/" + k + ".mp4"; });
+
 if (typeof window !== "undefined") { window.FAITHS = FAITHS; window.FAITH_ORDER = FAITH_ORDER; }
