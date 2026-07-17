@@ -1,7 +1,6 @@
 /* =========================================================
    Saylavy - Watch + interactive history learning for children
-   Per faith: curated BBC Teach "Religions of the World" videos
-   (embedded from YouTube), a tap-through journey in time, and
+   Per faith: a tap-through journey in time, and
    a gentle quiz. All content follows the sensitivity framework
    and is replaceable by each community's teachers.
    ========================================================= */
@@ -11,7 +10,7 @@
   window.FAITH_LEARN = {
 
     protestant: {
-      videos: [{ list: "PLcvEcrsF_9zIQm-KPGujuZkNRk_jTcehV", title: "Religions of the World - animated stories for children (BBC Teach)" }],
+      videos: [],
       history: [
         { era: "Long ago", title: "Jesus teaches", text: "In Galilee, Jesus taught people to love God and to love their neighbour. Christians believe he died and rose again." },
         { era: "Early days", title: "The Bible is gathered", text: "The stories of Jesus and the letters of his friends were gathered into one great book, the Bible." },
@@ -27,7 +26,7 @@
     },
 
     catholic: {
-      videos: [{ id: "p7cUuxh3CYY", title: "Orthodox and Roman Catholic Christianity (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "Long ago", title: "Jesus and his friends", text: "Jesus chose special friends called apostles. Peter became a great leader of the early Church." },
         { era: "Early days", title: "The Church in Rome", text: "The followers of Jesus met, prayed, and shared everything, and the Church grew and grew." },
@@ -43,7 +42,7 @@
     },
 
     orthodox: {
-      videos: [{ id: "p7cUuxh3CYY", title: "Orthodox and Roman Catholic Christianity (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "Long ago", title: "The faith travels east", text: "The friends of Jesus carried his teaching to Greece, Egypt, and many lands of the east." },
         { era: "300s", title: "Great teachers", text: "Wise teachers like Basil and John Chrysostom shaped the beautiful prayers of the Divine Liturgy." },
@@ -59,7 +58,7 @@
     },
 
     muslim: {
-      videos: [{ id: "Qk0AR9mCRAA", title: "Islam (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "600s", title: "The Qur'an is revealed", text: "In Makkah, the Prophet Muhammad, peace be upon him, received the words of the Qur'an from Allah." },
         { era: "Early days", title: "The message spreads", text: "People learned to pray, to share with the poor, and to live by the Five Pillars." },
@@ -75,7 +74,7 @@
     },
 
     hindu: {
-      videos: [{ id: "uRpNNF4fB4g", title: "The Hindu Story of Rama and Sita (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "Very long ago", title: "The ancient songs", text: "In India, wise songs called the Vedas were sung and remembered, generation after generation." },
         { era: "Long ago", title: "The great stories", text: "The Ramayana and the Mahabharata told of Rama, Sita, Hanuman, and the victory of good." },
@@ -91,7 +90,7 @@
     },
 
     sikh: {
-      videos: [{ id: "35O67FllIBs", title: "Sikhism - the story of Guru Nanak (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "1469", title: "Guru Nanak is born", text: "Guru Nanak taught that there is one God for everyone and that all people are equal." },
         { era: "Early days", title: "Langar begins", text: "The Gurus opened a free kitchen, the langar, where everyone sits together and shares a meal." },
@@ -107,10 +106,7 @@
     },
 
     jewish: {
-      videos: [
-        { id: "nmjv4Zns4ME", title: "Judaism (Religions of the World)" },
-        { id: "RdSQT7DS1lI", title: "The Jewish Story of Moses (Religions of the World)" }
-      ],
+      videos: [],
       history: [
         { era: "Very long ago", title: "Avraham trusts God", text: "Avraham listened to one God and set out on a great journey of trust." },
         { era: "Long ago", title: "Out of Egypt", text: "Moses led the people from slavery to freedom, and received the Torah at Mount Sinai." },
@@ -126,7 +122,7 @@
     },
 
     buddhist: {
-      videos: [{ id: "J-UwlloVveI", title: "The Buddhist Stories of Siddhartha and the Swan (Religions of the World)" }],
+      videos: [],
       history: [
         { era: "2500 years ago", title: "The prince leaves home", text: "Prince Siddhartha left his palace to understand why people suffer and how hearts find peace." },
         { era: "The awakening", title: "Under the Bodhi tree", text: "Sitting quietly under a great tree, he awakened and became the Buddha, the awakened one." },

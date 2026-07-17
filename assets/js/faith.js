@@ -241,18 +241,19 @@
       </div>
     </section>
 
-    ${learn ? `
+    ${learn && learn.videos && learn.videos.length ? `
     <section class="section faith-watch" id="watch">
       <div class="wrap">
         <div class="sec-head center">
           <p class="eyebrow center-line">Watch</p>
           <h2>Stories to watch together</h2>
-          <p class="lead">Gentle animated films from the BBC series Religions of the World. They open on YouTube, and your teachers can swap them for your own.</p>
+          <p class="lead">Films chosen with your teachers, playing right on the page.</p>
         </div>
         <div class="watch-grid${learn.videos.length === 1 ? " one" : ""}">${vidCards}</div>
       </div>
-    </section>
+    </section>` : ""}
 
+    ${learn ? `
     <section class="section faith-time" id="time">
       <div class="wrap">
         <div class="sec-head center">
