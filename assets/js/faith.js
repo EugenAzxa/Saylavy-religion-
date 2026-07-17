@@ -188,6 +188,7 @@
 
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
+      ${f.video ? `<video class="faith-video" src="${esc(f.video)}" muted autoplay playsinline preload="auto" aria-hidden="true"></video><span class="cine-shade" aria-hidden="true"></span>` : ""}
       <div class="faith-aura" aria-hidden="true">
         <span class="halo-lg"></span>
       </div>
@@ -262,6 +263,7 @@
   `;
 
   if (window.SaylavyQR) window.SaylavyQR();
+  if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
 
   /* ---------- learn card listen buttons ---------- */
   root.querySelectorAll(".listen-btn").forEach(btn => {
