@@ -1721,3 +1721,33 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focu
 .qz-opt:disabled { cursor: default; opacity: .85; }
 .qz-msg { margin: 1rem 0 0; font-size: .95rem; color: var(--ink-dim); min-height: 1.4em; }
 @media (max-width: 560px) { .tl { flex-direction: column; } .tl-nav { width: 100%; height: 44px; } }
+
+/* ============================================================
+   SPEAKING PRESENCE - portraits come alive while they talk:
+   slow cinematic drift on the photo, a breathing accent ring,
+   and a glow that pulses with each spoken word.
+   ============================================================ */
+.talking { position: relative; }
+.talking::after { content: ""; position: absolute; inset: -5px; border-radius: inherit;
+  border: 2px solid var(--accent); opacity: .4; pointer-events: none;
+  animation: talkRing 1.8s ease-in-out infinite; }
+.talking::before { content: ""; position: absolute; inset: -2px; border-radius: inherit;
+  box-shadow: 0 0 24px var(--accent); opacity: 0; transition: opacity .1s ease; pointer-events: none; }
+.talking.word::before { opacity: .8; }
+@keyframes talkRing { 0%, 100% { transform: scale(1); opacity: .3; } 50% { transform: scale(1.045); opacity: .75; } }
+.talking img, .talking video { animation: kenburns 16s ease-in-out infinite alternate; }
+@keyframes kenburns { from { transform: scale(1.03); } to { transform: scale(1.12) translate(-2.5%, 2%); } }
+.learn-card.talking, .tl-card.talking { border-radius: var(--radius); }
+
+.pm-live { display: none; align-items: center; gap: .45rem; margin: .1rem 0 .9rem;
+  font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-lt); }
+.pm-live i { width: 3px; height: 10px; border-radius: 2px; background: var(--accent-lt);
+  animation: eqbar 1s ease-in-out infinite; }
+.pm-live i:nth-child(2) { height: 15px; animation-delay: .15s; }
+.pm-live i:nth-child(3) { animation-delay: .3s; }
+.talking-host .pm-live { display: inline-flex; }
+@keyframes eqbar { 0%, 100% { transform: scaleY(.5); } 50% { transform: scaleY(1.4); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .talking::after, .talking img, .talking video, .pm-live i { animation: none !important; }
+}

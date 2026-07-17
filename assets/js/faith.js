@@ -43,33 +43,86 @@
   function loadVoices() { if (synth) voices = synth.getVoices(); }
   if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
 
-  const FEM = /Samantha|Karen|Moira|Serena|Victoria|Tessa|Fiona|Susan|Zira|Allison|Ava|female|woman/i;
-  const MAL = /Daniel|Alex|Fred|Oliver|Thomas|Arthur|George|David|Aaron|Rishi|male|\bman\b/i;
+  const FEM = /Samantha|Karen|Moira|Serena|Victoria|Tessa|Fiona|Susan|Zira|Allison|Ava|Aria|Jenny|Michelle|Emma|Libby|Sonia|Natasha|Clara|female|woman/i;
+  const MAL = /Daniel|Alex|Fred|Oliver|Thomas|Arthur|George|David|Aaron|Rishi|Guy|Christopher|Eric|Andrew|Brian|Ryan|William|Liam|male|\bman\b/i;
 
+  // prefer neural/premium voices over the robotic defaults
+  function voiceRank(v) {
+    const n = v.name || "";
+    if (/Natural|Neural/i.test(n)) return 0;   // Edge neural voices
+    if (/Online/i.test(n)) return 1;
+    if (/Google/i.test(n)) return 2;           // Chrome network voices
+    if (/Premium|Enhanced/i.test(n)) return 3; // upgraded macOS voices
+    if (FEM.test(n) || MAL.test(n)) return 4;  // known decent locals
+    return 5;
+  }
   function pickVoice(pref) {
     if (!voices.length) return null;
-    const en = voices.filter(v => /^en([-_]|$)/i.test(v.lang));
-    let pool = en.length ? en : voices;
+    let pool = voices.filter(v => /^en([-_]|$)/i.test(v.lang));
+    if (!pool.length) pool = voices.slice();
     if (pref && pref.g === "f") { const s = pool.filter(v => FEM.test(v.name)); if (s.length) pool = s; }
     else if (pref && pref.g === "m") { const s = pool.filter(v => MAL.test(v.name)); if (s.length) pool = s; }
-    const idx = pref && pref.idx != null ? pref.idx % pool.length : 0;
-    return pool[idx] || pool[0];
+    pool = pool.slice().sort((a, b) => voiceRank(a) - voiceRank(b));
+    const best = voiceRank(pool[0]);
+    const top = pool.filter(v => voiceRank(v) <= best + 1);
+    const idx = pref && pref.idx != null ? pref.idx % top.length : 0;
+    return top[idx] || pool[0];
   }
 
-  let activeBtn = null;
-  function speak(text, btn, pref) {
-    if (!synth) return;
-    synth.cancel();
-    if (activeBtn) { activeBtn.classList.remove("speaking"); setBtnLabel(activeBtn, false); activeBtn = null; }
-    const u = new SpeechSynthesisUtterance(text);
-    const v = pickVoice(pref); if (v) u.voice = v;
-    u.rate = pref && pref.rate ? pref.rate : 0.94;
-    u.pitch = pref && pref.pitch ? pref.pitch : 1.0;
-    if (btn) {
-      activeBtn = btn; btn.classList.add("speaking"); setBtnLabel(btn, true);
-      u.onend = u.onerror = () => { btn.classList.remove("speaking"); setBtnLabel(btn, false); if (activeBtn === btn) activeBtn = null; };
+  let activeBtn = null, activeTalk = null, talkTimer = null, groupToken = null;
+  function clearTalk() {
+    if (talkTimer) { window.clearTimeout(talkTimer); talkTimer = null; }
+    if (activeTalk) {
+      activeTalk.classList.remove("talking", "word");
+      const host = activeTalk.closest(".pm-card");
+      if (host) host.classList.remove("talking-host");
+      activeTalk = null;
     }
-    synth.speak(u);
+  }
+  function stopSpeech() {
+    if (synth) synth.cancel();
+    if (activeBtn) { activeBtn.classList.remove("speaking"); setBtnLabel(activeBtn, false); activeBtn = null; }
+    clearTalk();
+  }
+  // speak sentence-by-sentence (steadier, less robotic cadence); talkEl gets
+  // a living "speaking" presence, pulsing with each spoken word
+  function speak(text, btn, pref, talkEl) {
+    if (!synth) return;
+    stopSpeech();
+    const v = pickVoice(pref);
+    const baseRate = pref && pref.rate ? pref.rate : 0.94;
+    const pitch = pref && pref.pitch ? pref.pitch : 1.0;
+    const parts = String(text).match(/[^.!?]+[.!?]*\s*/g) || [String(text)];
+    const my = {}; groupToken = my;
+    if (btn) { activeBtn = btn; btn.classList.add("speaking"); setBtnLabel(btn, true); }
+    if (talkEl) {
+      activeTalk = talkEl; talkEl.classList.add("talking");
+      const host = talkEl.closest(".pm-card");
+      if (host) host.classList.add("talking-host");
+    }
+    let done = 0;
+    parts.forEach((part, i) => {
+      const t = part.trim();
+      if (!t) { done++; return; }
+      const u = new SpeechSynthesisUtterance(t);
+      if (v) u.voice = v;
+      u.rate = Math.max(0.7, baseRate + (i % 2 ? 0.02 : -0.02));
+      u.pitch = pitch;
+      u.onboundary = () => {
+        if (!activeTalk || groupToken !== my) return;
+        activeTalk.classList.add("word");
+        if (talkTimer) window.clearTimeout(talkTimer);
+        talkTimer = window.setTimeout(() => { if (activeTalk) activeTalk.classList.remove("word"); }, 150);
+      };
+      u.onend = u.onerror = () => {
+        done++;
+        if (done >= parts.length && groupToken === my) {
+          if (btn && activeBtn === btn) { btn.classList.remove("speaking"); setBtnLabel(btn, false); activeBtn = null; }
+          clearTalk();
+        }
+      };
+      synth.speak(u);
+    });
   }
   function setBtnLabel(btn, speaking) {
     const lbl = btn.querySelector(".lbl"); const ic = btn.querySelector(".ic");
@@ -118,18 +171,19 @@
     const input = container.querySelector(".ask-text");
     const mic = container.querySelector(".mic-btn");
     const suggestWrap = container.querySelector(".ask-suggest");
+    const talkEl = cfg.talk || container.querySelector(".ask-head .av");
 
     function addMsg(text, who, speakIt) {
       const m = el(`<div class="msg ${who}"></div>`);
       m.appendChild(document.createTextNode(text));
       if (who === "bot") {
         const again = el(`<span class="speak-again">${ICON.sound} Hear it again</span>`);
-        again.addEventListener("click", () => speak(text, null, cfg.voice));
+        again.addEventListener("click", () => speak(text, null, cfg.voice, talkEl));
         m.appendChild(document.createElement("br"));
         m.appendChild(again);
       }
       log.appendChild(m); log.scrollTop = log.scrollHeight;
-      if (who === "bot" && speakIt) speak(text, null, cfg.voice);
+      if (who === "bot" && speakIt) speak(text, null, cfg.voice, talkEl);
       return m;
     }
     function typing() {
@@ -319,8 +373,8 @@
   /* ---------- learn card listen buttons ---------- */
   root.querySelectorAll(".listen-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      if (btn.classList.contains("speaking")) { synth && synth.cancel(); btn.classList.remove("speaking"); setBtnLabel(btn, false); activeBtn = null; return; }
-      speak(btn.dataset.say, btn, { g: "f", rate: 0.95 });
+      if (btn.classList.contains("speaking")) { stopSpeech(); return; }
+      speak(btn.dataset.say, btn, { g: "f", rate: 0.95 }, btn.closest(".learn-card"));
     });
   });
   if (!synth) { const n = document.getElementById("voiceNote"); if (n) n.textContent = "Tip: open in Chrome, Safari, or Edge to hear the voices."; }
@@ -348,6 +402,7 @@
             <span class="pm-mono"></span>
             <h2 class="pm-name"></h2>
             <span class="pm-tag"></span>
+            <span class="pm-live" aria-hidden="true"><i></i><i></i><i></i>Speaking</span>
             <p class="pm-bio"></p>
             <blockquote class="pm-quote"></blockquote>
             <button class="listen-btn pm-listen" data-label="Listen to their story" data-icon="play">
@@ -361,7 +416,7 @@
   document.body.appendChild(modal);
 
   function closeModal() {
-    synth && synth.cancel();
+    stopSpeech();
     modal.hidden = true; document.body.style.overflow = "";
     modal.querySelector(".pm-right").innerHTML = "";
   }
@@ -369,7 +424,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
   function openPerson(p, i) {
-    synth && synth.cancel();
+    stopSpeech();
     const about = p.persona === "about";
     const voice = Object.assign({ idx: i }, p.voice || {});
     const media = modal.querySelector(".pm-mono");
@@ -386,8 +441,8 @@
     listen.dataset.say = p.bio + " " + p.quote;
     setBtnLabel(listen, false);
     listen.onclick = () => {
-      if (listen.classList.contains("speaking")) { synth && synth.cancel(); listen.classList.remove("speaking"); setBtnLabel(listen, false); activeBtn = null; return; }
-      speak(listen.dataset.say, listen, voice);
+      if (listen.classList.contains("speaking")) { stopSpeech(); return; }
+      speak(listen.dataset.say, listen, voice, media);
     };
 
     const right = modal.querySelector(".pm-right");
@@ -400,7 +455,7 @@
                   : "A gentle demo voice, in the spirit of their own words."
     });
     const chat = wireChat(right.querySelector(".ask"), {
-      qa: p.qa, fallback: p.fallback, greeting: p.greeting, voice: voice
+      qa: p.qa, fallback: p.fallback, greeting: p.greeting, voice: voice, talk: media
     });
 
     modal.hidden = false; document.body.style.overflow = "hidden";
@@ -430,15 +485,15 @@
       eraEl.textContent = h.era; ttEl.textContent = h.title; txEl.textContent = h.text;
       dots.querySelectorAll("button").forEach((d, j) => d.classList.toggle("active", j === ti));
       listenBtn.dataset.say = h.era + ". " + h.title + ". " + h.text;
-      synth && synth.cancel();
-      listenBtn.classList.remove("speaking"); setBtnLabel(listenBtn, false);
+      stopSpeech();
+      setBtnLabel(listenBtn, false);
     }
     root.querySelector(".tl-prev").addEventListener("click", () => showStep(ti - 1));
     root.querySelector(".tl-next").addEventListener("click", () => showStep(ti + 1));
     dots.addEventListener("click", (e) => { const d = e.target.closest("button[data-i]"); if (d) showStep(+d.dataset.i); });
     listenBtn.addEventListener("click", () => {
-      if (listenBtn.classList.contains("speaking")) { synth && synth.cancel(); listenBtn.classList.remove("speaking"); setBtnLabel(listenBtn, false); activeBtn = null; return; }
-      speak(listenBtn.dataset.say, listenBtn, { g: "f", rate: 0.95 });
+      if (listenBtn.classList.contains("speaking")) { stopSpeech(); return; }
+      speak(listenBtn.dataset.say, listenBtn, { g: "f", rate: 0.95 }, root.querySelector(".tl-card"));
     });
     showStep(0);
 
