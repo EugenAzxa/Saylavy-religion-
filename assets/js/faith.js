@@ -179,7 +179,7 @@
   const people = f.people || [];
   const peopleCards = people.map((p, i) => `
     <article class="person reveal" data-idx="${i}" role="button" tabindex="0" aria-label="${esc(p.name)}">
-      <span class="mono">${esc(p.mono)}</span>
+      ${p.img ? `<span class="mono has-img"><img src="${esc(p.img)}" alt="" loading="lazy"></span>` : `<span class="mono">${esc(p.mono)}</span>`}
       <h3>${esc(p.name)}</h3>
       <span class="ptag">${esc(p.tag)}</span>
       <p>${esc(p.note)}</p>
@@ -321,7 +321,11 @@
     synth && synth.cancel();
     const about = p.persona === "about";
     const voice = Object.assign({ idx: i }, p.voice || {});
-    modal.querySelector(".pm-mono").textContent = p.mono;
+    const media = modal.querySelector(".pm-mono");
+    media.classList.toggle("has-img", !!(p.video || p.img));
+    if (p.video) media.innerHTML = `<video src="${esc(p.video)}" muted autoplay playsinline loop></video>`;
+    else if (p.img) media.innerHTML = `<img src="${esc(p.img)}" alt="${esc(p.name)}">`;
+    else media.textContent = p.mono;
     modal.querySelector(".pm-name").textContent = p.name;
     modal.querySelector(".pm-tag").textContent = p.tag;
     modal.querySelector(".pm-bio").textContent = p.bio;
