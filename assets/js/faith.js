@@ -176,6 +176,14 @@
       </button>
     </article>`).join("");
 
+  const learn = (window.FAITH_LEARN || {})[key] || null;
+  const vidCards = learn ? learn.videos.map(v => `
+    <div class="yt-lite" data-vid="${v.id || ""}" data-list="${v.list || ""}" role="button" tabindex="0" aria-label="Play: ${esc(v.title)}">
+      ${v.id ? `<img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">` : ""}
+      <span class="yt-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l11 7-11 7z"/></svg></span>
+      <span class="yt-title">${esc(v.title)}</span>
+    </div>`).join("") : "";
+
   const people = f.people || [];
   const peopleCards = people.map((p, i) => `
     <article class="person reveal" data-idx="${i}" role="button" tabindex="0" aria-label="${esc(p.name)}">
@@ -229,6 +237,45 @@
         <p class="voice-note" id="voiceNote"></p>
       </div>
     </section>
+
+    ${learn ? `
+    <section class="section faith-watch" id="watch">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Watch</p>
+          <h2>Stories to watch together</h2>
+          <p class="lead">Gentle animated films from the BBC series Religions of the World. Your teachers can swap these for your own.</p>
+        </div>
+        <div class="watch-grid${learn.videos.length === 1 ? " one" : ""}">${vidCards}</div>
+      </div>
+    </section>
+
+    <section class="section faith-time" id="time">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">A journey in time</p>
+          <h2>How the story unfolded</h2>
+          <p class="lead">Tap through the story, listen to each step, then try the little quiz.</p>
+        </div>
+        <div class="tl">
+          <button class="tl-nav tl-prev" aria-label="Previous step">${ICON.back}</button>
+          <div class="tl-card">
+            <span class="tl-era"></span>
+            <h3 class="tl-title"></h3>
+            <p class="tl-text"></p>
+            <button class="listen-btn tl-listen" data-label="Listen" data-icon="play"><span class="ic">${ICON.play}</span><span class="lbl">Listen</span></button>
+          </div>
+          <button class="tl-nav tl-next" aria-label="Next step">${ICON.arrow}</button>
+        </div>
+        <div class="tl-dots" aria-hidden="true"></div>
+        <div class="qz">
+          <p class="qz-prog"></p>
+          <h3 class="qz-q"></h3>
+          <div class="qz-opts"></div>
+          <p class="qz-msg" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>` : ""}
 
     <section class="section faith-people" id="people">
       <div class="wrap">
@@ -361,6 +408,84 @@
     card.addEventListener("click", open);
     card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
   });
+
+  /* =====================================================
+     Watch + journey in time + quiz (children's learning)
+     ===================================================== */
+  if (learn) {
+    // lite YouTube embeds: load the iframe only on tap
+    root.querySelectorAll(".yt-lite").forEach(b => {
+      const load = () => {
+        if (b.classList.contains("loaded")) return;
+        const vid = b.dataset.vid, list = b.dataset.list;
+        const src = vid
+          ? `https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0`
+          : `https://www.youtube-nocookie.com/embed/videoseries?list=${list}&autoplay=1`;
+        b.classList.add("loaded");
+        b.innerHTML = `<iframe src="${src}" title="Educational video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      };
+      b.addEventListener("click", load);
+      b.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); } });
+    });
+
+    // journey in time
+    const H = learn.history;
+    let ti = 0;
+    const eraEl = root.querySelector(".tl-era"), ttEl = root.querySelector(".tl-title"), txEl = root.querySelector(".tl-text");
+    const dots = root.querySelector(".tl-dots");
+    const listenBtn = root.querySelector(".tl-listen");
+    dots.innerHTML = H.map((h, i) => `<button data-i="${i}" aria-label="Step ${i + 1}"></button>`).join("");
+    function showStep(i) {
+      ti = (i + H.length) % H.length;
+      const h = H[ti];
+      eraEl.textContent = h.era; ttEl.textContent = h.title; txEl.textContent = h.text;
+      dots.querySelectorAll("button").forEach((d, j) => d.classList.toggle("active", j === ti));
+      listenBtn.dataset.say = h.era + ". " + h.title + ". " + h.text;
+      synth && synth.cancel();
+      listenBtn.classList.remove("speaking"); setBtnLabel(listenBtn, false);
+    }
+    root.querySelector(".tl-prev").addEventListener("click", () => showStep(ti - 1));
+    root.querySelector(".tl-next").addEventListener("click", () => showStep(ti + 1));
+    dots.addEventListener("click", (e) => { const d = e.target.closest("button[data-i]"); if (d) showStep(+d.dataset.i); });
+    listenBtn.addEventListener("click", () => {
+      if (listenBtn.classList.contains("speaking")) { synth && synth.cancel(); listenBtn.classList.remove("speaking"); setBtnLabel(listenBtn, false); activeBtn = null; return; }
+      speak(listenBtn.dataset.say, listenBtn, { g: "f", rate: 0.95 });
+    });
+    showStep(0);
+
+    // little quiz
+    const Q = learn.quiz;
+    let qi = 0, score = 0;
+    const qProg = root.querySelector(".qz-prog"), qQ = root.querySelector(".qz-q");
+    const qOpts = root.querySelector(".qz-opts"), qMsg = root.querySelector(".qz-msg");
+    function showQ() {
+      qProg.textContent = "Question " + (qi + 1) + " of " + Q.length;
+      qQ.textContent = Q[qi].q; qMsg.textContent = "";
+      qOpts.innerHTML = Q[qi].options.map((o, j) => `<button class="qz-opt" data-j="${j}">${esc(o)}</button>`).join("");
+    }
+    function endQ() {
+      qProg.textContent = "All done";
+      qQ.textContent = "You got " + score + " out of " + Q.length + "!";
+      qMsg.textContent = score === Q.length ? "Wonderful. You really listened." : "Every try is a step in learning. Play again?";
+      qOpts.innerHTML = `<button class="qz-opt qz-restart">Play again</button>`;
+    }
+    qOpts.addEventListener("click", (e) => {
+      const r = e.target.closest(".qz-restart");
+      if (r) { qi = 0; score = 0; showQ(); return; }
+      const b = e.target.closest(".qz-opt");
+      if (!b || b.disabled) return;
+      if (+b.dataset.j === Q[qi].correct) {
+        b.classList.add("good"); score++;
+        qMsg.textContent = "That is right! Well done.";
+        qOpts.querySelectorAll(".qz-opt").forEach(x => { x.disabled = true; });
+        window.setTimeout(() => { qi++; if (qi < Q.length) showQ(); else endQ(); }, 1000);
+      } else {
+        b.classList.add("bad"); b.disabled = true;
+        qMsg.textContent = "Not quite. Try another one.";
+      }
+    });
+    showQ();
+  }
 
   if (window.SaylavyReveal) window.SaylavyReveal();
 })();

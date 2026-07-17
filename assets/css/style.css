@@ -1666,3 +1666,58 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focu
   filter: sepia(.15) saturate(.92) contrast(1.03); }
 .pm-mono.has-img { width: 116px; height: 116px; border-radius: 26px; }
 .person .mono.has-img { border-width: 2px; }
+
+/* ============================================================
+   WATCH + JOURNEY IN TIME + QUIZ (children's learning)
+   ============================================================ */
+.watch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+.watch-grid.one { grid-template-columns: minmax(0, 680px); justify-content: center; }
+.yt-lite { position: relative; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden;
+  background: #0d1120; border: 1px solid rgba(255,255,255,.12); cursor: pointer; }
+.yt-lite img { width: 100%; height: 100%; object-fit: cover; opacity: .78; }
+.yt-lite .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 64px; height: 64px; border-radius: 50%; background: rgba(10,14,30,.72);
+  border: 1px solid rgba(255,255,255,.3); display: grid; place-items: center; color: #fff;
+  transition: background .2s, transform .2s; }
+.yt-lite .yt-play svg { width: 26px; height: 26px; margin-left: 3px; }
+.yt-lite:hover .yt-play { background: var(--accent); transform: translate(-50%,-50%) scale(1.06); }
+.yt-lite .yt-title { position: absolute; left: 0; right: 0; bottom: 0; padding: .8rem 1rem;
+  font-size: .88rem; font-weight: 600; color: #f2ecdf;
+  background: linear-gradient(transparent, rgba(5,8,18,.88)); }
+.yt-lite iframe { width: 100%; height: 100%; border: 0; }
+@media (max-width: 820px) { .watch-grid { grid-template-columns: 1fr; } }
+
+.tl { display: flex; align-items: stretch; gap: .9rem; max-width: 780px; margin: 0 auto; }
+.tl-nav { flex: none; width: 52px; border-radius: 16px; border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05); color: #f2ecdf; cursor: pointer; display: grid; place-items: center;
+  transition: background .2s, border-color .2s; }
+.tl-nav svg { width: 22px; height: 22px; }
+.tl-nav:hover { background: rgba(255,255,255,.1); border-color: var(--accent); }
+.tl-card { flex: 1; background: var(--surface); border: 1px solid var(--line-d); border-radius: 22px;
+  padding: 2rem 2.2rem; box-shadow: var(--soft-1); min-height: 230px; }
+.tl-era { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent-lt); background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 999px; padding: .3rem .8rem; margin-bottom: .9rem; }
+.tl-title { font-family: 'Instrument Serif', var(--serif); font-weight: 400; font-size: 1.7rem;
+  margin-bottom: .4rem; color: var(--ink-d); }
+.tl-text { font-size: 1.05rem; }
+.tl-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.2rem; }
+.tl-dots button { width: 10px; height: 10px; border-radius: 999px; padding: 0; border: 0;
+  background: rgba(255,255,255,.18); cursor: pointer; transition: width .3s var(--ease), background .3s; }
+.tl-dots button.active { width: 28px; background: var(--accent); }
+
+.qz { max-width: 640px; margin: 2.6rem auto 0; text-align: center; background: var(--surface);
+  border: 1px solid var(--line-d); border-radius: 22px; padding: 2rem; box-shadow: var(--soft-1); }
+.qz-prog { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-lt); margin-bottom: .6rem; }
+.qz-q { font-size: 1.35rem; margin-bottom: 1.2rem; color: var(--ink-d); }
+.qz-opts { display: flex; flex-direction: column; gap: .7rem; }
+.qz-opt { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: #f0e9da;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 14px;
+  padding: .9rem 1rem; cursor: pointer; transition: background .2s, border-color .2s; }
+.qz-opt:hover:not(:disabled) { background: rgba(255,255,255,.11); border-color: var(--accent); }
+.qz-opt.good { background: rgba(64,145,90,.35); border-color: #4fae74; }
+.qz-opt.bad { background: rgba(163,69,47,.3); border-color: #b25a45; }
+.qz-opt:disabled { cursor: default; opacity: .85; }
+.qz-msg { margin: 1rem 0 0; font-size: .95rem; color: var(--ink-dim); min-height: 1.4em; }
+@media (max-width: 560px) { .tl { flex-direction: column; } .tl-nav { width: 100%; height: 44px; } }
