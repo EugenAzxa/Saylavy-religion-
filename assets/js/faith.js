@@ -177,12 +177,15 @@
     </article>`).join("");
 
   const learn = (window.FAITH_LEARN || {})[key] || null;
+  // BBC disables embedding, so cards open the video on YouTube in a new tab.
   const vidCards = learn ? learn.videos.map(v => `
-    <div class="yt-lite" data-vid="${v.id || ""}" data-list="${v.list || ""}" role="button" tabindex="0" aria-label="Play: ${esc(v.title)}">
+    <a class="yt-lite" target="_blank" rel="noopener"
+       href="${v.id ? `https://www.youtube.com/watch?v=${v.id}` : `https://www.youtube.com/playlist?list=${v.list}`}"
+       aria-label="Watch on YouTube: ${esc(v.title)}">
       ${v.id ? `<img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">` : ""}
       <span class="yt-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l11 7-11 7z"/></svg></span>
       <span class="yt-title">${esc(v.title)}</span>
-    </div>`).join("") : "";
+    </a>`).join("") : "";
 
   const people = f.people || [];
   const peopleCards = people.map((p, i) => `
@@ -244,7 +247,7 @@
         <div class="sec-head center">
           <p class="eyebrow center-line">Watch</p>
           <h2>Stories to watch together</h2>
-          <p class="lead">Gentle animated films from the BBC series Religions of the World. Your teachers can swap these for your own.</p>
+          <p class="lead">Gentle animated films from the BBC series Religions of the World. They open on YouTube, and your teachers can swap them for your own.</p>
         </div>
         <div class="watch-grid${learn.videos.length === 1 ? " one" : ""}">${vidCards}</div>
       </div>
@@ -413,21 +416,6 @@
      Watch + journey in time + quiz (children's learning)
      ===================================================== */
   if (learn) {
-    // lite YouTube embeds: load the iframe only on tap
-    root.querySelectorAll(".yt-lite").forEach(b => {
-      const load = () => {
-        if (b.classList.contains("loaded")) return;
-        const vid = b.dataset.vid, list = b.dataset.list;
-        const src = vid
-          ? `https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0`
-          : `https://www.youtube-nocookie.com/embed/videoseries?list=${list}&autoplay=1`;
-        b.classList.add("loaded");
-        b.innerHTML = `<iframe src="${src}" title="Educational video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-      };
-      b.addEventListener("click", load);
-      b.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); } });
-    });
-
     // journey in time
     const H = learn.history;
     let ti = 0;
