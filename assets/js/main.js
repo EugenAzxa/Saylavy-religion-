@@ -33,6 +33,8 @@
   /* ---------- cinematic hero video: rAF fade loop ---------- */
   function cineVideo(v) {
     if (!v) return;
+    // slow, cinematic playback (override per video with data-rate)
+    const rate = parseFloat(v.getAttribute("data-rate") || "0.6");
     let raf = null, op = 0, fadingOut = false;
     const setOp = (x) => { op = x; v.style.opacity = String(x); };
     const fadeTo = (target, dur) => {
@@ -45,14 +47,14 @@
       };
       raf = requestAnimationFrame(step);
     };
-    const onLoaded = () => { setOp(0); fadingOut = false; v.play().catch(() => {}); fadeTo(1, 500); };
+    const onLoaded = () => { setOp(0); fadingOut = false; v.playbackRate = rate; v.play().catch(() => {}); fadeTo(1, 500); };
     v.addEventListener("loadeddata", onLoaded);
     v.addEventListener("timeupdate", () => {
       if (v.duration && v.duration - v.currentTime <= 0.55 && !fadingOut) { fadingOut = true; fadeTo(0, 500); }
     });
     v.addEventListener("ended", () => {
       setOp(0);
-      window.setTimeout(() => { v.currentTime = 0; v.play().catch(() => {}); fadingOut = false; fadeTo(1, 500); }, 100);
+      window.setTimeout(() => { v.currentTime = 0; v.playbackRate = rate; v.play().catch(() => {}); fadingOut = false; fadeTo(1, 500); }, 100);
     });
     if (v.readyState >= 2) onLoaded();
   }
