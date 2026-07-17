@@ -188,12 +188,8 @@
 
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
-      <canvas class="motes" data-accent="${f.accent}" data-shape="${f.shape || "mote"}" data-mode="light" aria-hidden="true"></canvas>
-      <span class="aurora a1"></span><span class="aurora a2"></span><span class="aurora a3"></span>
-      <span class="grain"></span>
       <div class="faith-aura" aria-hidden="true">
         <span class="halo-lg"></span>
-        <span class="spin-wrap"><span class="rr"></span><span class="rr2"></span><span class="rr3"></span><span class="big-sym">${f.symbol}</span></span>
       </div>
       <div class="wrap" style="position:relative;z-index:3">
         <a class="back-link" href="index.html">${ICON.back} All faiths</a>
@@ -266,7 +262,6 @@
   `;
 
   if (window.SaylavyQR) window.SaylavyQR();
-  if (window.SaylavyBG) window.SaylavyBG();
 
   /* ---------- learn card listen buttons ---------- */
   root.querySelectorAll(".listen-btn").forEach(btn => {

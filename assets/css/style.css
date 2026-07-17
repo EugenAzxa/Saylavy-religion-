@@ -1332,3 +1332,124 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, .btn:focus
 @media (prefers-reduced-motion: reduce) {
   .boat-art, .o-sun, .o-cloud, .wave { animation: none !important; }
 }
+
+/* ============================================================
+   SEA OF STARS - eight distinct ships adrift in a night sky.
+   Dark band inside the light site; ships drift away on scroll.
+   ============================================================ */
+.stars { position: relative; min-height: 96vh; overflow: hidden;
+  background: radial-gradient(120% 95% at 72% 8%, #1c2c66 0%, #111c48 46%, #0a1230 100%); }
+.starfield { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.neb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .5; z-index: 0; pointer-events: none; mix-blend-mode: screen; }
+.neb.n1 { width: 46vw; height: 46vw; top: -12%; left: -8%; background: radial-gradient(circle, #2b57b8, transparent 66%); animation: drift1 26s ease-in-out infinite; }
+.neb.n2 { width: 38vw; height: 38vw; bottom: -16%; right: -6%; background: radial-gradient(circle, #6a4bb0, transparent 66%); animation: drift2 30s ease-in-out infinite; }
+.stars .ocean-head { position: absolute; top: clamp(84px, 12vh, 150px); left: 0; right: 0; text-align: center; z-index: 5; padding: 0 5vw; }
+.stars .ocean-head h2 { color: #f5eeDF; }
+.stars .eyebrow { color: #e9cb8c; } .stars .eyebrow::before { background: #c99a4a; }
+
+.fleet { position: absolute; inset: 0; z-index: 3; }
+.boat { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column;
+  align-items: center; gap: .35rem; text-decoration: none; will-change: transform, opacity; }
+.boat-art { position: relative; width: calc(132px * var(--s, 1)); cursor: pointer; will-change: transform;
+  animation: bob var(--d, 5s) ease-in-out infinite; transition: transform .3s var(--ease); }
+.boat-svg { width: 100%; height: auto; display: block; overflow: visible;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.4)); }
+.boat .hull, .boat .deck, .boat .roof, .boat .dome { fill: var(--accent-deep); }
+.boat .sail, .boat .sail2, .boat .canopy { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.1; }
+.boat .sail2 { opacity: .92; }
+.boat .flag { fill: var(--accent); }
+.boat .mast, .boat .oar, .boat .rope { stroke: #e7dcc4; stroke-width: 2.4; stroke-linecap: round; fill: none; }
+.boat .pole { fill: #e7dcc4; }
+.boat .fig { fill: #efe4cd; }
+.boat .fig .arm { transform-box: fill-box; transform-origin: top center; animation: wave .9s ease-in-out infinite alternate; }
+.boat .win { fill: #ffce85; }
+.boat .lantern { fill: #ffce85; filter: drop-shadow(0 0 5px rgba(255,190,110,.9)); animation: hbreath 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.boat-sym { position: absolute; top: 2%; left: 50%; transform: translate(-50%, -50%);
+  width: calc(20px * var(--s, 1)); height: calc(20px * var(--s, 1)); color: #f0d6a3; }
+.boat-sym svg { width: 100%; height: 100%; }
+.boat-name { font-size: .82rem; font-weight: 700; color: #f4ecdd;
+  background: rgba(16,22,52,.62); padding: .16rem .7rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(4px); opacity: .9; transition: opacity .2s, transform .2s; }
+.boat:hover { z-index: 40 !important; }
+.boat:hover .boat-art, .boat:focus-visible .boat-art { animation-play-state: paused; transform: translateY(-12px) scale(1.14); }
+.boat:hover .boat-name { opacity: 1; transform: translateY(2px); }
+
+@media (max-width: 640px) {
+  .stars { min-height: 0; padding: clamp(96px,20vh,150px) 0 12vh; }
+  .fleet { position: static; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem 0; padding: 1rem 4vw 0; z-index: 3; }
+  .boat { position: static; transform: none !important; opacity: 1 !important; }
+  .boat-art { width: 118px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boat-art, .boat .fig .arm, .boat .lantern, .neb { animation: none !important; }
+}
+
+/* ---- Detailed tall-ship rendering (overrides simple boat parts) ---- */
+.boat-art { width: calc(200px * var(--s, 1)); }
+.boat-svg { filter: drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+.boat .sail { fill: #f3ecdb; stroke: rgba(50,40,28,.28); stroke-width: .8; }
+.boat .sail.jib { fill: #ece4d0; }
+.boat .spar { stroke: #6a4a2b; stroke-width: 3; stroke-linecap: round; fill: none; }
+.boat .yard { stroke: #5c4023; stroke-width: 2; stroke-linecap: round; }
+.boat .rig { stroke: rgba(230,220,200,.32); stroke-width: .7; fill: none; }
+.boat .hull { fill: var(--accent-deep); stroke: #2c1e10; stroke-width: .6; }
+.boat .deck { fill: var(--accent-deep); stroke: #2c1e10; stroke-width: .6; }
+.boat .trim { fill: none; stroke: #e6b74f; stroke-width: 3; stroke-linecap: round; }
+.boat .port { fill: #f0c059; }
+.boat .pennant { fill: var(--accent); }
+.boat-sym { top: 3%; left: 53%; width: calc(19px * var(--s, 1)); height: calc(19px * var(--s, 1)); color: #f0d6a3;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,.4)); }
+
+/* PNG ship (drop-in) sits on top of the SVG fallback when present */
+.boat-art { position: relative; }
+.ship-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  z-index: 2; pointer-events: none; filter: drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+.boat-art:has(.ship-img) .boat-svg { visibility: hidden; }
+.boat-art:has(.ship-img) .boat-sym { z-index: 3; }
+
+/* ---- Clean simple boats in the starfield (final override) ---- */
+.ship-img { display: none; }
+.boat-art { width: calc(120px * var(--s, 1)); }
+.boat-svg { filter: drop-shadow(0 10px 12px rgba(0,0,0,.45)); }
+.boat .sail { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+.boat .sail2 { fill: var(--accent); opacity: .9; stroke: none; }
+.boat .hull { fill: var(--accent-deep); stroke: none; }
+.boat .mast { stroke: #e7dcc4; stroke-width: 2.4; stroke-linecap: round; fill: none; }
+.boat-sym { top: 42%; left: 33%; width: calc(22px * var(--s, 1)); height: calc(22px * var(--s, 1)); color: var(--accent-deep); }
+
+/* ============================================================
+   CALM FINAL LAYER - minimal motion, clean faith grid.
+   Overrides every earlier animated experiment.
+   ============================================================ */
+
+/* reveals become a simple soft fade */
+.reveal { opacity: 0; transform: none; filter: none; transition: opacity .5s ease; }
+.reveal.in { opacity: 1; }
+
+/* static gold accent word, no shimmer */
+.serif-accent { animation: none; background: none; -webkit-text-fill-color: currentColor; color: var(--gold-deep); }
+
+/* no button sheen sweep */
+.btn::after { display: none; }
+
+/* hero halo on faith pages: static, no breathing */
+.faith-aura .halo-lg { animation: none; opacity: .18; }
+
+/* cards: shadow-only hover, no lift */
+.step:hover, .learn-card:hover, .person:hover, .fcard:hover { transform: none; }
+
+/* the faith grid */
+.faith-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.fcard {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .2rem;
+  background: var(--surface); border: 1px solid var(--line-d); border-radius: var(--radius);
+  padding: 1.6rem 1.4rem; box-shadow: var(--soft-1);
+  transition: box-shadow .25s ease, border-color .25s ease;
+}
+.fcard:hover, .fcard:focus-visible { box-shadow: var(--soft-2); border-color: var(--accent); }
+.fcard .sym { width: 42px; height: 42px; color: var(--accent); margin-bottom: .8rem; }
+.fcard .sym svg { width: 100%; height: 100%; }
+.fcard strong { font-family: var(--serif); font-size: 1.18rem; font-weight: 500; color: var(--ink-d); }
+.fcard small { font-size: .86rem; color: var(--ink-dim); }
+@media (max-width: 940px) { .faith-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .faith-grid { grid-template-columns: 1fr; } }

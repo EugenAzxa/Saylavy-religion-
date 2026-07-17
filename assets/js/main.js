@@ -30,30 +30,25 @@
   window.SaylavyReveal = reveal;
   reveal();
 
-  /* ---------- Ocean fleet: eight faiths as boats ---------- */
-  const fleet = document.getElementById("fleet");
-  if (fleet && window.FAITHS && window.FAITH_ORDER) {
-    // scattered like a harbour; back rows smaller (sea recedes)
-    const POS = [
-      { l: 13, t: 50, s: 0.86 }, { l: 32, t: 62, s: 1.0 }, { l: 50, t: 49, s: 0.82 }, { l: 68, t: 60, s: 0.98 },
-      { l: 87, t: 51, s: 0.85 }, { l: 24, t: 80, s: 1.16 }, { l: 52, t: 78, s: 1.12 }, { l: 80, t: 81, s: 1.1 }
-    ];
-    fleet.innerHTML = window.FAITH_ORDER.map((slug, i) => {
+  /* ---------- The eight faiths: clean card grid ---------- */
+  const grid = document.getElementById("faithGrid");
+  if (grid && window.FAITHS && window.FAITH_ORDER) {
+    const TAG = {
+      protestant: "Bible, verses, the gospel",
+      catholic: "Prayers, saints, sacraments",
+      orthodox: "Icons, saints, the liturgy",
+      muslim: "Qur'an, Arabic, the Pillars",
+      hindu: "Stories, shlokas, festivals",
+      sikh: "Gurbani, the Gurus, seva",
+      jewish: "Torah, Hebrew, the holidays",
+      buddhist: "The Buddha, mindfulness"
+    };
+    grid.innerHTML = window.FAITH_ORDER.map((slug) => {
       const f = window.FAITHS[slug];
-      const p = POS[i] || { l: 50, t: 65, s: 1 };
-      const dur = (4 + (i % 4) * 0.6).toFixed(1);
-      return `<a class="boat ${f.theme}" href="${slug}.html" aria-label="Enter ${f.name}"
-                 style="left:${p.l}%;top:${p.t}%;--s:${p.s};--d:${dur}s;z-index:${Math.round(p.t)}">
-                <span class="boat-art" style="animation-delay:${(i * 0.35).toFixed(2)}s">
-                  <svg class="boat-svg" viewBox="0 0 120 120" aria-hidden="true">
-                    <line class="mast" x1="60" y1="24" x2="60" y2="80"/>
-                    <path class="sail" d="M57 26 L57 76 L23 76 Z"/>
-                    <path class="sail sail2" d="M63 34 L63 76 L95 76 Z"/>
-                    <path class="hull" d="M15 80 Q60 106 105 80 L96 97 Q60 111 24 97 Z"/>
-                  </svg>
-                  <span class="boat-sym">${f.symbol}</span>
-                </span>
-                <span class="boat-name">${f.name}</span>
+      return `<a class="fcard ${f.theme}" href="${slug}.html" aria-label="Enter ${f.name}">
+                <span class="sym">${f.symbol}</span>
+                <strong>${f.name}</strong>
+                <small>${TAG[slug] || ""}</small>
               </a>`;
     }).join("");
   }
