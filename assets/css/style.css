@@ -1926,3 +1926,30 @@ body.faith-page { background: var(--night, #0b0e1c); }
   border-radius: 999px; padding: .32rem .8rem; }
 @media (max-width: 940px) { .gstats { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .gstats { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   THE LIVING LANGUAGE - real script, transliteration, meaning
+   ============================================================ */
+.faith-lang .letters { text-align: center; margin-bottom: 2.2rem; }
+.letters-title { font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-lt); margin-bottom: .9rem; }
+.letters-row { display: flex; justify-content: center; flex-wrap: wrap; gap: .7rem; }
+.letters-row span { min-width: 76px; padding: .9rem .6rem; border-radius: 16px;
+  font-family: 'Instrument Serif', var(--serif); font-size: 2rem; line-height: 1.1; color: #f6efe2;
+  background: rgba(255,255,255,.05); border: 1px solid var(--line-d); }
+.letters-cap { font-size: .88rem; color: var(--ink-dim); margin-top: .9rem; }
+
+.phrase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.pcard { background: var(--surface); border: 1px solid var(--line-d); border-radius: 20px;
+  padding: 1.5rem 1.3rem; display: flex; flex-direction: column; box-shadow: var(--soft-1);
+  transition: box-shadow .25s ease, border-color .25s ease; }
+.pcard:hover { box-shadow: var(--soft-2); border-color: var(--accent); }
+.pscript { font-family: 'Instrument Serif', var(--serif); font-size: 1.9rem; line-height: 1.35;
+  color: var(--accent-lt); margin: 0 0 .3rem; }
+.pscript[dir="rtl"] { direction: rtl; }
+.ptranslit { font-size: .95rem; font-weight: 600; color: #f2ecdf; margin: 0 0 .2rem; }
+.pmeaning { font-size: .88rem; color: var(--ink-dim); margin: 0 0 1rem; flex: 1; }
+.pcard .listen-btn { align-self: flex-start; }
+.pcard.talking { border-color: var(--accent); }
+@media (max-width: 940px) { .phrase-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .phrase-grid { grid-template-columns: 1fr; } .letters-row span { min-width: 64px; font-size: 1.7rem; } }

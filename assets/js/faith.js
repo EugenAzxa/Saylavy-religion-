@@ -90,6 +90,11 @@
   function speak(text, btn, pref, talkEl) {
     stopSpeech();
     // real voice first (recorded clip or voice API), browser voice as fallback
+    if (pref && pref.lang) {
+      // a native-language line: use the browser voice for that language
+      browserSpeak(text, btn, pref, talkEl);
+      return;
+    }
     if (window.SaylavyVoice && window.SaylavyVoice.enabled()) {
       const startUI = () => {
         if (btn) { activeBtn = btn; btn.classList.add("speaking"); setBtnLabel(btn, true); }
@@ -119,7 +124,11 @@
   }
   function browserSpeak(text, btn, pref, talkEl) {
     if (!synth) return;
-    const v = pickVoice(pref);
+    let v = pickVoice(pref);
+    if (pref && pref.lang) {
+      const nat = (voices || []).filter(x => x.lang && x.lang.toLowerCase().indexOf(pref.lang) === 0);
+      if (nat.length) v = nat[0];
+    }
     const baseRate = pref && pref.rate ? pref.rate : 0.94;
     const pitch = pref && pref.pitch ? pref.pitch : 1.0;
     const parts = String(text).match(/[^.!?]+[.!?]*\s*/g) || [String(text)];
@@ -135,7 +144,7 @@
       const t = part.trim();
       if (!t) { done++; return; }
       const u = new SpeechSynthesisUtterance(t);
-      if (v) u.voice = v;
+      if (v) { u.voice = v; if (v.lang) u.lang = v.lang; }
       u.rate = Math.max(0.7, baseRate + (i % 2 ? 0.02 : -0.02));
       u.pitch = pitch;
       u.onboundary = () => {
@@ -307,6 +316,18 @@
   const forWhom = (_q.get("for") || "").replace(/[<>]/g, "").trim().slice(0, 80);
   if (forWhom) document.title = "Saylavy for " + forWhom;
 
+  const lang = (window.FAITH_LANG || {})[key] || null;
+  const phraseCards = lang ? lang.phrases.map(ph => `
+    <div class="pcard reveal">
+      <p class="pscript" lang="${lang.langCode}" dir="${lang.dir}">${esc(ph.script)}</p>
+      <p class="ptranslit">${esc(ph.translit)}</p>
+      <p class="pmeaning">${esc(ph.meaning)}</p>
+      <button class="listen-btn pcard-listen" data-label="Say it" data-icon="play"
+              data-say="${esc(ph.translit)}" data-native="${esc(ph.script)}" data-lang="${esc(lang.langCode)}">
+        <span class="ic">${ICON.play}</span><span class="lbl">Say it</span>
+      </button>
+    </div>`).join("") : "";
+
   const icons = (window.FAITH_ICONS || {})[key] || [];
   const iconCards = icons.map((ic, i) => `
     <figure class="icard reveal" data-i="${i}">
@@ -350,6 +371,7 @@
             <span class="approve-pill">${ICON.check} ${esc(f.approve)}</span>
             <div class="hero-actions">
               <a class="btn btn-gold btn-lg" href="#ask">Ask a question</a>
+              ${lang ? `<a class="btn btn-ghost" href="#language">Learn the language</a>` : ""}
               <a class="btn btn-ghost" href="#people">Meet the people</a>
             </div>
           </div>
@@ -417,6 +439,25 @@
       </div>
     </section>` : ""}
 
+    ${lang ? `
+    <section class="section faith-lang" id="language">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">The living language</p>
+          <h2>Words in ${esc(lang.lang)}</h2>
+          <p class="lead">${esc(lang.note)}</p>
+        </div>
+        <div class="letters">
+          <p class="letters-title">${esc(lang.letters.title)}</p>
+          <div class="letters-row" lang="${esc(lang.langCode)}" dir="${esc(lang.letters.dir)}">
+            ${lang.letters.items.map(x => `<span>${esc(x)}</span>`).join("")}
+          </div>
+          <p class="letters-cap">${esc(lang.letters.caption)}</p>
+        </div>
+        <div class="phrase-grid">${phraseCards}</div>
+      </div>
+    </section>` : ""}
+
     ${icons.length ? `
     <section class="section faith-icons" id="icons">
       <div class="wrap">
@@ -465,6 +506,17 @@
   if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
 
   /* ---------- learn card listen buttons ---------- */
+  // say the phrase in its own language when the browser has that voice
+  root.querySelectorAll(".pcard-listen").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("speaking")) { stopSpeech(); return; }
+      const native = btn.dataset.native, code = btn.dataset.lang;
+      const has = (voices || []).some(v => v.lang && v.lang.toLowerCase().indexOf(code) === 0);
+      speak(has ? native : btn.dataset.say, btn,
+            { g: "f", rate: 0.85, lang: has ? code : null }, btn.closest(".pcard"));
+    });
+  });
+
   root.querySelectorAll(".icard-listen").forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("speaking")) { stopSpeech(); return; }
