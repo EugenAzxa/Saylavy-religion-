@@ -1890,3 +1890,12 @@ body.faith-page { background: var(--night, #0b0e1c); }
   --surface-2: color-mix(in srgb, var(--night) 93%, #ffffff 7%);
 }
 .faith-page .site-footer { background: color-mix(in srgb, var(--night) 88%, #000000 12%); }
+
+/* personalised demo badge (index.html?for=Community) */
+.prepared-for { display: inline-flex; align-items: baseline; gap: .5rem; margin: 0 0 1rem;
+  font-family: 'Instrument Serif', var(--serif); font-size: 1.15rem; color: #f6efe2;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px; padding: .45rem 1.1rem; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.prepared-for span { font-family: var(--sans); font-size: .68rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent-lt); }
+.cine-inner .prepared-for { margin-bottom: 1.2rem; }

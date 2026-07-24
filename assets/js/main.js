@@ -72,6 +72,22 @@
   window.SaylavyCine = cineVideo;
   cineVideo(document.getElementById("heroVideo"));
 
+  /* ---------- personalised demo link (index.html?for=Community) ---------- */
+  (function () {
+    const who = (new URLSearchParams(location.search).get("for") || "").replace(/[<>]/g, "").trim().slice(0, 80);
+    if (!who) return;
+    const host = document.querySelector(".cine-inner .eyebrow");
+    if (!host) return;
+    const p = document.createElement("p");
+    p.className = "prepared-for";
+    const s = document.createElement("span");
+    s.textContent = "Prepared for";
+    p.appendChild(s);
+    p.appendChild(document.createTextNode(" " + who));
+    host.parentNode.insertBefore(p, host);
+    document.title = "Saylavy for " + who;
+  })();
+
   /* ---------- The eight faiths: liquid-glass cards ---------- */
   const grid = document.getElementById("faithGrid");
   if (grid && window.FAITHS && window.FAITH_ORDER) {

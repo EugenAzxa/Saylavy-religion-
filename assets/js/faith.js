@@ -302,6 +302,11 @@
       <span class="yt-title">${esc(v.title)}</span>
     </a>`).join("") : "";
 
+  // Personalised demo: muslim.html?for=IPC%20Jame%20Masjid greets that community
+  const _q = new URLSearchParams(location.search);
+  const forWhom = (_q.get("for") || "").replace(/[<>]/g, "").trim().slice(0, 80);
+  if (forWhom) document.title = "Saylavy for " + forWhom;
+
   const icons = (window.FAITH_ICONS || {})[key] || [];
   const iconCards = icons.map((ic, i) => `
     <figure class="icard reveal" data-i="${i}">
@@ -337,6 +342,7 @@
         <div class="faith-hero-grid">
           <div class="reveal">
             <div class="faith-emblem">${f.symbol}</div>
+            ${forWhom ? `<p class="prepared-for"><span>Prepared for</span> ${esc(forWhom)}</p>` : ""}
             ${f.script ? `<p class="native" lang="${f.script.lang}" dir="${f.script.dir}" title="${esc(f.script.meaning)}">${esc(f.script.text)}<span>${esc(f.script.translit ? f.script.translit + " - " + f.script.meaning : f.script.meaning)}</span></p>` : ""}
             <p class="eyebrow faith-kicker">${esc(f.hero.kicker)}</p>
             <h1>${esc(f.hero.title)}</h1>
@@ -439,7 +445,7 @@
       <div class="wrap center" style="position:relative;z-index:1">
         <div class="close-emblem">${f.symbol}</div>
         <p class="eyebrow center-line">A living example</p>
-        <h2>Made with ${esc(f.place)}, in your own voice</h2>
+        <h2>Made with ${forWhom ? esc(forWhom) : esc(f.place)}, in your own voice</h2>
         <p class="lead">The stories, the prayers, the voices, and the answers here are all shaped together with your teachers. This page is a demonstration of what we can build together.</p>
         <div class="close-qr">
           <div class="scan-card" style="max-width:280px">
