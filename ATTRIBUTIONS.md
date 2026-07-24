@@ -57,3 +57,10 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - The Western Wall: https://en.wikipedia.org/wiki/Western_Wall
 - The Bodhi tree: https://en.wikipedia.org/wiki/Bodhi_Tree
 - Prayer flags: https://en.wikipedia.org/wiki/Prayer_flag
+
+## Scene photographs (QR poster mockup)
+
+- Sultan Ahmed Mosque: https://en.wikipedia.org/wiki/Sultan_Ahmed_Mosque
+- Sheikh Zayed Mosque: https://en.wikipedia.org/wiki/Sheikh_Zayed_Mosque
+- Nasir al-Mulk Mosque: https://en.wikipedia.org/wiki/Nasir_al-Mulk_Mosque
+- Badshahi Mosque: https://en.wikipedia.org/wiki/Badshahi_Mosque

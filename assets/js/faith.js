@@ -328,6 +328,9 @@
       </button>
     </div>`).join("") : "";
 
+  const MOSQUES = { blue: "mosque-blue", zayed: "mosque-zayed", pink: "mosque-pink", badshahi: "mosque-badshahi" };
+  const _scene = MOSQUES[_q.get("scene")] || "mosque-blue";
+  const SCENE = { muslim: "assets/img/scenes/" + _scene + ".jpg" };
   const pray = (window.FAITH_PRAY || {})[key] || null;
   const prayerTimes = (key === "muslim" && window.SaylavyPrayer) ? window.SaylavyPrayer : null;
 
@@ -538,6 +541,27 @@
         <div class="people-grid">${peopleCards}</div>
       </div>
     </section>
+
+    ${SCENE[key] ? `
+    <section class="section faith-scene" id="scene">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">See it in place</p>
+          <h2>One code on the wall</h2>
+          <p class="lead">A printed QR code in ${esc(f.place)}. Anyone scans it and this whole page opens on their phone.</p>
+        </div>
+        <div class="scene" style="--scene:url('${SCENE[key]}')">
+          <div class="scene-photo" role="img" aria-label="Inside ${esc(f.name)} place of worship"></div>
+          <div class="poster">
+            <p class="poster-kicker">${esc((f.script && f.script.text) || "")}</p>
+            <h3 class="poster-title">${esc(forWhom || f.name)}</h3>
+            <div class="poster-qr"><div data-qr="" data-size="150"></div></div>
+            <p class="poster-scan">Scan to learn</p>
+            <p class="poster-by">Powered by <strong>Saylavy.com</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>` : ""}
 
     <section class="section faith-close">
       <span class="faith-watermark soft" aria-hidden="true">${f.symbol}</span>
