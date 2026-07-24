@@ -116,6 +116,34 @@
     }).join("");
   }
 
+  /* ---------- GTA communities: areas, faith spread, optional names ---------- */
+  const gta = document.getElementById("gta");
+  if (gta && window.COMMUNITIES) {
+    const C = window.COMMUNITIES;
+    const LABEL = {
+      protestant: "Protestant churches", catholic: "Catholic parishes",
+      orthodox: "Orthodox churches", muslim: "Masjids and Islamic centres",
+      hindu: "Mandirs", sikh: "Gurdwaras", jewish: "Synagogues", buddhist: "Temples"
+    };
+    const order = (window.FAITH_ORDER || Object.keys(C.counts));
+    const stats = order.filter(k => C.counts[k]).map(k => {
+      const f = (window.FAITHS || {})[k] || {};
+      return `<a class="gstat ${f.theme || ""}" href="${k}.html">
+                <span class="gsym">${f.symbol || ""}</span>
+                <strong>${C.counts[k]}</strong>
+                <small>${LABEL[k] || k}</small>
+              </a>`;
+    }).join("");
+    const areas = C.areas.map(a => `<span class="gchip">${a[0]}</span>`).join("");
+    const names = C.showNames
+      ? `<div class="gnames">${C.places.map(p => `<span>${p.place}</span>`).join("")}</div>`
+      : "";
+    gta.innerHTML =
+      `<div class="gstats">${stats}</div>
+       <p class="gsub">${C.total} communities identified across ${C.areas.length} areas</p>
+       <div class="gchips">${areas}</div>${names}`;
+  }
+
   /* ---------- contact form (mailto handoff, no backend) ---------- */
   document.querySelectorAll("form[data-mailto]").forEach(form => {
     form.addEventListener("submit", (e) => {
