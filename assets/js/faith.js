@@ -329,7 +329,7 @@
     </div>`).join("") : "";
 
   const MOSQUES = { blue: "mosque-blue", zayed: "mosque-zayed", pink: "mosque-pink", badshahi: "mosque-badshahi" };
-  const _scene = MOSQUES[_q.get("scene")] || "mosque-blue";
+  const _scene = MOSQUES[_q.get("scene")] || "mosque-zayed";
   const SCENE = { muslim: "assets/img/scenes/" + _scene + ".jpg" };
   const pray = (window.FAITH_PRAY || {})[key] || null;
   const prayerTimes = (key === "muslim" && window.SaylavyPrayer) ? window.SaylavyPrayer : null;
@@ -548,16 +548,29 @@
         <div class="sec-head center">
           <p class="eyebrow center-line">See it in place</p>
           <h2>One code on the wall</h2>
-          <p class="lead">A printed QR code in ${esc(f.place)}. Anyone scans it and this whole page opens on their phone.</p>
+          <p class="lead">A printed QR code in ${esc(f.place)}. Anyone scans it, and this whole page opens on their phone.</p>
         </div>
-        <div class="scene" style="--scene:url('${SCENE[key]}')">
-          <div class="scene-photo" role="img" aria-label="Inside ${esc(f.name)} place of worship"></div>
-          <div class="poster">
-            <p class="poster-kicker">${esc((f.script && f.script.text) || "")}</p>
-            <h3 class="poster-title">${esc(forWhom || f.name)}</h3>
-            <div class="poster-qr"><div data-qr="" data-size="150"></div></div>
-            <p class="poster-scan">Scan to learn</p>
-            <p class="poster-by">Powered by <strong>Saylavy.com</strong></p>
+        <div class="scene-grid">
+          <div class="scene-why reveal">
+            <h3>Why it helps your community</h3>
+            <ul class="why-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Children keep learning between classes, at home, any day of the week.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Working parents can see and share what their children are learning.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>New and second-generation families connect in their own language.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>One code, on the wall, in the bulletin, or on a take-home card.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Your teachers approve every word before it goes live.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Nothing to install, works on any phone, and stays private.</span></li>
+            </ul>
+          </div>
+          <div class="scene reveal">
+            <div class="scene-photo" style="background-image:url('${SCENE[key]}')" role="img" aria-label="Inside ${esc(f.name)} place of worship"></div>
+            <div class="poster">
+              <p class="poster-kicker" lang="ar" dir="rtl">${esc((f.script && f.script.text) || "")}</p>
+              <h3 class="poster-title">${esc(forWhom || f.name)}</h3>
+              <div class="poster-qr"><div data-qr="" data-size="150"></div></div>
+              <p class="poster-scan">Scan to learn</p>
+              <p class="poster-by">Powered by <strong>Saylavy.com</strong></p>
+            </div>
           </div>
         </div>
       </div>
