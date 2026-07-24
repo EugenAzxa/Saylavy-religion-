@@ -1807,10 +1807,10 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focu
    PER-FAITH ATMOSPHERE + NATIVE GREETINGS (audit proposals)
    Each faith gets its own night tone, so pages feel distinct.
    ============================================================ */
-.theme-protestant { --night: #070c1a; } .theme-catholic { --night: #150a10; }
+.theme-protestant { --night: #0a1226; } .theme-catholic { --night: #1a0b11; }
 .theme-orthodox   { --night: #130f06; } .theme-muslim   { --night: #061410; }
 .theme-hindu      { --night: #170d05; } .theme-sikh     { --night: #0a0c1e; }
-.theme-jewish     { --night: #06111b; } .theme-buddhist { --night: #150b06; }
+.theme-jewish     { --night: #06111b; } .theme-buddhist { --night: #180d06; }
 body.faith-page { background: var(--night, #0b0e1c); }
 .faith-explore, .faith-people { background: transparent; }
 .faith-close { background: radial-gradient(130% 115% at 50% -12%, var(--accent-ink), var(--night, #0b0e1c) 72%); }
@@ -2126,3 +2126,27 @@ body.rtl .cine-inner, body.rtl .sec-head, body.rtl .leaders-card { text-align: c
 @media (max-width: 480px) {
   .poster { right: 50%; transform: translate(50%, -50%) rotate(-1.4deg); width: min(240px, 74vw); }
 }
+
+/* ============================================================
+   ONE COLOUR PER FAITH - every surface derives from the faith's
+   night tone, so a faith page is all one colour, never mixed
+   with the neutral navy base.
+   ============================================================ */
+body.faith-page {
+  --base:      var(--night);
+  --base-2:    color-mix(in srgb, var(--night) 88%, #ffffff 7%);
+  --surface:   color-mix(in srgb, var(--night) 82%, #ffffff 14%);
+  --surface-2: color-mix(in srgb, var(--night) 90%, #ffffff 8%);
+  background: var(--night);
+}
+.faith-page .section.band,
+.faith-page .faith-scene,
+.faith-page .faith-times,
+.faith-page .faith-lang { background: var(--base-2); }
+.faith-page .faith-explore,
+.faith-page .faith-people,
+.faith-page .faith-pray,
+.faith-page .faith-icons { background: var(--base); }
+.faith-page .site-footer { background: color-mix(in srgb, var(--night) 92%, #000000 8%); }
+/* glass elements pick up a faint faith tint instead of cold white */
+.faith-page .ask.ask-dark { background: color-mix(in srgb, var(--night) 74%, #000 8%); }
