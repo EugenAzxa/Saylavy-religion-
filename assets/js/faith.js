@@ -344,6 +344,14 @@
       </div>
     </li>`).join("") : "";
 
+  const TAGS = {
+    protestant: "Bible, verses, the gospel", catholic: "Prayers, saints, sacraments",
+    orthodox: "Icons, saints, the liturgy", muslim: "Qur'an, Arabic, the Pillars",
+    hindu: "Stories, shlokas, festivals", sikh: "Gurbani, the Gurus, seva",
+    jewish: "Torah, Hebrew, the holidays", buddhist: "The Buddha, mindfulness"
+  };
+  const firstQ = (f.people && f.people[0] && f.people[0].suggest && f.people[0].suggest[0]) || "What is this about?";
+
   const icons = (window.FAITH_ICONS || {})[key] || [];
   const iconCards = icons.map((ic, i) => `
     <figure class="icard reveal" data-i="${i}">
@@ -397,6 +405,45 @@
               chips: chipsHtml(f.suggest),
               foot: "A gentle demo voice. On a real page, you hear your community's own teachers."
             })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section phone-sec faith-phone" id="mobile" aria-label="On a phone">
+      <div class="wrap">
+        <div class="phone-grid">
+          <div class="phone-copy reveal">
+            <p class="eyebrow">In every pocket</p>
+            <h2>It lives on their phone</h2>
+            <p class="lead">A child scans the QR code once and this whole ${esc(f.name)} page opens on their phone. No app to install, nothing to buy. It works the same on any phone or tablet.</p>
+            <ul class="phone-list">
+              <li><span class="pdot"></span> Scan the code, and it opens in a second</li>
+              <li><span class="pdot"></span> Tap to listen in real voices</li>
+              <li><span class="pdot"></span> Ask a question out loud and hear the answer</li>
+              <li><span class="pdot"></span> Read in your own language, right to left too</li>
+            </ul>
+          </div>
+          <div class="phone reveal" aria-hidden="true">
+            <div class="phone-glow"></div>
+            <div class="phone-frame">
+              <span class="phone-notch"></span>
+              <div class="phone-screen">
+                <div class="ps-top"><span>9:41</span><span class="ps-batt"></span></div>
+                <div class="ps-hero">
+                  <span class="ps-emblem">${f.symbol}</span>
+                  ${f.script ? `<p class="ps-native" lang="${f.script.lang}" dir="${f.script.dir}">${esc(f.script.text)}</p>` : ""}
+                  <h3>${esc(f.name)}</h3>
+                  <p class="ps-sub">${esc(TAGS[key] || "")}</p>
+                </div>
+                <div class="ps-chat">
+                  <span class="ps-bubble ps-them">${esc(f.guide.greeting.split(". ").slice(-1)[0])}</span>
+                  <span class="ps-bubble ps-me">${esc(firstQ)}</span>
+                  <span class="ps-bubble ps-them ps-typing"><i></i><i></i><i></i></span>
+                </div>
+                <div class="ps-bar"><span>Ask a question...</span><span class="ps-send"></span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

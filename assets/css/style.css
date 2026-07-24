@@ -2150,3 +2150,17 @@ body.faith-page {
 .faith-page .site-footer { background: color-mix(in srgb, var(--night) 92%, #000000 8%); }
 /* glass elements pick up a faint faith tint instead of cold white */
 .faith-page .ask.ask-dark { background: color-mix(in srgb, var(--night) 74%, #000 8%); }
+
+/* ============================================================
+   PHONE MOCKUP on faith pages - themed to each faith's colour
+   ============================================================ */
+.faith-phone .phone-screen {
+  background: radial-gradient(120% 80% at 70% 0%, var(--accent-ink), var(--night) 62%, var(--night)); }
+.faith-phone .ps-emblem { display: grid; place-items: center; }
+.faith-phone .ps-emblem::after { display: none; }
+.faith-phone .ps-emblem svg { width: 24px; height: 24px; color: var(--accent-lt); }
+.faith-phone .ps-native { color: var(--accent-lt); }
+.faith-phone .ps-me { background: var(--accent-deep); }
+.faith-phone .ps-typing i { background: var(--accent-lt); }
+.faith-phone .ps-send { background: var(--accent-deep); }
+.faith-phone .ps-them { background: rgba(255,255,255,.09); }
