@@ -104,7 +104,7 @@
     {
       "name": "Nataraja, the cosmic dance",
       "title": "The dance of the universe",
-      "text": "Shiva shown dancing inside a circle of flames, a picture of the whole universe moving through time. It is a sacred image, called a murti, never an idol.",
+      "text": "Shiva shown dancing inside a circle of flames, a picture of the whole universe moving through time. It is a sacred image, called a murti.",
       "img": "assets/img/icons/hindu-nataraja.jpg"
     }
   ],
