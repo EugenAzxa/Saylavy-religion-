@@ -80,6 +80,7 @@
     }
   }
   function stopSpeech() {
+    if (window.SaylavyVoice) window.SaylavyVoice.stop();
     if (synth) synth.cancel();
     if (activeBtn) { activeBtn.classList.remove("speaking"); setBtnLabel(activeBtn, false); activeBtn = null; }
     clearTalk();
@@ -87,8 +88,37 @@
   // speak sentence-by-sentence (steadier, less robotic cadence); talkEl gets
   // a living "speaking" presence, pulsing with each spoken word
   function speak(text, btn, pref, talkEl) {
-    if (!synth) return;
     stopSpeech();
+    // real voice first (recorded clip or voice API), browser voice as fallback
+    if (window.SaylavyVoice && window.SaylavyVoice.enabled()) {
+      const startUI = () => {
+        if (btn) { activeBtn = btn; btn.classList.add("speaking"); setBtnLabel(btn, true); }
+        if (talkEl) {
+          activeTalk = talkEl; talkEl.classList.add("talking");
+          const h = talkEl.closest(".pm-card"); if (h) h.classList.add("talking-host");
+        }
+      };
+      const endUI = () => {
+        if (btn && activeBtn === btn) { btn.classList.remove("speaking"); setBtnLabel(btn, false); activeBtn = null; }
+        clearTalk();
+      };
+      const handled = window.SaylavyVoice.say(text, pref, (pref && pref.name) || null, {
+        onstart: startUI,
+        onword: () => {
+          if (!activeTalk) return;
+          activeTalk.classList.add("word");
+          if (talkTimer) window.clearTimeout(talkTimer);
+          talkTimer = window.setTimeout(() => { if (activeTalk) activeTalk.classList.remove("word"); }, 150);
+        },
+        onend: endUI,
+        onfail: () => { endUI(); browserSpeak(text, btn, pref, talkEl); }
+      });
+      if (handled) { startUI(); return; }
+    }
+    browserSpeak(text, btn, pref, talkEl);
+  }
+  function browserSpeak(text, btn, pref, talkEl) {
+    if (!synth) return;
     const v = pickVoice(pref);
     const baseRate = pref && pref.rate ? pref.rate : 0.94;
     const pitch = pref && pref.pitch ? pref.pitch : 1.0;
@@ -248,6 +278,20 @@
       <span class="yt-title">${esc(v.title)}</span>
     </a>`).join("") : "";
 
+  const icons = (window.FAITH_ICONS || {})[key] || [];
+  const iconCards = icons.map((ic, i) => `
+    <figure class="icard reveal" data-i="${i}">
+      <div class="icard-img"><img src="${esc(ic.img)}" alt="${esc(ic.name)}" loading="lazy"></div>
+      <figcaption>
+        <h3>${esc(ic.title)}</h3>
+        <p class="icard-name">${esc(ic.name)}</p>
+        <p>${esc(ic.text)}</p>
+        <button class="listen-btn icard-listen" data-label="Listen" data-icon="play" data-say="${esc(ic.title + ". " + ic.text)}">
+          <span class="ic">${ICON.play}</span><span class="lbl">Listen</span>
+        </button>
+      </figcaption>
+    </figure>`).join("");
+
   const people = f.people || [];
   const peopleCards = people.map((p, i) => `
     <article class="person reveal" data-idx="${i}" role="button" tabindex="0" aria-label="${esc(p.name)}">
@@ -343,6 +387,18 @@
       </div>
     </section>` : ""}
 
+    ${icons.length ? `
+    <section class="section faith-icons" id="icons">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Sacred signs</p>
+          <h2>Icons and treasures to know</h2>
+          <p class="lead">The images and objects at the heart of this tradition, and what each one means.</p>
+        </div>
+        <div class="icon-grid">${iconCards}</div>
+      </div>
+    </section>` : ""}
+
     <section class="section faith-people" id="people">
       <div class="wrap">
         <div class="sec-head center">
@@ -379,7 +435,14 @@
   if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
 
   /* ---------- learn card listen buttons ---------- */
-  root.querySelectorAll(".listen-btn").forEach(btn => {
+  root.querySelectorAll(".icard-listen").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("speaking")) { stopSpeech(); return; }
+      speak(btn.dataset.say, btn, { g: "f", rate: 0.95 }, btn.closest(".icard"));
+    });
+  });
+
+  root.querySelectorAll(".learn-card .listen-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("speaking")) { stopSpeech(); return; }
       speak(btn.dataset.say, btn, { g: "f", rate: 0.95 }, btn.closest(".learn-card"));
@@ -445,7 +508,7 @@
     lastOpener = opener || null;
     modal.querySelector(".pm-card").setAttribute("aria-label", p.name);
     const about = p.persona === "about";
-    const voice = Object.assign({ idx: i }, p.voice || {});
+    const voice = Object.assign({ idx: i, name: p.name }, p.voice || {});
     const media = modal.querySelector(".pm-mono");
     media.classList.toggle("has-img", !!(p.video || p.img));
     if (p.video) media.innerHTML = `<video src="${esc(p.video)}" muted autoplay playsinline loop></video>`;

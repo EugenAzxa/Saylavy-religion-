@@ -1834,3 +1834,26 @@ body.faith-page { background: var(--night, #0b0e1c); }
 .pm-quote-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
   color: rgba(240,233,220,.42); margin: 1.2rem 0 .3rem; }
 .pm-quote { margin-top: 0; }
+
+/* ============================================================
+   SACRED ICONS - real photographs of sacred art and objects
+   ============================================================ */
+.icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.icard { margin: 0; background: var(--surface); border: 1px solid var(--line-d);
+  border-radius: 20px; overflow: hidden; box-shadow: var(--soft-1);
+  display: flex; flex-direction: column; transition: box-shadow .3s ease, border-color .3s ease; }
+.icard:hover { box-shadow: var(--soft-2); border-color: var(--accent); }
+.icard-img { aspect-ratio: 4/3; overflow: hidden; background: #0a0e1c; }
+.icard-img img { width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(.95) contrast(1.02); transition: transform .6s var(--ease); }
+.icard:hover .icard-img img { transform: scale(1.04); }
+.icard figcaption { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.icard h3 { font-family: 'Instrument Serif', var(--serif); font-weight: 400; font-size: 1.35rem;
+  color: var(--ink-d); margin-bottom: .1rem; }
+.icard-name { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent-lt); margin-bottom: .7rem; }
+.icard p { font-size: .93rem; }
+.icard .listen-btn { margin-top: auto; align-self: flex-start; }
+.icard.talking { border-color: var(--accent); }
+@media (max-width: 940px) { .icon-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .icon-grid { grid-template-columns: 1fr; } }

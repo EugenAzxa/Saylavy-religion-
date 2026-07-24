@@ -32,3 +32,28 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - Emperor Ashoka: lead image from https://en.wikipedia.org/wiki/Ashoka
 - Thich Nhat Hanh: lead image from https://en.wikipedia.org/wiki/Thich_Nhat_Hanh
 - The Dalai Lama: lead image from https://en.wikipedia.org/wiki/14th_Dalai_Lama
+
+## Sacred icons and objects
+
+- Christ Pantocrator (Sinai): https://en.wikipedia.org/wiki/Christ_Pantocrator_(Sinai)
+- The Trinity by Andrei Rublev: https://en.wikipedia.org/wiki/Trinity_(Andrei_Rublev)
+- Our Lady of Vladimir: https://en.wikipedia.org/wiki/Theotokos_of_Vladimir
+- Rose window, Notre-Dame: https://en.wikipedia.org/wiki/Rose_window
+- The Rosary: https://en.wikipedia.org/wiki/Rosary
+- Our Lady of Guadalupe: https://en.wikipedia.org/wiki/Our_Lady_of_Guadalupe
+- The Gutenberg Bible: https://en.wikipedia.org/wiki/Gutenberg_Bible
+- Luther's Ninety-five Theses: https://en.wikipedia.org/wiki/Ninety-five_Theses
+- The Wittenberg door: https://en.wikipedia.org/wiki/All_Saints'_Church,_Wittenberg
+- The Kaaba in Makkah: https://en.wikipedia.org/wiki/Kaaba
+- Qur'an manuscript: https://en.wikipedia.org/wiki/Quran
+- Dome of the Rock: https://en.wikipedia.org/wiki/Dome_of_the_Rock
+- Arabic calligraphy: https://en.wikipedia.org/wiki/Islamic_calligraphy
+- Diya lamps of Diwali: https://en.wikipedia.org/wiki/Diya_(lamp)
+- Nataraja, the cosmic dance: https://en.wikipedia.org/wiki/Nataraja
+- The Golden Temple: https://en.wikipedia.org/wiki/Golden_Temple
+- Guru Granth Sahib: https://en.wikipedia.org/wiki/Guru_Granth_Sahib
+- The Torah scroll: https://en.wikipedia.org/wiki/Sefer_Torah
+- The Menorah: https://en.wikipedia.org/wiki/Menorah_(Temple)
+- The Western Wall: https://en.wikipedia.org/wiki/Western_Wall
+- The Bodhi tree: https://en.wikipedia.org/wiki/Bodhi_Tree
+- Prayer flags: https://en.wikipedia.org/wiki/Prayer_flag
