@@ -64,3 +64,7 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - Sheikh Zayed Mosque: https://en.wikipedia.org/wiki/Sheikh_Zayed_Mosque
 - Nasir al-Mulk Mosque: https://en.wikipedia.org/wiki/Nasir_al-Mulk_Mosque
 - Badshahi Mosque: https://en.wikipedia.org/wiki/Badshahi_Mosque
+
+## Muslim guide avatar
+
+- Osman Hamdi Bey: https://en.wikipedia.org/wiki/Osman_Hamdi_Bey (public domain)

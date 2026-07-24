@@ -143,7 +143,7 @@ const FAITHS = {
       lead: "An interactive, audio-first page for Qur'an recitation, learning the Arabic letters, the stories of the Prophets, and the Five Pillars. Voice only, no music. Reviewed by your teachers first."
     },
     approve: "Every recitation, du'a, and lesson is reviewed by your teachers before it goes live. Audio-first, and no music.",
-    guide: { name: "Ustadh Yusuf", role: "your Qur'an teacher", g: "m" },
+    guide: { name: "Ustadh Yusuf", role: "your Qur'an teacher", g: "m", avatar: "assets/img/avatars/muslim-guide.jpg" },
     greeting: "Assalamu alaikum. I am Ustadh Yusuf, your teacher. Ask me about the Qur'an, the Arabic letters, the Five Pillars, or a du'a.",
     learn: [
       { kind: "Qur'an", icon: ICO.prayer, title: "Surah Al-Fatihah", original: "Bismillah ir-Rahman ir-Rahim", body: "The opening of the Qur'an, recited in every prayer. You listen to the recitation and repeat it, letter by letter." },

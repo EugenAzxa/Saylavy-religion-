@@ -188,7 +188,8 @@
      ===================================================== */
   function askScaffold(opts) {
     return `
-      <div class="ask ask-dark"${opts.id ? ` id="${opts.id}"` : ""}>
+      <div class="ask ask-dark${opts.portrait ? " has-portrait" : ""}"${opts.id ? ` id="${opts.id}"` : ""}>
+        ${opts.portrait ? `<div class="ask-portrait"><img src="${opts.portrait}" alt="${esc(opts.name)}" loading="lazy" onerror="this.parentNode.remove()"><span class="ask-portrait-badge">${esc(opts.name)} <small>${esc(opts.role)}</small></span></div>` : ""}
         <div class="ask-head">
           <div class="av">${opts.av}</div>
           <div class="meta"><strong>${esc(opts.name)}</strong><small>${esc(opts.role)}</small></div>
@@ -234,7 +235,7 @@
     const input = container.querySelector(".ask-text");
     const mic = container.querySelector(".mic-btn");
     const suggestWrap = container.querySelector(".ask-suggest");
-    const talkEl = cfg.talk || container.querySelector(".ask-head .av");
+    const talkEl = cfg.talk || container.querySelector(".ask-portrait") || container.querySelector(".ask-head .av");
 
     function addMsg(text, who, speakIt) {
       const m = el(`<div class="msg ${who}"></div>`);
@@ -401,7 +402,7 @@
           </div>
           <div class="reveal" style="transition-delay:.08s">
             ${askScaffold({
-              id: "ask", av: f.symbol, name: f.guide.name, role: f.guide.role,
+              id: "ask", av: f.symbol, name: f.guide.name, role: f.guide.role, portrait: f.guide.avatar,
               chips: chipsHtml(f.suggest),
               foot: "A gentle demo voice. On a real page, you hear your community's own teachers."
             })}
