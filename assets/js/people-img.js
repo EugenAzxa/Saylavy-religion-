@@ -1,5 +1,6 @@
 /* Portrait mapping - auto-generated from Wikipedia lead images.
-   The Sikh Gurus intentionally have no image (monograms only). */
+   The Sikh Gurus and Moses (a prophet) intentionally have no
+   image - monograms only, per the sensitivity rules. */
 (function () {
   if (typeof FAITHS === "undefined") return;
   var IMG = {
@@ -25,7 +26,6 @@
   "Mahatma Gandhi": "assets/img/people/gandhi.jpg",
   "Bhagat Puran Singh": "assets/img/people/puran-singh.jpg",
   "Maharaja Ranjit Singh": "assets/img/people/ranjit-singh.jpg",
-  "Moshe (Moses)": "assets/img/people/moses.jpg",
   "Maimonides": "assets/img/people/maimonides.jpg",
   "Rashi": "assets/img/people/rashi.jpg",
   "Golda Meir": "assets/img/people/golda-meir.jpg",

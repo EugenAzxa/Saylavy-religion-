@@ -1751,3 +1751,86 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focu
 @media (prefers-reduced-motion: reduce) {
   .talking::after, .talking img, .talking video, .pm-live i { animation: none !important; }
 }
+
+/* ============================================================
+   CASCADE CORRECTIONS (audit) - restores the night theme where
+   retired light-theme layers were still winning by source order
+   or specificity. Keep this block LAST.
+   ============================================================ */
+
+/* chat: restore liquid glass, fix invisible user bubble + typing dots */
+.ask.ask-dark { background: rgba(20,15,28,.55);
+  -webkit-backdrop-filter: blur(20px) saturate(140%); backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(247,241,228,.14); }
+.ask-dark .ask-head { background: linear-gradient(rgba(255,255,255,.05), transparent); }
+.ask-dark .ask-head .av { background: rgba(247,241,228,.1); }
+.ask-dark .ask-head .av svg { color: var(--accent-lt); }
+.ask-dark .msg.me { background: var(--accent); color: #fff; }
+.ask-dark .typing i { background: var(--accent-lt); }
+.ask-dark .ask-input input { background: rgba(247,241,228,.07); border-color: rgba(247,241,228,.16); color: #f7f1e4; }
+.ask-dark .icon-btn { background: rgba(247,241,228,.08); border-color: rgba(247,241,228,.16); }
+.ask-dark .icon-btn svg { color: #f4ecdd; }
+.ask-dark .icon-btn.send { background: var(--accent); border-color: var(--accent); }
+.ask-dark .icon-btn.send svg { color: #fff; }
+
+/* Listen buttons stay readable on hover over dark cards */
+.listen-btn:hover { color: var(--accent-lt); border-color: var(--accent); }
+
+/* glass pill nav before scroll (light-layer :not(.scrolled) rules were winning) */
+.site-header:not(.scrolled) .brand { color: #f2ecdf; }
+.site-header:not(.scrolled) .brand small { color: #e9cb8c; }
+.site-header:not(.scrolled) .brand .mark { color: #e9cb8c !important; }
+.site-header:not(.scrolled) .nav-links a { color: rgba(242,236,223,.78); }
+.site-header:not(.scrolled) .nav-links a:hover { color: #fff; }
+.site-header:not(.scrolled) .nav-toggle { color: #f2ecdf; }
+.site-header:not(.scrolled) .btn-primary {
+  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.24); color: #fff; }
+.site-header:not(.scrolled) .nav-links.open a { color: rgba(242,236,223,.85); }
+
+/* visible focus rings on dark (classed light-layer rules were winning) */
+.btn:focus-visible, .chip:focus-visible, .icon-btn:focus-visible, .listen-btn:focus-visible,
+.person:focus-visible, .gcard:focus-visible, .tl-nav:focus-visible, .qz-opt:focus-visible,
+.ask-input input:focus-visible, .cta-form input:focus-visible {
+  outline: 2px solid var(--accent-lt); outline-offset: 3px; }
+
+/* per-faith ambience: multiply renders black on night, use screen */
+.faith-explore::before, .faith-close::before, .faith-people::before {
+  mix-blend-mode: screen; opacity: .1; }
+.pm-glow { mix-blend-mode: screen; opacity: .16; }
+.faith-aura .halo-lg { mix-blend-mode: screen; }
+
+/* reduced motion must win over the later calm-layer reveal rule */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transition: none !important; }
+}
+
+/* ============================================================
+   PER-FAITH ATMOSPHERE + NATIVE GREETINGS (audit proposals)
+   Each faith gets its own night tone, so pages feel distinct.
+   ============================================================ */
+.theme-protestant { --night: #070c1a; } .theme-catholic { --night: #150a10; }
+.theme-orthodox   { --night: #130f06; } .theme-muslim   { --night: #061410; }
+.theme-hindu      { --night: #170d05; } .theme-sikh     { --night: #0a0c1e; }
+.theme-jewish     { --night: #06111b; } .theme-buddhist { --night: #150b06; }
+body.faith-page { background: var(--night, #0b0e1c); }
+.faith-explore, .faith-people { background: transparent; }
+.faith-close { background: radial-gradient(130% 115% at 50% -12%, var(--accent-ink), var(--night, #0b0e1c) 72%); }
+.faith-hero.hero-cosmos {
+  background: radial-gradient(120% 100% at 78% -16%, var(--accent-ink) 0%, var(--night, #0d1120) 58%, var(--night, #0b0e1c) 100%); }
+
+/* native-script greeting: faith hero */
+.native { font-size: clamp(1.6rem, 3.4vw, 2.3rem); line-height: 1.25; color: var(--accent-lt);
+  margin: 0 0 .5rem; font-family: 'Instrument Serif', var(--serif); }
+.native span { display: block; font-family: var(--sans); font-size: .78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; color: rgba(240,233,220,.5); margin-top: .3rem; }
+.native[dir="rtl"] { direction: rtl; }
+
+/* native-script greeting: dashboard cards */
+.gnative { display: block; font-family: 'Instrument Serif', var(--serif); font-size: 1.15rem;
+  color: var(--accent-lt); opacity: .85; margin-bottom: .15rem; }
+.gcard { min-height: 250px; }
+
+/* quote framing so paraphrases are never passed off as verbatim quotes */
+.pm-quote-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(240,233,220,.42); margin: 1.2rem 0 .3rem; }
+.pm-quote { margin-top: 0; }

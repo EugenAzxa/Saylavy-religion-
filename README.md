@@ -1,6 +1,6 @@
 # Saylavy - Faith path
 
-A free, interactive learning page and QR code for faith communities, powered by [Saylavy.com](https://saylavy.com).
+An interactive learning page and QR code for faith communities, powered by [Saylavy.com](https://saylavy.com).
 
 Children scan, listen, interact, and **ask questions out loud** about their faith, and hear a warm, reverent answer back. Every page is approved by the community's own teachers before it goes live.
 
@@ -11,7 +11,7 @@ Children scan, listen, interact, and **ask questions out loud** about their fait
   - Protestant, Catholic, Orthodox, Muslim, Hindu, Sikh, Jewish, Buddhist
 - **A live "Ask and listen" sample** on every faith page. A child types or speaks a question and hears the answer aloud, drawn only from a per-faith, teacher-approved knowledge base.
 - **A real, scannable QR code** on the dashboard and each faith page.
-- **A partnership call to action** that opens an email to request a free page.
+- **A collaboration call to action** that opens an email to start a conversation.
 
 It is a pure front-end static site. No backend, no build step, no API keys. The voice features use the browser's own Speech APIs, so nothing is sent anywhere.
 

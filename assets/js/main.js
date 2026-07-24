@@ -47,8 +47,18 @@
       };
       raf = requestAnimationFrame(step);
     };
-    const onLoaded = () => { setOp(0); fadingOut = false; v.playbackRate = rate; v.play().catch(() => {}); fadeTo(1, 500); };
-    v.addEventListener("error", () => { const s = v.nextElementSibling; if (s && s.classList && s.classList.contains("cine-shade")) s.remove(); v.remove(); });
+    let started = false;
+    const onLoaded = () => {
+      if (started) return; started = true;
+      setOp(0); fadingOut = false; v.playbackRate = rate; v.play().catch(() => {}); fadeTo(1, 500);
+    };
+    const dropVideo = () => {
+      const s = v.nextElementSibling;
+      if (s && s.classList && s.classList.contains("cine-shade")) s.remove();
+      v.remove();
+    };
+    v.addEventListener("error", dropVideo);
+    if (v.error) { dropVideo(); return; }
     v.addEventListener("loadeddata", onLoaded);
     v.addEventListener("timeupdate", () => {
       if (v.duration && v.duration - v.currentTime <= 0.55 && !fadingOut) { fadingOut = true; fadeTo(0, 500); }
@@ -77,8 +87,10 @@
     };
     grid.innerHTML = window.FAITH_ORDER.map((slug) => {
       const f = window.FAITHS[slug];
+      const sc = f.script;
       return `<a class="gcard liquid-glass ${f.theme}" href="${slug}.html" aria-label="Enter ${f.name}">
                 <span class="sym">${f.symbol}</span>
+                ${sc ? `<span class="gnative" lang="${sc.lang}" dir="${sc.dir}">${sc.text}</span>` : ""}
                 <strong>${f.name}</strong>
                 <small>${TAG[slug] || ""}</small>
                 <span class="go">Enter

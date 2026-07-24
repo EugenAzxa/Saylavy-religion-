@@ -150,7 +150,7 @@
         { keys: ["church", "liturgy", "teach", "prayer"], a: "I helped order the prayers and the teaching of the Church, so the faith could be handed on whole and clear to those who came after." }
       ],
       fallback: "Glory to God. Faith and mercy always went together for me. What would you like to know?" },
-    { mono: "SS", name: "St. Seraphim of Sarov", tag: "Monk, 1700s", note: "A gentle Russian saint known for his joy and deep prayer.",
+    { mono: "SS", name: "St. Seraphim of Sarov", tag: "Monk, 1754-1833", note: "A gentle Russian saint known for his joy and deep prayer.",
       voice: { g: "m", pitch: 0.97, rate: 0.9 },
       bio: "I was a Russian monk who spent years alone in the forest in prayer. I came to know such joy in God that I greeted everyone with the words, my joy, Christ is risen. Even a wild bear was gentle with me.",
       quote: "Acquire a peaceful spirit, and thousands around you will be saved.",
@@ -178,6 +178,7 @@
       fallback: "Peace and joy to you. Give quietly, and give with love. What would you like to ask?" }
   ];
 
+  FAITHS.muslim.peopleNote = "Above all we honour the Prophet Muhammad, peace be upon him. Here are a few who walked his path.";
   FAITHS.muslim.people = [
     { mono: "RU", name: "Jalaluddin Rumi", tag: "Poet, 1200s", note: "A beloved poet whose verses turn the heart toward the divine.",
       voice: { g: "m", pitch: 0.96, rate: 0.9 },

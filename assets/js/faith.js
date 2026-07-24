@@ -131,9 +131,9 @@
   }
 
   function setupMic(mic, input, onAsk) {
-    if (!mic) return;
+    if (!mic) return null;
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { mic.title = "Voice input needs Chrome or Edge"; mic.addEventListener("click", () => input.focus()); return; }
+    if (!SR) { mic.title = "Voice input needs Chrome or Edge"; mic.addEventListener("click", () => input.focus()); return null; }
     const rec = new SR(); rec.lang = "en-US"; rec.interimResults = false; rec.maxAlternatives = 1;
     let listening = false;
     mic.addEventListener("click", () => { if (listening) { rec.stop(); return; } try { synth && synth.cancel(); rec.start(); } catch (e) {} });
@@ -141,6 +141,7 @@
     rec.onend = () => { listening = false; mic.classList.remove("listening"); input.placeholder = "Ask a question..."; };
     rec.onerror = () => { listening = false; mic.classList.remove("listening"); input.placeholder = "Ask a question..."; };
     rec.onresult = (ev) => { const said = ev.results[0][0].transcript; input.value = said; onAsk(said); };
+    return { abort: () => { try { rec.abort(); } catch (e) {} listening = false; mic.classList.remove("listening"); } };
   }
 
   /* =====================================================
@@ -191,29 +192,35 @@
       log.appendChild(t); log.scrollTop = log.scrollHeight; return t;
     }
     function answerFor(q) {
-      const s = " " + q.toLowerCase().replace(/[^a-z0-9'\s]/g, " ") + " ";
+      const s = " " + q.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/[^a-z0-9'\s]/g, " ").replace(/\s+/g, " ") + " ";
       let best = null, score = 0;
       cfg.qa.forEach(item => {
         let sc = 0;
-        item.keys.forEach(k => { if (s.indexOf(k.toLowerCase()) !== -1) sc += k.length; });
+        item.keys.forEach(k => { if (s.indexOf(" " + k.toLowerCase() + " ") !== -1) sc += k.length; });
         if (sc > score) { score = sc; best = item; }
       });
       return best ? best.a : cfg.fallback;
     }
-    let greeted = false;
-    function ensureGreeting() { if (greeted) return; greeted = true; addMsg(cfg.greeting, "bot", false); }
+    let greeted = false, pending = null, dead = false;
+    function ensureGreeting() { if (greeted || dead) return; greeted = true; addMsg(cfg.greeting, "bot", false); }
     function ask(q) {
       q = (q || "").trim(); if (!q) return;
       ensureGreeting();
       addMsg(q, "me", false); input.value = "";
       const t = typing(); const ans = answerFor(q);
-      window.setTimeout(() => { t.remove(); addMsg(ans, "bot", true); }, 620);
+      if (pending) window.clearTimeout(pending);
+      pending = window.setTimeout(() => { pending = null; if (dead) return; t.remove(); addMsg(ans, "bot", true); }, 620);
     }
     form.addEventListener("submit", (e) => { e.preventDefault(); ask(input.value); });
     suggestWrap.addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (c) ask(c.dataset.q); });
     input.addEventListener("focus", ensureGreeting, { once: true });
-    setupMic(mic, input, ask);
-    return { ensureGreeting, ask };
+    const micCtl = setupMic(mic, input, ask);
+    function destroy() {
+      dead = true;
+      if (pending) { window.clearTimeout(pending); pending = null; }
+      if (micCtl && micCtl.abort) micCtl.abort();
+    }
+    return { ensureGreeting, ask, destroy };
   }
 
   /* =====================================================
@@ -262,6 +269,7 @@
         <div class="faith-hero-grid">
           <div class="reveal">
             <div class="faith-emblem">${f.symbol}</div>
+            ${f.script ? `<p class="native" lang="${f.script.lang}" dir="${f.script.dir}" title="${esc(f.script.meaning)}">${esc(f.script.text)}<span>${esc(f.script.translit ? f.script.translit + " - " + f.script.meaning : f.script.meaning)}</span></p>` : ""}
             <p class="eyebrow faith-kicker">${esc(f.hero.kicker)}</p>
             <h1>${esc(f.hero.title)}</h1>
             <p class="lead">${esc(f.hero.lead)}</p>
@@ -325,7 +333,7 @@
           </div>
           <button class="tl-nav tl-next" aria-label="Next step">${ICON.arrow}</button>
         </div>
-        <div class="tl-dots" aria-hidden="true"></div>
+        <div class="tl-dots" role="group" aria-label="Story steps"></div>
         <div class="qz">
           <p class="qz-prog"></p>
           <h3 class="qz-q"></h3>
@@ -404,6 +412,7 @@
             <span class="pm-tag"></span>
             <span class="pm-live" aria-hidden="true"><i></i><i></i><i></i>Speaking</span>
             <p class="pm-bio"></p>
+            <p class="pm-quote-label">In the spirit of their teaching</p>
             <blockquote class="pm-quote"></blockquote>
             <button class="listen-btn pm-listen" data-label="Listen to their story" data-icon="play">
               <span class="ic">${ICON.play}</span><span class="lbl">Listen to their story</span>
@@ -415,16 +424,26 @@
     </div>`);
   document.body.appendChild(modal);
 
+  let modalChat = null, lastOpener = null;
   function closeModal() {
     stopSpeech();
+    if (modalChat && modalChat.destroy) modalChat.destroy();
+    modalChat = null;
     modal.hidden = true; document.body.style.overflow = "";
     modal.querySelector(".pm-right").innerHTML = "";
+    const m = modal.querySelector(".pm-mono");
+    if (m) { m.innerHTML = ""; m.classList.remove("has-img"); }
+    modal.querySelector(".pm-card").classList.remove("talking-host");
+    if (lastOpener) { try { lastOpener.focus(); } catch (e) {} lastOpener = null; }
   }
   modal.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
-  function openPerson(p, i) {
+  function openPerson(p, i, opener) {
     stopSpeech();
+    if (modalChat && modalChat.destroy) modalChat.destroy();
+    lastOpener = opener || null;
+    modal.querySelector(".pm-card").setAttribute("aria-label", p.name);
     const about = p.persona === "about";
     const voice = Object.assign({ idx: i }, p.voice || {});
     const media = modal.querySelector(".pm-mono");
@@ -439,6 +458,7 @@
 
     const listen = modal.querySelector(".pm-listen");
     listen.dataset.say = p.bio + " " + p.quote;
+    listen.classList.remove("speaking");
     setBtnLabel(listen, false);
     listen.onclick = () => {
       if (listen.classList.contains("speaking")) { stopSpeech(); return; }
@@ -454,16 +474,17 @@
       foot: about ? "A gentle demo voice, sharing what is known of their life."
                   : "A gentle demo voice, in the spirit of their own words."
     });
-    const chat = wireChat(right.querySelector(".ask"), {
+    const chat = modalChat = wireChat(right.querySelector(".ask"), {
       qa: p.qa, fallback: p.fallback, greeting: p.greeting, voice: voice, talk: media
     });
 
     modal.hidden = false; document.body.style.overflow = "hidden";
+    modal.querySelector(".pm-close").focus();
     chat.ensureGreeting();
   }
 
   root.querySelectorAll(".person").forEach(card => {
-    const open = () => openPerson(people[+card.dataset.idx], +card.dataset.idx);
+    const open = () => openPerson(people[+card.dataset.idx], +card.dataset.idx, card);
     card.addEventListener("click", open);
     card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
   });
@@ -502,10 +523,17 @@
     let qi = 0, score = 0;
     const qProg = root.querySelector(".qz-prog"), qQ = root.querySelector(".qz-q");
     const qOpts = root.querySelector(".qz-opts"), qMsg = root.querySelector(".qz-msg");
+    // rotate option order per question so the answer is never always first
+    function ordered(i) {
+      const n = Q[i].options.length, shift = (i * 2 + 1) % n;
+      return Q[i].options.map((o, j) => ({ text: o, correct: j === Q[i].correct }))
+        .map((_, j, arr) => arr[(j + shift) % n]);
+    }
     function showQ() {
       qProg.textContent = "Question " + (qi + 1) + " of " + Q.length;
       qQ.textContent = Q[qi].q; qMsg.textContent = "";
-      qOpts.innerHTML = Q[qi].options.map((o, j) => `<button class="qz-opt" data-j="${j}">${esc(o)}</button>`).join("");
+      qOpts.innerHTML = ordered(qi).map(o =>
+        `<button class="qz-opt" data-correct="${o.correct ? "1" : "0"}">${esc(o.text)}</button>`).join("");
     }
     function endQ() {
       qProg.textContent = "All done";
@@ -518,7 +546,7 @@
       if (r) { qi = 0; score = 0; showQ(); return; }
       const b = e.target.closest(".qz-opt");
       if (!b || b.disabled) return;
-      if (+b.dataset.j === Q[qi].correct) {
+      if (b.dataset.correct === "1") {
         b.classList.add("good"); score++;
         qMsg.textContent = "That is right! Well done.";
         qOpts.querySelectorAll(".qz-opt").forEach(x => { x.disabled = true; });

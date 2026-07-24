@@ -62,7 +62,7 @@
       history: [
         { era: "600s", title: "The Qur'an is revealed", text: "In Makkah, the Prophet Muhammad, peace be upon him, received the words of the Qur'an from Allah." },
         { era: "Early days", title: "The message spreads", text: "People learned to pray, to share with the poor, and to live by the Five Pillars." },
-        { era: "Golden age", title: "A time of learning", text: "In the House of Wisdom, scholars like Ibn Sina and Al-Khwarizmi studied medicine, stars, and numbers." },
+        { era: "Golden age", title: "A time of learning", text: "In houses of learning from Baghdad to Bukhara, scholars like Al-Khwarizmi and Ibn Sina studied medicine, the stars, and numbers." },
         { era: "Through time", title: "Beautiful masjids", text: "Across the world, people built masjids with domes and minarets, filled with the sound of recitation." },
         { era: "Today", title: "One ummah", text: "Muslims everywhere pray five times a day, fast in Ramadan, and learn the Qur'an by heart." }
       ],

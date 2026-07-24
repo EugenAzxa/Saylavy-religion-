@@ -25,7 +25,6 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - Mahatma Gandhi: lead image from https://en.wikipedia.org/wiki/Mahatma_Gandhi
 - Bhagat Puran Singh: lead image from https://en.wikipedia.org/wiki/Bhagat_Puran_Singh
 - Maharaja Ranjit Singh: lead image from https://en.wikipedia.org/wiki/Ranjit_Singh
-- Moshe (Moses): lead image from https://en.wikipedia.org/wiki/Moses
 - Maimonides: lead image from https://en.wikipedia.org/wiki/Maimonides
 - Rashi: lead image from https://en.wikipedia.org/wiki/Rashi
 - Golda Meir: lead image from https://en.wikipedia.org/wiki/Golda_Meir
