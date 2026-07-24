@@ -55,13 +55,11 @@
     if (v > 1 || v < -1) return null;                 // sun never reaches it
     return arccos(v) / 15;
   }
+  // Asr, shadow factor 1: the sun altitude where an object shadow equals its
+  // length plus the noon shadow, then the hour angle to reach that altitude
   function asrTime(lat, decl) {
-    var v = 1 / tan(Math.abs(lat - decl) * D2R === 0 ? 0.0001 : Math.abs(lat - decl));
-    var angle = -arccot(1 + Math.abs(tan((lat - decl) * D2R) * 0 + 1 / Math.tan(Math.abs(lat - decl) * D2R)));
-    // shadow factor 1 (standard): altitude where shadow equals object length + noon shadow
-    var alt = arccot(1 + Math.tan(Math.abs(lat - decl) * D2R));
-    var t = angleTime(90 - alt, lat, decl);
-    return t;
+    var alt = arccot(1 + Math.tan(Math.abs(lat - decl) * D2R));  // altitude in degrees
+    return angleTime(-alt, lat, decl);                            // time offset from noon
   }
 
   function timesFor(date, place) {
