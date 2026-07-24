@@ -48,8 +48,8 @@
       suggest: ["Who is Aslan?", "How did you find faith?", "Why do you believe?"],
       qa: [
         { keys: ["aslan", "narnia", "lion"], a: "Aslan is the great Lion of Narnia. He is not a tame lion, but he is good. Many readers see in him a picture of Christ, who lays down his life and rises again." },
-        { keys: ["atheist", "found", "convert", "believe how", "reluctant"], a: "I was a stubborn atheist, but reason and a deep longing led me, step by step, to God. I once called myself the most reluctant convert in all England." },
-        { keys: ["why believe", "reason", "proof", "sun"], a: "I believe in Christianity as I believe the sun has risen. Not only because I see it, but because by it I see everything else." },
+        { keys: ["atheist", "found", "find", "convert", "believe how", "reluctant"], a: "I was a stubborn atheist, but reason and a deep longing led me, step by step, to God. I once called myself the most reluctant convert in all England." },
+        { keys: ["why believe", "believe", "reason", "proof", "sun"], a: "I believe in Christianity as I believe the sun has risen. Not only because I see it, but because by it I see everything else." },
         { keys: ["joy", "longing", "desire"], a: "All my life I was chased by a deep longing I called Joy. In the end I found it was pointing me home, to God." }
       ],
       fallback: "A fine question. I always thought the deepest truths could be told simply. What would you like to explore?" },
@@ -228,7 +228,7 @@
       qa: [
         { keys: ["mercy", "enemy", "kind", "forgive"], a: "A ruler is tested not in victory but in how he treats the defeated. I chose mercy and kept my promises even to those who fought me. Strength without mercy is only cruelty." },
         { keys: ["poor", "wealth", "money", "die"], a: "When I died, there was scarcely enough in my treasury for my own burial, for I had given it to the poor and to my people. I carried nothing out of this world." },
-        { keys: ["lead", "leader", "rule", "justice", "servant"], a: "I tried to rule with justice and to listen to the humblest of my people. A leader is a servant of those he leads." },
+        { keys: ["lead", "leader", "rule", "value", "justice", "servant"], a: "I tried to rule with justice and to listen to the humblest of my people. A leader is a servant of those he leads." },
         { keys: ["war", "battle", "jerusalem", "fight"], a: "There was war in my time, but even in it I sought to spare the innocent and to honour the word I had given. I take no pride in bloodshed." }
       ],
       fallback: "Peace be upon you. Remember, mercy is the strength of the strong. What would you like to ask?" }
@@ -310,7 +310,7 @@
       greeting: "Welcome. I can tell you about Guru Gobind Singh Ji, the tenth Guru. What would you like to know?",
       suggest: ["What is the Khalsa?", "What did he teach?", "What is the Guru Granth Sahib?"],
       qa: [
-        { keys: ["khalsa", "five k", "found", "1699"], a: "In 1699 Guru Gobind Singh founded the Khalsa, a community committed to courage, equality, and devotion. He gave its members the articles of faith and the names of honour, Singh and Kaur." },
+        { keys: ["khalsa", "five k", "found", "1699", "teach", "taught"], a: "In 1699 Guru Gobind Singh founded the Khalsa, a community committed to courage, equality, and devotion. He gave its members the articles of faith and the names of honour, Singh and Kaur." },
         { keys: ["justice", "protect", "oppress", "courage", "defend"], a: "Guru Gobind Singh stood up for the oppressed and taught that it is right to defend the weak and to resist injustice, while keeping God always in the heart." },
         { keys: ["guru granth", "scripture", "eternal", "book"], a: "Before he passed, Guru Gobind Singh declared that there would be no more human Gurus. The holy scripture, the Guru Granth Sahib, would be the eternal, living Guru for all time." },
         { keys: ["one", "humanity", "equal", "human race"], a: "He taught his followers to recognise the whole human race as one. Equality and human dignity are at the heart of his message." }
@@ -352,7 +352,7 @@
       greeting: "Welcome. I can tell you about Moshe, Moses, the greatest of the prophets. What would you like to know?",
       suggest: ["What happened at the sea?", "What is the Torah?", "Who was Moses?"],
       qa: [
-        { keys: ["egypt", "slavery", "pharaoh", "free", "let my people"], a: "Moses was sent by God to Pharaoh with the demand, let my people go. After the ten plagues, he led the enslaved people of Israel out of Egypt to freedom, a story remembered every year at Passover." },
+        { keys: ["egypt", "slavery", "pharaoh", "free", "let my people", "moses", "moshe", "who was"], a: "Moses was sent by God to Pharaoh with the demand, let my people go. After the ten plagues, he led the enslaved people of Israel out of Egypt to freedom, a story remembered every year at Passover." },
         { keys: ["sea", "red sea", "part", "water", "cross"], a: "As the people fled Egypt, the sea stood before them and Pharaoh's army behind. God, through Moses, parted the waters, and the people crossed on dry ground to safety." },
         { keys: ["torah", "sinai", "commandment", "law", "ten"], a: "At Mount Sinai, Moses received the Torah and the Ten Commandments from God, and gave them to the people. This is the foundation of Jewish life and law." },
         { keys: ["wilderness", "desert", "forty", "lead", "promised"], a: "Moses led the people for forty years through the wilderness toward the promised land, teaching them and pleading for them, though he himself did not enter it." }
@@ -421,7 +421,7 @@
       suggest: ["Why did you give up war?", "What did you do as emperor?", "What are your edicts?"],
       qa: [
         { keys: ["war", "battle", "kalinga", "change", "give up"], a: "I won a great war at Kalinga, but when I saw the dead and the grieving, I was filled with sorrow. I vowed never again to conquer by the sword, but only by compassion and truth." },
-        { keys: ["compassion", "kind", "people", "dharma", "children"], a: "After my change of heart I ruled by dharma, by goodness. I built shelters for people and animals, dug wells, planted shade trees, and told my officials to treat all my people as my own children." },
+        { keys: ["compassion", "kind", "people", "dharma", "children", "emperor", "as emperor", "did you do"], a: "After my change of heart I ruled by dharma, by goodness. I built shelters for people and animals, dug wells, planted shade trees, and told my officials to treat all my people as my own children." },
         { keys: ["edict", "stone", "pillar", "write"], a: "I had my vows and teachings carved onto great pillars and rocks across the land, so that all people, in every age, could read them. I wanted my regret and my hopes to be known." },
         { keys: ["animal", "tree", "environment", "well"], a: "I forbade needless killing of animals, planted trees along the roads, and cared for the health of both people and beasts, for compassion should leave no one out." }
       ],
@@ -433,7 +433,7 @@
       greeting: "Hello, dear friend. I am Thich Nhat Hanh. Ask me about mindfulness, breathing, or peace.",
       suggest: ["How do I practise mindfulness?", "What is engaged Buddhism?", "How do I find peace?"],
       qa: [
-        { keys: ["mindful", "mindfulness", "present", "now", "tea"], a: "Mindfulness is simply being fully present for this moment. When you drink your tea, just drink your tea. Life is only available in the here and the now." },
+        { keys: ["mindful", "mindfulness", "meditat", "present", "now", "tea"], a: "Mindfulness is simply being fully present for this moment. When you drink your tea, just drink your tea. Life is only available in the here and the now." },
         { keys: ["breath", "breathe", "breathing", "calm"], a: "Try this with me. Breathing in, I calm my body. Breathing out, I smile. Your breath is an anchor that brings you home to the present moment." },
         { keys: ["peace", "engaged", "war", "world"], a: "I taught engaged Buddhism, peace that is lived, not only meditated upon. If we cannot find peace in ourselves, we cannot bring it to the world. Peace begins with each step." },
         { keys: ["walk", "step", "walking"], a: "When you walk, walk as if you are kissing the earth with your feet. Peaceful steps make a peaceful path." }

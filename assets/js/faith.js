@@ -166,7 +166,7 @@
     if (!SR) { mic.title = "Voice input needs Chrome or Edge"; mic.addEventListener("click", () => input.focus()); return null; }
     const rec = new SR(); rec.lang = "en-US"; rec.interimResults = false; rec.maxAlternatives = 1;
     let listening = false;
-    mic.addEventListener("click", () => { if (listening) { rec.stop(); return; } try { synth && synth.cancel(); rec.start(); } catch (e) {} });
+    mic.addEventListener("click", () => { if (listening) { rec.stop(); return; } try { stopSpeech(); rec.start(); } catch (e) {} });
     rec.onstart = () => { listening = true; mic.classList.add("listening"); input.placeholder = "Listening..."; };
     rec.onend = () => { listening = false; mic.classList.remove("listening"); input.placeholder = "Ask a question..."; };
     rec.onerror = () => { listening = false; mic.classList.remove("listening"); input.placeholder = "Ask a question..."; };
@@ -196,6 +196,29 @@
   }
   const chipsHtml = (list) => list.map(s => `<button class="chip" data-q="${esc(s)}">${esc(s)}</button>`).join("");
 
+  /* Keyword matching: both the question and the keys go through the same
+     normalizer (quotes and hyphens dropped), then each key must land on a
+     word boundary, allowing a short inflection so plurals still match. */
+  const _keyRe = new Map();
+  function normText(str) {
+    return " " + String(str).toLowerCase()
+      .replace(/[\u2018\u2019\u02bc]/g, "'")
+      .replace(/'/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/\s+/g, " ").trim() + " ";
+  }
+  function keyScore(hay, key) {
+    const kn = normText(key).trim();
+    if (!kn) return 0;
+    let re = _keyRe.get(kn);
+    if (!re) {
+      const esc2 = kn.split("").map(function (c) { return "\\^$*+?.()|[]{}".indexOf(c) >= 0 ? "\\" + c : c; }).join("");
+      re = new RegExp("(?:^| )" + esc2 + "[a-z]{0,3}(?= |$)");
+      _keyRe.set(kn, re);
+    }
+    return re.test(hay) ? kn.length : 0;
+  }
+
   function wireChat(container, cfg) {
     const log = container.querySelector(".ask-log");
     const form = container.querySelector(".ask-form");
@@ -222,11 +245,11 @@
       log.appendChild(t); log.scrollTop = log.scrollHeight; return t;
     }
     function answerFor(q) {
-      const s = " " + q.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/[^a-z0-9'\s]/g, " ").replace(/\s+/g, " ") + " ";
+      const hay = normText(q);
       let best = null, score = 0;
       cfg.qa.forEach(item => {
         let sc = 0;
-        item.keys.forEach(k => { if (s.indexOf(" " + k.toLowerCase() + " ") !== -1) sc += k.length; });
+        item.keys.forEach(k => { sc += keyScore(hay, k); });
         if (sc > score) { score = sc; best = item; }
       });
       return best ? best.a : cfg.fallback;
@@ -245,12 +268,13 @@
     suggestWrap.addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (c) ask(c.dataset.q); });
     input.addEventListener("focus", ensureGreeting, { once: true });
     const micCtl = setupMic(mic, input, ask);
+    function cancelPending() { if (pending) { window.clearTimeout(pending); pending = null; } }
     function destroy() {
       dead = true;
       if (pending) { window.clearTimeout(pending); pending = null; }
       if (micCtl && micCtl.abort) micCtl.abort();
     }
-    return { ensureGreeting, ask, destroy };
+    return { ensureGreeting, ask, destroy, cancelPending };
   }
 
   /* =====================================================
@@ -505,6 +529,7 @@
   function openPerson(p, i, opener) {
     stopSpeech();
     if (modalChat && modalChat.destroy) modalChat.destroy();
+    if (guideChat && guideChat.cancelPending) guideChat.cancelPending();
     lastOpener = opener || null;
     modal.querySelector(".pm-card").setAttribute("aria-label", p.name);
     const about = p.persona === "about";
@@ -583,7 +608,7 @@
 
     // little quiz
     const Q = learn.quiz;
-    let qi = 0, score = 0;
+    let qi = 0, score = 0, missed = false;
     const qProg = root.querySelector(".qz-prog"), qQ = root.querySelector(".qz-q");
     const qOpts = root.querySelector(".qz-opts"), qMsg = root.querySelector(".qz-msg");
     // rotate option order per question so the answer is never always first
@@ -594,7 +619,7 @@
     }
     function showQ() {
       qProg.textContent = "Question " + (qi + 1) + " of " + Q.length;
-      qQ.textContent = Q[qi].q; qMsg.textContent = "";
+      qQ.textContent = Q[qi].q; qMsg.textContent = ""; missed = false;
       qOpts.innerHTML = ordered(qi).map(o =>
         `<button class="qz-opt" data-correct="${o.correct ? "1" : "0"}">${esc(o.text)}</button>`).join("");
     }
@@ -606,16 +631,16 @@
     }
     qOpts.addEventListener("click", (e) => {
       const r = e.target.closest(".qz-restart");
-      if (r) { qi = 0; score = 0; showQ(); return; }
+      if (r) { qi = 0; score = 0; missed = false; showQ(); return; }
       const b = e.target.closest(".qz-opt");
       if (!b || b.disabled) return;
       if (b.dataset.correct === "1") {
-        b.classList.add("good"); score++;
+        b.classList.add("good"); if (!missed) score++;
         qMsg.textContent = "That is right! Well done.";
         qOpts.querySelectorAll(".qz-opt").forEach(x => { x.disabled = true; });
         window.setTimeout(() => { qi++; if (qi < Q.length) showQ(); else endQ(); }, 1000);
       } else {
-        b.classList.add("bad"); b.disabled = true;
+        b.classList.add("bad"); b.disabled = true; missed = true;
         qMsg.textContent = "Not quite. Try another one.";
       }
     });

@@ -975,7 +975,6 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 .faith-node:focus-visible, .listen-btn:focus-visible, .person:focus-visible {
   outline: 2px solid var(--accent-lt);
   outline-offset: 3px;
-  border-radius: 10px;
 }
 .ask-input input:focus-visible, .cta-form input:focus-visible, input:focus-visible {
   outline: 2px solid var(--accent-lt); outline-offset: 1px;
@@ -1857,3 +1856,37 @@ body.faith-page { background: var(--night, #0b0e1c); }
 .icard.talking { border-color: var(--accent); }
 @media (max-width: 940px) { .icon-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .icon-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   VERIFICATION FIXES - contrast and cascade issues confirmed by
+   the second review pass. Keep LAST.
+   ============================================================ */
+
+/* modal chat avatar showed dark initials on dark glass */
+.ask-dark .ask-head .av { color: var(--accent-lt); }
+.ask-dark .chip:hover { border-color: rgba(255,255,255,.22); }
+
+/* white text needs the deeper accent to clear 4.5:1 on every faith */
+.ask-dark .msg.me { background: var(--accent-deep); color: #fff; }
+.listen-btn.speaking, .listen-btn.speaking:hover {
+  background: var(--accent-deep); color: #fff; border-color: var(--accent-deep); }
+.faith-page .btn-gold { background: var(--accent-deep); }
+.faith-page .btn-gold:hover { background: var(--accent); }
+.btn-gold { background: var(--gold-deep); }
+.btn-gold:hover { background: var(--gold); }
+
+/* small accent details were using the dark accent on near-black */
+.tl-dots button.active { background: var(--accent-lt); }
+.faith-page .eyebrow::before, .faith-hero.hero-cosmos .faith-kicker::before { background: var(--accent-lt); }
+.site-footer .brand .mark { color: #e9cb8c !important; }
+
+/* readable secondary text */
+.pm-quote-label { color: rgba(240,233,220,.62); }
+.native span { color: rgba(240,233,220,.68); }
+
+/* let each faith's night tone reach its panels, not just the page */
+.faith-page {
+  --surface: color-mix(in srgb, var(--night) 86%, #ffffff 14%);
+  --surface-2: color-mix(in srgb, var(--night) 93%, #ffffff 7%);
+}
+.faith-page .site-footer { background: color-mix(in srgb, var(--night) 88%, #000000 12%); }

@@ -58,7 +58,7 @@ const FAITHS = {
     ],
     suggest: ["Tell me a Bible story", "What is a memory verse?", "Who is Jesus?"],
     qa: [
-      { keys: ["goliath", "david"], a: "David was a young shepherd who trusted God. With one stone and a sling he defeated the giant Goliath. It reminds us that God can use anyone who trusts him, no matter how small." },
+      { keys: ["goliath", "david", "story", "tell me"], a: "David was a young shepherd who trusted God. With one stone and a sling he defeated the giant Goliath. It reminds us that God can use anyone who trusts him, no matter how small." },
       { keys: ["jesus", "who is"], a: "Christians believe Jesus is the Son of God who came to earth, loved people, died on the cross for our sins, and rose again. We follow him and try to live the way he taught." },
       { keys: ["memory verse", "verse", "john 3"], a: "A memory verse is a short line from the Bible we learn by heart. A favourite is John 3 verse 16: For God so loved the world that he gave his one and only Son. Say it with me." },
       { keys: ["pray", "prayer"], a: "Prayer is simply talking to God. You can thank him, say sorry, or ask for help. Jesus taught us the Lord's Prayer, which begins, Our Father in heaven, hallowed be your name." },
@@ -184,7 +184,7 @@ const FAITHS = {
     ],
     suggest: ["Tell me about Diwali", "Who is Ganesha?", "What is dharma?"],
     qa: [
-      { keys: ["diwali", "lamp", "light"], a: "Diwali is the festival of lights. We remember Prince Rama returning home, welcomed by rows of little lamps called diyas. We light lamps to celebrate that goodness and light win over darkness." },
+      { keys: ["diwali", "lamp", "light", "festival"], a: "Diwali is the festival of lights. We remember Prince Rama returning home, welcomed by rows of little lamps called diyas. We light lamps to celebrate that goodness and light win over darkness." },
       { keys: ["ganesha", "ganesh"], a: "Ganesha is the beloved deity with the elephant head, honoured at the start of anything new because he clears away obstacles. We say, Om Gan Ganapataye Namah, to begin with a calm mind." },
       { keys: ["rama", "ramayana"], a: "The Ramayana tells the story of Prince Rama, his wife Sita, and the loyal Hanuman. It teaches courage, truth, and devotion. It is one of our greatest and most loved stories." },
       { keys: ["krishna", "gita"], a: "Krishna is a much loved deity, playful and full of joy, and wise as a teacher. In the Bhagavad Gita he teaches Arjuna to do his duty with a steady, devoted heart." },
@@ -251,7 +251,7 @@ const FAITHS = {
       { keys: ["shema"], a: "The Shema is the most important Jewish prayer. It says, Hear, O Israel, the Lord is our God, the Lord is One. We say it to remember that there is one God, and we cover our eyes to help us concentrate." },
       { keys: ["torah"], a: "The Torah is the holiest scroll in Judaism, the first five books, full of stories, teachings, and mitzvot, which are good deeds and commandments. We read from it in the synagogue with great care." },
       { keys: ["shabbat", "sabbath"], a: "Shabbat is our special day of rest each week, from Friday evening to Saturday night. We light candles, share a meal, and rest, remembering the gift of creation." },
-      { keys: ["hanukkah", "chanukah"], a: "Hanukkah is the festival of lights, lasting eight nights. We light the menorah, one more candle each night, remembering a small jar of oil that lasted far longer than anyone expected." },
+      { keys: ["hanukkah", "chanukah", "holiday", "festival"], a: "Hanukkah is the festival of lights, lasting eight nights. We light the menorah, one more candle each night, remembering a small jar of oil that lasted far longer than anyone expected." },
       { keys: ["passover", "pesach"], a: "Passover, or Pesach, remembers when the Jewish people were freed from slavery in Egypt. We gather for a special meal called the seder and tell the story every year." },
       { keys: ["hebrew", "letter", "aleph"], a: "The Hebrew letters begin with Aleph, Bet, Gimel, and we read from right to left. We hear them and trace them so we can read the Torah and the prayers ourselves." },
       { keys: ["tikkun olam", "repair", "kind"], a: "Tikkun olam means repairing the world. It is the beautiful idea that each of us can make the world a little kinder and better through our good deeds." },
