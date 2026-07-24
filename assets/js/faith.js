@@ -437,7 +437,7 @@
                   <p class="ps-sub">${esc(TAGS[key] || "")}</p>
                 </div>
                 <div class="ps-chat">
-                  <span class="ps-bubble ps-them">${esc(f.guide.greeting.split(". ").slice(-1)[0])}</span>
+                  <span class="ps-bubble ps-them">${esc(f.greeting.split(". ").slice(-1)[0])}</span>
                   <span class="ps-bubble ps-me">${esc(firstQ)}</span>
                   <span class="ps-bubble ps-them ps-typing"><i></i><i></i><i></i></span>
                 </div>
