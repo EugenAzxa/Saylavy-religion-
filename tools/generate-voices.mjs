@@ -21,7 +21,7 @@ import vm from "node:vm";
 const KEY = process.env.ELEVEN_KEY || "";
 const MODEL = process.env.ELEVEN_MODEL || "eleven_turbo_v2_5";
 const SCOPE = (process.argv[2] || "all").toLowerCase();
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const ROOT = path.resolve(path.dirname(decodeURIComponent(new URL(import.meta.url).pathname)), "..");
 const AUDIO = path.join(ROOT, "assets", "audio");
 
 if (!KEY) { console.error("Set ELEVEN_KEY first, e.g. ELEVEN_KEY=sk_... node tools/generate-voices.mjs"); process.exit(1); }
