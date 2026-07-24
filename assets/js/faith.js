@@ -328,6 +328,19 @@
       </button>
     </div>`).join("") : "";
 
+  const pray = (window.FAITH_PRAY || {})[key] || null;
+  const prayerTimes = (key === "muslim" && window.SaylavyPrayer) ? window.SaylavyPrayer : null;
+
+  const stepCards = pray ? pray.steps.map((st, i) => `
+    <li class="pstep reveal">
+      <span class="pnum">${i + 1}</span>
+      <div>
+        <h3>${esc(st.n)} <small>${esc(st.en)}</small></h3>
+        <p>${esc(st.text)}</p>
+        ${st.say ? `<p class="psay"><span lang="${key === "muslim" ? "ar" : key === "jewish" ? "he" : key === "sikh" ? "pa" : key === "hindu" ? "hi" : "en"}" dir="${(key === "muslim" || key === "jewish") ? "rtl" : "ltr"}">${esc(st.say)}</span>${st.translit ? `<em>${esc(st.translit)}</em>` : ""}</p>` : ""}
+      </div>
+    </li>`).join("") : "";
+
   const icons = (window.FAITH_ICONS || {})[key] || [];
   const iconCards = icons.map((ic, i) => `
     <figure class="icard reveal" data-i="${i}">
@@ -436,6 +449,51 @@
           <div class="qz-opts"></div>
           <p class="qz-msg" aria-live="polite"></p>
         </div>
+      </div>
+    </section>` : ""}
+
+    ${prayerTimes ? `
+    <section class="section faith-times" id="times">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Salah</p>
+          <h2>Prayer times today</h2>
+          <p class="lead">Calculated for your community's city. Your masjid replaces these with its own published timetable before the page goes live.</p>
+        </div>
+        <div class="pt-wrap">
+          <div class="pt-next liquid-glass">
+            <p class="pt-label">Next prayer</p>
+            <p class="pt-name" id="ptName">-</p>
+            <p class="pt-count" id="ptCount">--:--:--</p>
+            <p class="pt-city">
+              <select id="ptCity" aria-label="City">
+                <option value="toronto">Toronto</option>
+                <option value="mississauga">Mississauga</option>
+                <option value="brampton">Brampton</option>
+                <option value="scarborough">Scarborough</option>
+                <option value="markham">Markham</option>
+              </select>
+            </p>
+          </div>
+          <ul class="pt-list" id="ptList"></ul>
+        </div>
+      </div>
+    </section>` : ""}
+
+    ${pray ? `
+    <section class="section faith-pray" id="pray">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Step by step</p>
+          <h2>${esc(pray.title)}</h2>
+          <p class="lead">${esc(pray.intro)}</p>
+        </div>
+        <div class="pray-before">
+          <p class="pb-title">Before you begin</p>
+          <ul>${pray.before.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+        </div>
+        <ol class="pray-steps">${stepCards}</ol>
+        <p class="pray-note">${esc(pray.note)}</p>
       </div>
     </section>` : ""}
 
@@ -704,6 +762,36 @@
       }
     });
     showQ();
+  }
+
+  /* ---------- prayer times: live list and countdown ---------- */
+  if (prayerTimes) {
+    const sel = document.getElementById("ptCity");
+    const list = document.getElementById("ptList");
+    const nameEl = document.getElementById("ptName");
+    const countEl = document.getElementById("ptCount");
+    const ROWS = [["fajr", "Fajr"], ["sunrise", "Sunrise"], ["dhuhr", "Dhuhr"], ["asr", "Asr"], ["maghrib", "Maghrib"], ["isha", "Isha"]];
+    let place = prayerTimes.places[(sel && sel.value) || "toronto"];
+    function paint() {
+      const t = prayerTimes.times(new Date(), place);
+      const nx = prayerTimes.next(place);
+      list.innerHTML = ROWS.map(([k, label]) => `
+        <li class="${nx.name === label ? "is-next" : ""}">
+          <span>${label}</span><strong>${prayerTimes.format(t[k])}</strong>
+        </li>`).join("");
+      nameEl.textContent = nx.name + (nx.tomorrow ? " (tomorrow)" : "");
+    }
+    function tick() {
+      const nx = prayerTimes.next(place);
+      let s = Math.max(0, nx.seconds);
+      const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+      countEl.textContent = String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+      if (s <= 0) paint();
+    }
+    if (sel) sel.addEventListener("change", () => { place = prayerTimes.places[sel.value]; paint(); tick(); });
+    paint(); tick();
+    window.setInterval(tick, 1000);
+    window.setInterval(paint, 60000);
   }
 
   if (window.SaylavyReveal) window.SaylavyReveal();

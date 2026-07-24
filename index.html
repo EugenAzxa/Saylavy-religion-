@@ -27,14 +27,14 @@
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
       <nav class="nav-links">
-        <a href="#journey">Faiths</a>
-        <a href="#how">How it works</a>
-        <a href="#trust">Why it is safe</a>
-        <a href="#communities">Communities</a>
-        <a href="#partner">Partner</a>
+        <a href="#journey" data-i18n="nav.faiths">Faiths</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#trust" data-i18n="nav.safe">Why it is safe</a>
+        <a href="#communities" data-i18n="nav.communities">Communities</a>
+        <a href="#partner" data-i18n="nav.partner">Partner</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn btn-primary" href="#partner">Start a collaboration</a>
+        <a class="btn btn-primary" href="#partner" data-i18n="cta.start">Start a collaboration</a>
       </div>
     </div>
   </header>
@@ -44,7 +44,7 @@
     <video id="heroVideo" src="assets/video/hero.mp4" muted autoplay playsinline preload="auto" style="opacity:0" aria-hidden="true"></video>
     <span class="cine-shade" aria-hidden="true"></span>
     <div class="cine-inner">
-      <p class="eyebrow center-line reveal">For faith communities</p>
+      <p class="eyebrow center-line reveal" data-i18n="hero.eyebrow">For faith communities</p>
       <h1 class="reveal">Your faith, in real voices<br>you can <span class="serif-accent">talk with</span></h1>
       <p class="lead reveal">
         An interactive learning page and a QR code for your community.
@@ -52,8 +52,8 @@
         in a voice your teachers approve.
       </p>
       <div class="hero-actions reveal" style="justify-content:center">
-        <a class="btn btn-gold btn-lg" href="#journey">Meet the eight faiths</a>
-        <a class="btn liquid-glass btn-lg cine-btn" href="#partner">Start a collaboration</a>
+        <a class="btn btn-gold btn-lg" href="#journey" data-i18n="hero.meet">Meet the eight faiths</a>
+        <a class="btn liquid-glass btn-lg cine-btn" href="#partner" data-i18n="cta.start">Start a collaboration</a>
       </div>
     </div>
   </section>
@@ -178,6 +178,21 @@
     </div>
   </section>
 
+  <!-- ================= For community leaders (translated) ================= -->
+  <section class="section leaders" id="leaders" aria-label="For community leaders">
+    <div class="wrap">
+      <div class="leaders-card liquid-glass reveal">
+        <h2 data-i18n="leaders.title">For community leaders</h2>
+        <p data-i18n="leaders.p1">Saylavy builds your community a page where children meet your faith in real voices.</p>
+        <p data-i18n="leaders.p2">They listen, ask questions out loud, and hear a warm answer back.</p>
+        <p data-i18n="leaders.p3">Nothing goes live until your teachers approve every word. The faith stays yours.</p>
+        <p data-i18n="leaders.p4">You receive a QR code for your bulletin, your wall, or a card to take home.</p>
+        <p class="leaders-close" data-i18n="leaders.p5">It would be an honour to build one together with your community.</p>
+        <a class="btn btn-gold btn-lg" href="mailto:Eugen@azxa.io" data-i18n="cta.write">Write to us</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= Partner / contact ================= -->
   <section class="section" id="partner">
     <div class="wrap">
@@ -243,6 +258,7 @@
   <script src="assets/js/communities.js"></script>
   <script src="assets/js/qrcode.min.js"></script>
   <script src="assets/js/qr.js"></script>
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
