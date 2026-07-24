@@ -49,7 +49,7 @@ const FAITHS = {
       lead: "An interactive page where your community hears Scripture in real voices, listens to memory verses, and asks about the stories they are learning. Your leaders approve every word."
     },
     approve: "Every story and verse is reviewed by your pastors before it goes live.",
-    guide: { name: "Miss Grace", role: "your Bible story guide" },
+    guide: { name: "Miss Grace", role: "your Bible story guide", g: "f" },
     greeting: "Hello. I am Miss Grace, your Bible story helper. Ask me about a Bible story, a memory verse, or what it means to follow Jesus.",
     learn: [
       { kind: "Bible story", icon: ICO.story, title: "David and Goliath", body: "A shepherd boy trusted God and faced a giant with just a sling and a stone. It teaches us that God gives courage to the small and the brave." },
@@ -80,7 +80,7 @@ const FAITHS = {
       lead: "An interactive page for First Communion and Confirmation prep, the prayers, and the lives of the saints. You listen, pray along, and ask questions. Reviewed by your parish first."
     },
     approve: "Every prayer, saint's story, and Catechism answer is reviewed by your parish before it goes live.",
-    guide: { name: "Sister Clara", role: "your catechism guide" },
+    guide: { name: "Sister Clara", role: "your catechism guide", g: "f" },
     greeting: "Peace be with you. I am Sister Clara, your catechism helper. Ask me about a prayer, a saint, the sacraments, or the Mass.",
     learn: [
       { kind: "Prayer", icon: ICO.prayer, title: "The Hail Mary", original: "Hail Mary, full of grace, the Lord is with thee.", body: "We ask the Blessed Mother to pray for us. A prayer learned early and kept for life." },
@@ -112,7 +112,7 @@ const FAITHS = {
       lead: "An interactive page for the lives of the saints, the meaning of the holy icons, the feasts and fasts, and prayers in the language of your liturgy. Reviewed by your priest first."
     },
     approve: "Every icon, saint's life, and prayer is reviewed by your priest before it goes live.",
-    guide: { name: "Kyria Sophia", role: "your Sunday school guide" },
+    guide: { name: "Kyria Sophia", role: "your Sunday school guide", g: "f" },
     greeting: "Blessings to you. I am Kyria Sophia, your Sunday school helper. Ask me about the saints, the holy icons, a feast day, or a prayer.",
     learn: [
       { kind: "The icons", icon: ICO.story, title: "Why we venerate icons", body: "An icon is a window to heaven. We venerate the holy image, honouring the person it shows, and through them we lift our hearts to God." },
@@ -143,7 +143,7 @@ const FAITHS = {
       lead: "An interactive, audio-first page for Qur'an recitation, learning the Arabic letters, the stories of the Prophets, and the Five Pillars. Voice only, no music. Reviewed by your teachers first."
     },
     approve: "Every recitation, du'a, and lesson is reviewed by your teachers before it goes live. Audio-first, and no music.",
-    guide: { name: "Ustadh Yusuf", role: "your Qur'an teacher" },
+    guide: { name: "Ustadh Yusuf", role: "your Qur'an teacher", g: "m" },
     greeting: "Assalamu alaikum. I am Ustadh Yusuf, your teacher. Ask me about the Qur'an, the Arabic letters, the Five Pillars, or a du'a.",
     learn: [
       { kind: "Qur'an", icon: ICO.prayer, title: "Surah Al-Fatihah", original: "Bismillah ir-Rahman ir-Rahim", body: "The opening of the Qur'an, recited in every prayer. You listen to the recitation and repeat it, letter by letter." },
@@ -175,7 +175,7 @@ const FAITHS = {
       lead: "An interactive page for the great stories of the Ramayana and Gita, Sanskrit shlokas to hear and repeat, the festivals, and the values of dharma and ahimsa. Reviewed by your teachers first."
     },
     approve: "Every story, shloka, and lesson is reviewed by your teachers before it goes live.",
-    guide: { name: "Guruji", role: "your shloka teacher" },
+    guide: { name: "Guruji", role: "your shloka teacher", g: "m" },
     greeting: "Namaste. I am Guruji, your teacher. Ask me about a story from the Ramayana, a shloka, a festival like Diwali, or the meaning of dharma.",
     learn: [
       { kind: "Story", icon: ICO.story, title: "Rama and the lamp of Diwali", body: "The story of Prince Rama's return home, welcomed with rows of lamps. It teaches that light and goodness always find their way home." },
@@ -207,7 +207,7 @@ const FAITHS = {
       lead: "An interactive, audio-first page for Kirtan and Gurbani, learning Gurmukhi, the lives of the Ten Gurus, and Sikh values like seva and equality. Reviewed by your teachers first."
     },
     approve: "Every shabad, lesson, and story is reviewed by your teachers before it goes live.",
-    guide: { name: "Bhai Sahib", role: "your Gurmat teacher" },
+    guide: { name: "Bhai Sahib", role: "your Gurmat teacher", g: "m" },
     greeting: "Sat Sri Akal. I am Bhai Sahib, your teacher. Ask me about the Gurus, Gurbani, learning Gurmukhi, or what seva means.",
     learn: [
       { kind: "The Gurus", icon: ICO.story, title: "Guru Nanak Dev Ji", body: "The first Guru, who taught that there is one God for everyone and that all people are equal. He walked far and wide sharing kindness and truth." },
@@ -239,7 +239,7 @@ const FAITHS = {
       lead: "An interactive page for Hebrew reading, the Torah stories, the holidays, the core prayers, and values like tikkun olam. Reviewed by your teachers first."
     },
     approve: "Every prayer, story, and lesson is reviewed by your teachers before it goes live.",
-    guide: { name: "Morah Rivka", role: "your Hebrew school guide" },
+    guide: { name: "Morah Rivka", role: "your Hebrew school guide", g: "f" },
     greeting: "Shalom. I am Morah Rivka, your Hebrew school teacher. Ask me about a Torah story, a holiday, the Hebrew letters, or a prayer like the Shema.",
     learn: [
       { kind: "Torah story", icon: ICO.story, title: "Noah and the rainbow", body: "After the great flood, God set a rainbow in the sky as a sign of the promise to care for the world. A story of hope and new beginnings." },
@@ -271,7 +271,7 @@ const FAITHS = {
       lead: "An interactive page for the Buddha's life, the Jataka tales, gentle mindfulness, the Five Precepts, and loving kindness. Reviewed by your teachers first."
     },
     approve: "Every story, chant, and lesson is reviewed by your teachers before it goes live.",
-    guide: { name: "Teacher Metta", role: "your Dharma guide" },
+    guide: { name: "Teacher Metta", role: "your Dharma guide", g: "f" },
     greeting: "A warm welcome to you. I am Teacher Metta, your Dharma helper. Ask me about the Buddha, a Jataka tale, mindful breathing, or loving kindness.",
     learn: [
       { kind: "The Buddha", icon: ICO.story, title: "The young prince who sought peace", body: "Prince Siddhartha left his palace to understand why people suffer, and became the Buddha, the awakened teacher. He showed a path to a calm and kind heart." },

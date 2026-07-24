@@ -476,7 +476,8 @@
 
   /* ---------- guide chat ---------- */
   const guideChat = wireChat(document.getElementById("ask"), {
-    qa: f.qa, fallback: f.fallback, greeting: f.greeting, voice: { g: "f", rate: 0.95 }
+    qa: f.qa, fallback: f.fallback, greeting: f.greeting,
+    voice: { g: f.guide.g === "m" ? "m" : "f", rate: 0.95, name: f.guide.name }
   });
   const io = new IntersectionObserver((ents) => {
     ents.forEach(en => { if (en.isIntersecting) { guideChat.ensureGreeting(); io.disconnect(); } });

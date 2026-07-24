@@ -27,10 +27,18 @@ const AUDIO = path.join(ROOT, "assets", "audio");
 if (!KEY) { console.error("Set ELEVEN_KEY first, e.g. ELEVEN_KEY=sk_... node tools/generate-voices.mjs"); process.exit(1); }
 
 // default voice ids (override with your own cloned voices for a real teacher)
-const VOICE = {
-  female: process.env.ELEVEN_FEMALE || "21m00Tcm4TlvDq8ikWAM",
-  male: process.env.ELEVEN_MALE || "pNInz6obpgDQGcFmaJgB",
+// a pool per gender so different speakers sound like different people
+const POOL = {
+  female: ["21m00Tcm4TlvDq8ikWAM", "EXAVITQu4vr4xnSDxMaL", "MF3mGyEYCl7XYWbV9V6O", "AZnzlk1XvdvUeBnXmlld"],
+  male: ["pNInz6obpgDQGcFmaJgB", "ErXwobaYiN019PkySvjV", "TxGEqnHWrfWFTfGW9XjX", "VR6AewLTigWG4xSOukaG", "yoZ06aMxZJJ28mfd3POQ"],
 };
+// stable per-speaker choice so a speaker always sounds the same
+function voiceFor(gender, speaker) {
+  const pool = POOL[gender] || POOL.female;
+  let h = 0;
+  for (let i = 0; i < speaker.length; i++) h = (h * 31 + speaker.charCodeAt(i)) >>> 0;
+  return pool[h % pool.length];
+}
 
 // load the site data exactly as the browser does
 const files = ["faith-data.js", "faith-people.js", "faith-learn.js", "faith-icons.js"]
@@ -42,24 +50,25 @@ const FAITHS = ctx.window.__F, ORDER = ctx.window.__ORDER;
 
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
 const jobs = [];
-const addJob = (key, text, gender, name) => jobs.push({ key, text, gender, name });
+const addJob = (key, text, gender, name, speaker) => jobs.push({ key, text, gender, name, speaker: speaker || name });
 
 for (const k of ORDER) {
   const f = FAITHS[k];
-  addJob(`${f.guide.name}::${f.greeting}`, f.greeting, "female", `${k}-guide-greeting`);
+  const gg = f.guide.g === "m" ? "male" : "female";
+  addJob(`${f.guide.name}::${f.greeting}`, f.greeting, gg, `${k}-guide-greeting`, f.guide.name);
   if (SCOPE === "all") {
-    f.qa.forEach((qa, i) => addJob(`${f.guide.name}::${qa.a}`, qa.a, "female", `${k}-guide-a${i}`));
+    f.qa.forEach((qa, i) => addJob(`${f.guide.name}::${qa.a}`, qa.a, gg, `${k}-guide-a${i}`, f.guide.name));
     (f.learn || []).forEach((c, i) => {
       const t = (c.original ? c.original + ". " : "") + c.body;
-      addJob(t, t, "female", `${k}-lesson${i}`);
+      addJob(t, t, gg, `${k}-lesson${i}`, f.guide.name);
     });
   }
   (f.people || []).forEach((p, pi) => {
     const g = (p.voice && p.voice.g) === "m" ? "male" : "female";
-    addJob(`${p.name}::${p.greeting}`, p.greeting, g, `${k}-${slug(p.name)}-greeting`);
+    addJob(`${p.name}::${p.greeting}`, p.greeting, g, `${k}-${slug(p.name)}-greeting`, p.name);
     const story = p.bio + " " + p.quote;
-    addJob(`${p.name}::${story}`, story, g, `${k}-${slug(p.name)}-story`);
-    if (SCOPE === "all") p.qa.forEach((qa, i) => addJob(`${p.name}::${qa.a}`, qa.a, g, `${k}-${slug(p.name)}-a${i}`));
+    addJob(`${p.name}::${story}`, story, g, `${k}-${slug(p.name)}-story`, p.name);
+    if (SCOPE === "all") p.qa.forEach((qa, i) => addJob(`${p.name}::${qa.a}`, qa.a, g, `${k}-${slug(p.name)}-a${i}`, p.name));
   });
 }
 
@@ -81,7 +90,7 @@ for (const j of jobs) {
   const rel = "assets/audio/" + j.name + ".mp3";
   if (fs.existsSync(file) && existing[j.key]) { skipped++; continue; }
   try {
-    const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE[j.gender]}`, {
+    const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceFor(j.gender, j.speaker)}`, {
       method: "POST",
       headers: { "xi-api-key": KEY, "Content-Type": "application/json", "Accept": "audio/mpeg" },
       body: JSON.stringify({
