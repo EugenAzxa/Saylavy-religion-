@@ -132,6 +132,15 @@
     var toast = el("div", "sg-toast"); toast.style.display = "none";
     stage.appendChild(toast); this.toast = toast;
 
+    // hanging world sign / banner
+    if (d.sign) {
+      var sign = el("div", "sg-sign");
+      sign.setAttribute("aria-hidden", "true");
+      sign.innerHTML = '<span class="sg-rope sg-rope-l"></span><span class="sg-rope sg-rope-r"></span>' +
+        '<span class="sg-sign-board">' + esc(d.sign) + "</span>";
+      stage.appendChild(sign);
+    }
+
     // controls: d-pad + action
     var ctrl = el("div", "sg-controls");
     var pad = el("div", "sg-dpad");

@@ -24,6 +24,7 @@
       tagline: "Help your neighbours get ready to break the fast",
       quest: "Prepare the iftar",
       accent: "#1f9d57",
+      sign: "Help build a better future",
       grid: { cols: 18, rows: 12 },
       plaza: { x: 5, y: 4, w: 8, h: 5 },      // sand courtyard for the shared meal
       buildings: [
@@ -78,6 +79,7 @@
       tagline: "Help your neighbours get ready for a shared meal",
       quest: "Prepare the feast",
       accent: "#d9a441",
+      sign: "Help build a better future",
       grid: { cols: 18, rows: 12 },
       plaza: { x: 5, y: 4, w: 8, h: 5 },
       buildings: [
