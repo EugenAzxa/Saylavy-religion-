@@ -590,6 +590,18 @@
       </div>
     </section>
 
+    ${(window.SAYLAVY_GAME && window.SAYLAVY_GAME[key]) ? `
+    <section class="section game-sec" id="game">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Play and learn</p>
+          <h2>A little world to explore</h2>
+          <p class="lead game-intro">Children walk around a friendly ${esc(f.name)} community and help their neighbours with kind, everyday tasks, learning a real value each time.</p>
+        </div>
+        <div id="game-host" class="game-host"></div>
+      </div>
+    </section>` : ""}
+
     ${SCENE[key] ? `
     <section class="section faith-scene" id="scene">
       <div class="wrap">
@@ -647,6 +659,15 @@
 
   if (window.SaylavyQR) window.SaylavyQR();
   if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
+
+  /* ---------- play & learn mini game (lazy mount) ---------- */
+  const gameHost = document.getElementById("game-host");
+  if (gameHost && window.SaylavyGame && window.SaylavyGame.has(key)) {
+    const gio = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if (en.isIntersecting) { window.SaylavyGame.mount(gameHost, key); gio.disconnect(); } });
+    }, { rootMargin: "250px" });
+    gio.observe(gameHost);
+  }
 
   /* ---------- learn card listen buttons ---------- */
   // say the phrase in its own language when the browser has that voice

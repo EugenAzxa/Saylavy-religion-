@@ -65,6 +65,15 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - Nasir al-Mulk Mosque: https://en.wikipedia.org/wiki/Nasir_al-Mulk_Mosque
 - Badshahi Mosque: https://en.wikipedia.org/wiki/Badshahi_Mosque
 
+## Mini game art (CC0 - public domain)
+
+The "A Day of Kindness" mini game uses two Kenney sprite packs,
+both released under Creative Commons Zero (no attribution required,
+credited here with thanks). See assets/game/ATTRIBUTION.txt.
+
+- Tiny Town (world tiles): https://kenney.nl/assets/tiny-town
+- Roguelike Characters: https://kenney.nl/assets/roguelike-characters
+
 ## Guide avatars (all public domain)
 
 One faith guide per page. These stand in for a real community teacher and

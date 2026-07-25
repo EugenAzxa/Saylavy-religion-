@@ -1,0 +1,8 @@
+Game art
+--------
+tiles.png  - Kenney "Tiny Town" (kenney.nl/assets/tiny-town)
+chars.png  - Kenney "Roguelike Characters" (kenney.nl/assets/roguelike-characters)
+
+Both packs are released under Creative Commons Zero (CC0 1.0) - public
+domain. No attribution is required; credited here voluntarily with thanks.
+Source: https://kenney.nl  (support: https://kenney.itch.io)
