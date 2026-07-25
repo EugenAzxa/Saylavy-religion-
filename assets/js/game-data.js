@@ -70,6 +70,60 @@
         text: "You helped prepare the iftar. When the sun sets, the whole community breaks the fast as one family - neighbours, strangers and friends, side by side.",
         teach: "Shukran - thank you. The best of people are those who bring good to others."
       }
+    },
+
+    /* Faith-neutral showcase for the main page - values every faith shares */
+    village: {
+      title: "A Day of Kindness",
+      tagline: "Help your neighbours get ready for a shared meal",
+      quest: "Prepare the feast",
+      accent: "#d9a441",
+      grid: { cols: 18, rows: 12 },
+      plaza: { x: 5, y: 4, w: 8, h: 5 },
+      buildings: [
+        { x: 1, y: 1, roof: "grey" },
+        { x: 14, y: 1, roof: "red" }
+      ],
+      props: [
+        { k: "tree", x: 0, y: 9 }, { k: "tree", x: 17, y: 9 },
+        { k: "bush", x: 4, y: 9 }, { k: "bush", x: 13, y: 9 },
+        { k: "bush", x: 0, y: 4 }, { k: "chest", x: 16, y: 4 }
+      ],
+      lanterns: [ { from: [1, 1], to: [14, 1] } ],
+      player: { sprite: [0, 5], x: 8, y: 10 },
+      stations: [
+        {
+          id: "bread", x: 2, y: 4, prop: "oven", task: "knead",
+          label: "Bake the bread",
+          helper: { sprite: [1, 6], x: 3, y: 4, name: "Mira the baker",
+                    line: "Hello, friend! Come and help me bake fresh bread for everyone." },
+          teach: "In every faith, feeding a hungry neighbour is one of the kindest things a person can do."
+        },
+        {
+          id: "water", x: 15, y: 5, prop: "barrel", task: "pour",
+          label: "Fetch the water",
+          helper: { sprite: [0, 10], x: 15, y: 6, name: "Grandma Rosa",
+                    line: "Will you help me pour the water and set the cups for our guests?" },
+          teach: "A cool cup of water, freely given, is never a small thing. Share what you have."
+        },
+        {
+          id: "share", x: 9, y: 6, prop: "mat", task: "serve",
+          label: "Share the meal with everyone",
+          helper: { sprite: [1, 11], x: 9, y: 4, name: "Grandpa Sam",
+                    line: "The table is nearly ready. Let us serve everyone, together." },
+          teach: "When we sit and share a meal, everyone is welcome and everyone is equal.",
+          needs: ["bread", "water"]
+        }
+      ],
+      guests: [
+        { sprite: [1, 7], x: 7, y: 5 }, { sprite: [0, 8], x: 11, y: 5 },
+        { sprite: [1, 8], x: 7, y: 8 }, { sprite: [1, 10], x: 11, y: 8 }
+      ],
+      finish: {
+        title: "Everyone eats together",
+        text: "You helped prepare the feast. Neighbours, strangers and friends all sit down at one table, side by side.",
+        teach: "Thank you. When people share food, strangers become friends - a truth every faith holds dear."
+      }
     }
 
   };

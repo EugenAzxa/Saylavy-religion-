@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/game.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -29,6 +30,7 @@
       <nav class="nav-links">
         <a href="#journey" data-i18n="nav.faiths">Faiths</a>
         <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#game">Play</a>
         <a href="#trust" data-i18n="nav.safe">Why it is safe</a>
         <a href="#mobile">On the phone</a>
         <a href="#communities" data-i18n="nav.communities">Communities</a>
@@ -140,6 +142,18 @@
           <a class="btn btn-gold btn-lg" href="#journey">Open a live example</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= Play & learn game ================= -->
+  <section class="section game-sec" id="game" aria-label="Play and learn">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Play and learn</p>
+        <h2>A little world children can play</h2>
+        <p class="lead game-intro">Walk around a warm community and help your neighbours with kind, everyday tasks - bake the bread, fetch the water, share a meal - learning a value that every faith holds dear. This is a taste of the game we can shape for your own community.</p>
+      </div>
+      <div id="game-host-main" class="game-host"></div>
     </div>
   </section>
 
@@ -296,10 +310,22 @@
   </footer>
 
   <script src="assets/js/faith-data.js"></script>
+  <script src="assets/js/game-data.js"></script>
+  <script src="assets/js/game.js"></script>
   <script src="assets/js/communities.js"></script>
   <script src="assets/js/qrcode.min.js"></script>
   <script src="assets/js/qr.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var host = document.getElementById("game-host-main");
+      if (!host || !window.SaylavyGame || !window.SaylavyGame.has("village")) return;
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { if (en.isIntersecting) { window.SaylavyGame.mount(host, "village"); io.disconnect(); } });
+      }, { rootMargin: "250px" });
+      io.observe(host);
+    })();
+  </script>
 </body>
 </html>
