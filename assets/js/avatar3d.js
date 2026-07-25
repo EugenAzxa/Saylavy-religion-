@@ -79,10 +79,21 @@ window.SaylavyAvatar3D = {
         clearTimeout(to);
         const model = gltf.scene;
         model.traverse((o) => { if (o.isMesh) { o.frustumCulled = false; } if (o.name && /Head/i.test(o.name)) head = o; });
-        // frame the head: RPM avatars are ~1.65m tall, head near y=1.62
         scene.add(model);
         mouthMeshes = collectMorph(model, MOUTH_MORPHS);
         blinkMeshes = collectMorph(model, BLINK_MORPHS);
+
+        // auto-frame the face/upper body from the model's actual bounds,
+        // so a generated photoreal bust or a full-body RPM both sit right
+        const box = new THREE.Box3().setFromObject(model);
+        const c = box.getCenter(new THREE.Vector3());
+        const sz = box.getSize(new THREE.Vector3());
+        const focusY = box.max.y - sz.y * 0.16;              // around the eyes/nose
+        const dist = Math.max(sz.x, sz.y * 0.6) * 1.15 + 0.25;
+        controls.target.set(c.x, focusY, c.z);
+        camera.position.set(c.x, focusY, c.z + dist);
+        camera.near = Math.max(0.01, dist / 30); camera.far = dist * 30; camera.updateProjectionMatrix();
+        controls.update();
 
         const clock = new THREE.Clock();
         function frame() {
@@ -100,7 +111,8 @@ window.SaylavyAvatar3D = {
           // mouth
           if (!talking) mouthTarget += (0 - mouthTarget) * Math.min(1, dt * 8);
           mouth += (mouthTarget - mouth) * Math.min(1, dt * 14);
-          setMorphs(mouthMeshes, mouth);
+          if (mouthMeshes.length) setMorphs(mouthMeshes, mouth);
+          else model.rotation.x = Math.sin(t * 9) * mouth * 0.045;   // gentle nod when the model has no mouth rig
           controls.update();
           renderer.render(scene, camera);
           raf = requestAnimationFrame(frame);
