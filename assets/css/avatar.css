@@ -150,3 +150,11 @@
   font-weight: 800; color: #08110b;
   background: var(--accent, #1f9d57);
 }
+
+/* 3D status / diagnostics line */
+.av3d-status {
+  position: absolute; left: 0; right: 0; bottom: 12px; z-index: 4;
+  text-align: center; font-size: .82rem; line-height: 1.4;
+  color: rgba(244, 239, 230, .8); pointer-events: none;
+  padding: 0 1rem; text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
+}
