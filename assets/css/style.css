@@ -2186,3 +2186,71 @@ body.faith-page {
 .ask-portrait.talking { box-shadow: inset 0 0 0 2px var(--accent); }
 .ask.has-portrait .ask-head { border-top: 0; }
 @media (prefers-reduced-motion: reduce) { .ask-portrait.talking img { animation: none; } }
+
+/* =========================================================
+   Additions: unity band, leader FAQ, our-promise note
+   ========================================================= */
+
+/* Band of eight - the faith symbols, all equal */
+.unity-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin: 1.7rem auto 0;
+  max-width: 560px;
+}
+.unity-sym {
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  color: var(--accent-lt, var(--gold, #b8863b));
+  background: rgba(255, 255, 255, .04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12);
+  transition: transform .25s, background .25s;
+}
+.unity-sym:hover { transform: translateY(-3px); background: rgba(255, 255, 255, .08); }
+.unity-sym svg { width: 22px; height: 22px; }
+
+/* Leader FAQ */
+.faq-grid { max-width: 760px; margin: 0 auto; display: grid; gap: .7rem; }
+.faq {
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface, #141a30) 78%, transparent);
+  box-shadow: inset 0 0 0 1px var(--line-d, rgba(255, 255, 255, .12));
+  overflow: hidden;
+}
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.05rem 1.2rem;
+  font-family: var(--serif, Georgia, serif);
+  font-weight: 600; font-size: 1.05rem;
+  color: var(--ink-d, #f2ecdf);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq-x { position: relative; width: 16px; height: 16px; flex: none; }
+.faq-x::before, .faq-x::after {
+  content: ""; position: absolute; background: var(--gold, #b8863b); border-radius: 2px; transition: transform .25s;
+}
+.faq-x::before { top: 7px; left: 0; width: 16px; height: 2px; }
+.faq-x::after { left: 7px; top: 0; width: 2px; height: 16px; }
+.faq[open] .faq-x::after { transform: scaleY(0); }
+.faq p { margin: 0 1.2rem 1.15rem; color: var(--ink-dim, rgba(238, 231, 216, .72)); line-height: 1.6; }
+
+/* Our promise */
+.promise-card {
+  max-width: 720px; margin: 0 auto; text-align: center;
+  padding: 2.3rem 2rem; border-radius: 20px;
+}
+.promise-eyebrow {
+  text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+  color: var(--gold, #b8863b); font-weight: 700; margin: 0 0 .9rem;
+}
+.promise-text {
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem); line-height: 1.5;
+  margin: 0 auto 1rem; color: var(--ink-d, #f2ecdf); max-width: 40ch;
+}
+.promise-sign { font-size: .9rem; color: var(--ink-dim, rgba(238, 231, 216, .72)); letter-spacing: .04em; }

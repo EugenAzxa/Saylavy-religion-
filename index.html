@@ -68,6 +68,7 @@
         <p class="eyebrow center-line">Every faith, an equal welcome</p>
         <h2>Choose your path</h2>
         <p class="lead">Here, every faith is honoured with the same care and reverence, none placed above another. Which path a family follows is theirs alone. Our work is simply to help you pass yours on, in your own voice. Each path opens a live page you can listen to, speak with, and explore.</p>
+        <div class="unity-band" id="unityBand" role="img" aria-label="The eight faiths, each honoured equally"></div>
       </div>
       <div class="faith-glass" id="faithGrid"><!-- cards injected by main.js --></div>
     </div>
@@ -181,6 +182,42 @@
     </div>
   </section>
 
+  <!-- ================= Your questions, answered ================= -->
+  <section class="section" id="faq" aria-label="Your questions, answered">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Your questions, answered</p>
+        <h2>The things leaders ask us first</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq reveal">
+          <summary>Does this replace our teachers?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>No. It only ever carries the words your teachers give and approve. It cannot invent doctrine or answer beyond what you provide. Think of it as their voice, still teaching between classes.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Who decides what it says?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>You do, completely. Nothing goes live until your clergy or teachers review and approve every word, and you can change or remove anything at any time.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Is our community's data private?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Yes. There are no accounts and nothing to install for children. The page simply opens in a browser, like any website, and asks for nothing.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Will it show images we do not allow?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Never. We follow each tradition's own customs on what may and may not be shown, and never depict God, the prophets, or sacred figures where a faith asks us not to.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Can it speak our community's language?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Yes. The whole page can switch into your community's language, so elders and newcomers can read it as comfortably as anyone.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>How do we begin?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Tell us about your community and we build an example page in your own tradition, shaped with your teachers, for you to see and shape together.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= On the phone ================= -->
   <section class="section phone-sec" id="mobile" aria-label="On a phone">
     <div class="wrap">
@@ -245,6 +282,17 @@
         <p class="leaders-close" data-i18n="leaders.p5">It would be an honour to build one together with your community.</p>
         <a class="btn btn-gold btn-lg" href="mailto:Eugen@azxa.io" data-i18n="cta.write">Write to us</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= Our promise ================= -->
+  <section class="section band" id="promise" aria-label="Our promise">
+    <div class="wrap">
+      <blockquote class="promise-card liquid-glass reveal">
+        <p class="promise-eyebrow">Our promise</p>
+        <p class="promise-text">We treat every faith as we would want our own treated, with reverence, accuracy, and humility. Your words, your voices, and your teachers' final say, always. We build the tool. The faith remains entirely yours.</p>
+        <p class="promise-sign">- The Saylavy team</p>
+      </blockquote>
     </div>
   </section>
 
@@ -320,11 +368,21 @@
   <script>
     (function () {
       var host = document.getElementById("game-host-main");
-      if (!host || !window.SaylavyGame || !window.SaylavyGame.has("village")) return;
-      var io = new IntersectionObserver(function (ents) {
-        ents.forEach(function (en) { if (en.isIntersecting) { window.SaylavyGame.mount(host, "village"); io.disconnect(); } });
-      }, { rootMargin: "250px" });
-      io.observe(host);
+      if (host && window.SaylavyGame && window.SaylavyGame.has("village")) {
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) { if (en.isIntersecting) { window.SaylavyGame.mount(host, "village"); io.disconnect(); } });
+        }, { rootMargin: "250px" });
+        io.observe(host);
+      }
+      // band of eight: the faith symbols, all equal
+      var band = document.getElementById("unityBand");
+      if (band && window.FAITHS) {
+        var order = window.FAITH_ORDER || Object.keys(window.FAITHS);
+        band.innerHTML = order.map(function (k) {
+          var f = window.FAITHS[k];
+          return '<span class="unity-sym theme-' + k + '" title="' + (f.name || k) + '">' + (f.symbol || "") + "</span>";
+        }).join("");
+      }
     })();
   </script>
 </body>

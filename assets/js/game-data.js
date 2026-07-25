@@ -73,6 +73,60 @@
       }
     },
 
+    sikh: {
+      title: "A Day in the Langar",
+      tagline: "Help cook and serve the free community meal",
+      quest: "Serve the langar",
+      accent: "#4a57c0",
+      sign: "Help build a better future",
+      grid: { cols: 18, rows: 12 },
+      plaza: { x: 5, y: 4, w: 8, h: 5 },
+      buildings: [
+        { x: 1, y: 1, roof: "grey" },
+        { x: 14, y: 1, roof: "red" }
+      ],
+      props: [
+        { k: "tree", x: 0, y: 9 }, { k: "tree", x: 17, y: 9 },
+        { k: "bush", x: 4, y: 9 }, { k: "bush", x: 13, y: 9 },
+        { k: "bush", x: 0, y: 4 }, { k: "chest", x: 16, y: 4 }
+      ],
+      lanterns: [ { from: [1, 1], to: [14, 1] } ],
+      player: { sprite: [0, 5], x: 8, y: 10 },
+      stations: [
+        {
+          id: "roti", x: 2, y: 4, prop: "oven", task: "knead",
+          label: "Roll the roti",
+          helper: { sprite: [1, 6], x: 3, y: 4, name: "Bhai Harjeet",
+                    line: "Sat Sri Akal! Come, roll the roti with me for everyone." },
+          teach: "In the langar everyone helps cook. Serving others, called seva, is at the heart of Sikhi."
+        },
+        {
+          id: "dal", x: 15, y: 5, prop: "barrel", task: "pour",
+          label: "Ladle the dal",
+          helper: { sprite: [0, 10], x: 15, y: 6, name: "Auntie Preet",
+                    line: "Will you help me ladle the dal into the bowls for our guests?" },
+          teach: "The free kitchen feeds anyone who comes, of any faith or none. All are welcome."
+        },
+        {
+          id: "share", x: 9, y: 6, prop: "mat", task: "serve",
+          label: "Serve everyone in the row",
+          helper: { sprite: [1, 11], x: 9, y: 4, name: "Grandfather Sardar",
+                    line: "Everyone sits together now. Let us serve each person in the row." },
+          teach: "Everyone sits on the floor in one long row, called pangat, because all people are equal.",
+          needs: ["roti", "dal"]
+        }
+      ],
+      guests: [
+        { sprite: [1, 7], x: 7, y: 5 }, { sprite: [0, 8], x: 11, y: 5 },
+        { sprite: [1, 8], x: 7, y: 8 }, { sprite: [1, 10], x: 11, y: 8 }
+      ],
+      finish: {
+        title: "Everyone eats as equals",
+        text: "You served in the langar. Rich and poor, strangers and neighbours, all sit and eat together in one row - no one above, no one below.",
+        teach: "Sharing a meal as equals is one of the greatest teachings the Gurus gave us."
+      }
+    },
+
     /* Faith-neutral showcase for the main page - values every faith shares */
     village: {
       title: "A Day of Kindness",
