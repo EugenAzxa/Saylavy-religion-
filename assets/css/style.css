@@ -2254,3 +2254,56 @@ body.faith-page {
   margin: 0 auto 1rem; color: var(--ink-d, #f2ecdf); max-width: 40ch;
 }
 .promise-sign { font-size: .9rem; color: var(--ink-dim, rgba(238, 231, 216, .72)); letter-spacing: .04em; }
+
+/* =========================================================
+   Hero: living candlelight so it never reads as flat black,
+   with the video (when present) playing over it.
+   ========================================================= */
+.cine-hero {
+  background:
+    radial-gradient(62% 55% at 24% 26%, rgba(201, 154, 74, .16), transparent 62%),
+    radial-gradient(58% 50% at 80% 30%, rgba(110, 86, 168, .12), transparent 62%),
+    radial-gradient(85% 70% at 50% 112%, rgba(201, 154, 74, .12), transparent 60%),
+    #05070f;
+}
+.cine-hero > video { z-index: 0; }
+.cine-hero::before {
+  content: "";
+  position: absolute; inset: -12%;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(38% 36% at 28% 32%, rgba(226, 178, 96, .55), transparent 60%),
+    radial-gradient(34% 32% at 74% 30%, rgba(150, 112, 205, .34), transparent 60%),
+    radial-gradient(46% 42% at 52% 86%, rgba(226, 168, 90, .40), transparent 62%);
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  animation: heroAurora 20s ease-in-out infinite alternate;
+}
+.cine-hero .cine-shade { z-index: 2; }
+.cine-hero .cine-inner { z-index: 3; }
+@keyframes heroAurora {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1.03); opacity: .82; }
+  50%  { opacity: 1; }
+  100% { transform: translate3d(2%, 2%, 0) scale(1.09); opacity: .9; }
+}
+
+/* scroll cue */
+.hero-scroll {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+  z-index: 3;
+  width: 28px; height: 44px; border-radius: 15px;
+  box-shadow: inset 0 0 0 2px rgba(233, 203, 140, .45);
+  display: grid; justify-items: center; align-items: start;
+}
+.hero-scroll span {
+  width: 5px; height: 9px; border-radius: 3px; margin-top: 8px;
+  background: #e9cb8c;
+  animation: heroDot 1.7s ease-in-out infinite;
+}
+@keyframes heroDot { 0%, 100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(13px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .cine-hero::before { animation: none; }
+  .hero-scroll span { animation: none; }
+}
