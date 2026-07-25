@@ -590,6 +590,25 @@
       </div>
     </section>
 
+    ${(window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key]) ? `
+    <section class="section av-sec" id="teacher">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Meet your teacher</p>
+          <h2>Speak with ${esc(window.SAYLAVY_AVATAR[key].name)}</h2>
+          <p class="lead">A living teacher you can talk with. Ask a question and hear him answer. Two views, a living portrait and a real 3D avatar, so you can tell us which feels right.</p>
+        </div>
+        <div class="av-toggle" role="tablist" aria-label="Choose a view">
+          <button class="av-tab is-on" data-view="portrait" role="tab" aria-selected="true">Living portrait</button>
+          <button class="av-tab" data-view="3d" role="tab" aria-selected="false">3D avatar</button>
+        </div>
+        <div class="av-wrap">
+          <div class="av-stage" id="av-stage"></div>
+          <div class="av-chat" id="av-chat"></div>
+        </div>
+      </div>
+    </section>` : ""}
+
     ${(window.SAYLAVY_GAME && window.SAYLAVY_GAME[key]) ? `
     <section class="section game-sec" id="game">
       <div class="wrap">
@@ -659,6 +678,15 @@
 
   if (window.SaylavyQR) window.SaylavyQR();
   if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
+
+  /* ---------- meet your teacher (lazy init) ---------- */
+  const teacherSec = document.getElementById("teacher");
+  if (teacherSec && window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key]) {
+    const tio = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if (en.isIntersecting) { if (window.SaylavyAvatarUI) window.SaylavyAvatarUI.init(key); tio.disconnect(); } });
+    }, { rootMargin: "300px" });
+    tio.observe(teacherSec);
+  }
 
   /* ---------- play & learn mini game (lazy mount) ---------- */
   const gameHost = document.getElementById("game-host");
