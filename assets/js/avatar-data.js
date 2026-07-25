@@ -24,7 +24,10 @@
       // Save the scholar photo here; falls back to the guide portrait.
       image: "assets/img/avatars/scholar.jpg",
       imageFallback: "assets/img/avatars/muslim-guide.jpg",
-      glb: "https://models.readyplayer.me/638df693d72bffc6fa17943c.glb?morphTargets=ARKit,Oculus%20Visemes&textureAtlas=1024&lod=1"
+      // TEMPORARY engine-test face (a real scanned head with a working jaw +
+      // blink rig) so we can confirm 3D talking works. Replace with the
+      // scholar model once generated: "assets/avatars3d/scholar.glb".
+      glb: "assets/avatars3d/facecap.glb"
     }
   };
 })();

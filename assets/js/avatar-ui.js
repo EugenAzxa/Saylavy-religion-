@@ -95,18 +95,34 @@
         engine = window.SaylavyPortrait.mount(stage, data);
       }
       function mountThree() {
-        stage.innerHTML = '<div class="av-loading">Waking the 3D teacher...</div>';
-        if (!window.SaylavyAvatar3D) { fail("The 3D engine is still loading. Try again in a moment, or use the living portrait."); return; }
+        stage.innerHTML = '<div class="av-loading">Loading the 3D engine...</div>';
+        waitFor3D(0);
+      }
+      function waitFor3D(tries) {
+        if (view !== "3d") return;
+        if (window.SaylavyAvatar3D) { doMountThree(); return; }
+        if (tries > 50) { fail("The 3D engine (three.js) did not load. This usually means the connection blocked it. You can use the living portrait for now."); return; }
+        setTimeout(function () { waitFor3D(tries + 1); }, 100);
+      }
+      function doMountThree() {
+        stage.innerHTML = '<div class="av-loading">Loading the teacher model...</div>';
         window.SaylavyAvatar3D.mount(stage, data).then(function (api) {
           if (view !== "3d") { api.destroy && api.destroy(); return; }
           if (engine && engine.destroy) engine.destroy();
           engine = api;
-        }).catch(function (err) { fail("This device could not load the 3D avatar. Showing the living portrait instead."); });
+        }).catch(function (err) {
+          var reason = (err && (err.message || err.type)) || "unknown error";
+          fail("The 3D model could not load (" + reason + ").");
+        });
       }
       function fail(msg) {
-        var note = el("div", "av-fail", esc(msg));
-        setTab("portrait"); view = "portrait"; mountPortrait();
-        stage.appendChild(note); setTimeout(function () { note.remove(); }, 4200);
+        stage.innerHTML =
+          '<div class="av-loading" style="flex-direction:column;gap:.8rem;padding:1.2rem;text-align:center">' +
+          '<span>' + esc(msg) + '</span>' +
+          '<button class="av-chip" id="av-useport">Use the living portrait</button>' +
+          "</div>";
+        var b = document.getElementById("av-useport");
+        if (b) b.addEventListener("click", function () { view = "portrait"; setTab("portrait"); mountPortrait(); });
       }
 
       var tabs = document.querySelectorAll(".av-tab");

@@ -14,6 +14,11 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { KTX2Loader } from "three/addons/loaders/KTX2Loader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+const CDN = "https://unpkg.com/three@0.160.0/examples/jsm/libs/";
 
 const MOUTH_MORPHS = ["jawOpen", "mouthOpen", "viseme_aa", "viseme_O", "viseme_E"];
 const BLINK_MORPHS = ["eyeBlinkLeft", "eyeBlinkRight", "eyesClosed"];
@@ -72,6 +77,13 @@ window.SaylavyAvatar3D = {
       }
 
       const loader = new GLTFLoader();
+      try {
+        const ktx2 = new KTX2Loader().setTranscoderPath(CDN + "basis/").detectSupport(renderer);
+        loader.setKTX2Loader(ktx2);
+        loader.setMeshoptDecoder(MeshoptDecoder);
+        const draco = new DRACOLoader().setDecoderPath(CDN + "draco/");
+        loader.setDRACOLoader(draco);
+      } catch (e) { /* decoders optional; plain glb still loads */ }
       const to = setTimeout(() => { if (!disposed && !head) { cleanup(); reject(new Error("avatar load timed out")); } }, 20000);
 
       loader.load(opts.glb, (gltf) => {
