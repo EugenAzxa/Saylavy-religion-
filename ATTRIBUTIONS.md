@@ -65,6 +65,17 @@ Portraits are the lead images of the corresponding Wikipedia articles
 - Nasir al-Mulk Mosque: https://en.wikipedia.org/wiki/Nasir_al-Mulk_Mosque
 - Badshahi Mosque: https://en.wikipedia.org/wiki/Badshahi_Mosque
 
-## Muslim guide avatar
+## Guide avatars (all public domain)
 
-- Osman Hamdi Bey: https://en.wikipedia.org/wiki/Osman_Hamdi_Bey (public domain)
+One faith guide per page. These stand in for a real community teacher and
+are never depictions of God, a prophet, or a Sikh Guru. All source works are
+in the public domain (age) and drawn from Wikimedia Commons unless noted.
+
+- muslim-guide: Ludwig Deutsch, "The Scholar" (1890) - a seated scholar with a book
+- catholic-guide: Artemisia Gentileschi, "Portrait of a Nun" (ca. 1613-1618)
+- orthodox-guide: Ivan Argunov, "Portrait of an Unknown Woman in Russian Costume" (1784)
+- protestant-guide: Gerard Dou, "Old Woman Reading a Bible" (a woman reading scripture)
+- jewish-guide: Isidor Kaufmann, "Seated Woman with a Fan"
+- hindu-guide: "Sadhu, India, ca. 1915" - ethnographic photograph of a holy man
+- buddhist-guide: "Moon-Water Bodhisattva Guanyin" (Guanyin, the figure of compassion), Hermitage Museum
+- sikh-guide: Akali Phula Singh, 19th-century portrait of the Sikh warrior-leader (not a Guru)
