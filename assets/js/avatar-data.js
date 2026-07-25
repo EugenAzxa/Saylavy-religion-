@@ -32,9 +32,8 @@
       // HeyGen live photoreal avatar (al-Khwarizmi, built from the scholar photo)
       heygen: {
         avatarId: "6fe8b0d2336e47f59f99169be9ef6773",
-        // Paste the URL of YOUR deployed token endpoint here to switch it on
-        // (see serverless/ for the ~15-line function). Never put the API key here.
-        tokenEndpoint: "",
+        // Your deployed Cloudflare Worker token endpoint (holds the API key).
+        tokenEndpoint: "https://saylavy-heygen.eugen-cd1.workers.dev",
         voiceId: ""       // optional HeyGen voice id; blank = the avatar's default
       }
     }

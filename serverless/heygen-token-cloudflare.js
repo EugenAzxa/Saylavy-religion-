@@ -25,9 +25,12 @@ export default {
       });
       const data = await r.json();
       const token = data && data.data && data.data.token;
-      return new Response(JSON.stringify({ token: token || null }), {
-        headers: { ...cors, "content-type": "application/json" },
-      });
+      return new Response(JSON.stringify({
+        token: token || null,
+        keyPresent: Boolean(env.HEYGEN_API_KEY),
+        heygenStatus: r.status,
+        heygen: token ? undefined : data,
+      }), { headers: { ...cors, "content-type": "application/json" } });
     } catch (e) {
       return new Response(JSON.stringify({ token: null, error: String(e) }), {
         status: 500, headers: { ...cors, "content-type": "application/json" },
