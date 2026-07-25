@@ -9,7 +9,7 @@
    window.SaylavyHeyGen.mount(host, { avatarId, tokenEndpoint, voiceId })
      -> Promise<{ speak(text), stop(), destroy() }>
    ========================================================= */
-import StreamingAvatar, { AvatarQuality, StreamingEvents, TaskType } from "https://esm.sh/@heygen/streaming-avatar@2";
+import StreamingAvatar, { AvatarQuality, StreamingEvents, TaskType } from "https://esm.sh/@heygen/streaming-avatar@2.0.16";
 
 window.SaylavyHeyGen = {
   async mount(host, opts) {
