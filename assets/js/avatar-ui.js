@@ -76,7 +76,11 @@
       function addMsg(text, who, speakIt) {
         var m = el("div", "av-msg av-" + who, esc(text));
         log.appendChild(m); log.scrollTop = log.scrollHeight;
-        if (speakIt) speak(text, data, getEngine);
+        if (speakIt) {
+          // a HeyGen engine speaks + lip-syncs the text itself; others use our voice layer
+          if (engine && typeof engine.speak === "function") engine.speak(text);
+          else speak(text, data, getEngine);
+        }
       }
       var greeted = false;
       function greet() { if (greeted) return; greeted = true; addMsg(f.greeting || ("Assalamu alaikum. I am " + data.name + "."), "bot", true); }
@@ -125,6 +129,30 @@
         if (b) b.addEventListener("click", function () { view = "portrait"; setTab("portrait"); mountPortrait(); });
       }
 
+      function mountLive() {
+        var cfg = data.heygen;
+        if (!cfg || !cfg.tokenEndpoint) {
+          stage.innerHTML = '<div class="av-loading" style="padding:1.2rem;text-align:center;line-height:1.5">The live photoreal avatar is not connected yet.<br>Deploy the token function and add its URL in avatar-data.js to switch it on.</div>';
+          return;
+        }
+        stage.innerHTML = '<div class="av-loading">Connecting to the live avatar...</div>';
+        waitForHeyGen(0);
+      }
+      function waitForHeyGen(tries) {
+        if (view !== "live") return;
+        if (window.SaylavyHeyGen) { doMountLive(); return; }
+        if (tries > 50) { fail("The live-avatar library did not load (check the connection)."); return; }
+        setTimeout(function () { waitForHeyGen(tries + 1); }, 100);
+      }
+      function doMountLive() {
+        var cfg = data.heygen;
+        window.SaylavyHeyGen.mount(stage, { avatarId: cfg.avatarId, tokenEndpoint: cfg.tokenEndpoint, voiceId: cfg.voiceId }).then(function (api) {
+          if (view !== "live") { api.destroy && api.destroy(); return; }
+          if (engine && engine.destroy) engine.destroy();
+          engine = api;
+        }).catch(function (err) { fail("Live avatar could not start (" + ((err && err.message) || "error") + ")."); });
+      }
+
       var tabs = document.querySelectorAll(".av-tab");
       function setTab(v) { tabs.forEach(function (b) { b.classList.toggle("is-on", b.dataset.view === v); }); }
       tabs.forEach(function (b) {
@@ -132,7 +160,7 @@
           var v = b.dataset.view; if (v === view) return;
           view = v; setTab(v);
           if (window.SaylavyVoice) window.SaylavyVoice.stop && window.SaylavyVoice.stop();
-          if (v === "portrait") mountPortrait(); else mountThree();
+          if (v === "portrait") mountPortrait(); else if (v === "3d") mountThree(); else if (v === "live") mountLive();
         });
       });
 

@@ -601,6 +601,7 @@
         <div class="av-toggle" role="tablist" aria-label="Choose a view">
           <button class="av-tab is-on" data-view="portrait" role="tab" aria-selected="true">Living portrait</button>
           <button class="av-tab" data-view="3d" role="tab" aria-selected="false">3D avatar</button>
+          <button class="av-tab" data-view="live" role="tab" aria-selected="false">Live avatar</button>
         </div>
         <div class="av-wrap">
           <div class="av-stage" id="av-stage"></div>

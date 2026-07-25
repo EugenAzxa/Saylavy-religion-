@@ -27,7 +27,16 @@
       // TEMPORARY engine-test face (a real scanned head with a working jaw +
       // blink rig) so we can confirm 3D talking works. Replace with the
       // scholar model once generated: "assets/avatars3d/scholar.glb".
-      glb: "assets/avatars3d/facecap.glb"
+      glb: "assets/avatars3d/facecap.glb",
+
+      // HeyGen live photoreal avatar (al-Khwarizmi, built from the scholar photo)
+      heygen: {
+        avatarId: "6fe8b0d2336e47f59f99169be9ef6773",
+        // Paste the URL of YOUR deployed token endpoint here to switch it on
+        // (see serverless/ for the ~15-line function). Never put the API key here.
+        tokenEndpoint: "",
+        voiceId: ""       // optional HeyGen voice id; blank = the avatar's default
+      }
     }
   };
 })();
