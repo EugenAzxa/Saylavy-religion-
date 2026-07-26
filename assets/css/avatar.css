@@ -158,3 +158,22 @@
   color: rgba(244, 239, 230, .8); pointer-events: none;
   padding: 0 1rem; text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
 }
+
+/* D-ID live agent frame */
+.did-frame {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  height: min(74vh, 640px);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0d1512;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 30px 60px -28px rgba(0, 0, 0, .7);
+}
+.did-frame > iframe, .did-frame > div { width: 100% !important; height: 100% !important; border: 0; }
+.did-frame .av-loading {
+  position: absolute; inset: 0; z-index: 0;
+  display: grid; place-items: center;
+  color: rgba(244, 239, 230, .6); font-size: .9rem;
+}

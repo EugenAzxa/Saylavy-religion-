@@ -598,10 +598,9 @@
           <h2>Speak with ${esc(window.SAYLAVY_AVATAR[key].name)}</h2>
           <p class="lead">A living teacher you can talk with. Ask a question, by typing or out loud, and hear him answer in a warm voice, drawn only from what your teachers approve.</p>
         </div>
-        <div class="av-wrap">
-          <div class="av-stage" id="av-stage"></div>
-          <div class="av-chat" id="av-chat"></div>
-        </div>
+        ${window.SAYLAVY_AVATAR[key].didAgent
+          ? `<div class="did-frame" id="${window.SAYLAVY_AVATAR[key].didAgent.targetId}"><div class="av-loading">Waking your teacher...</div></div>`
+          : `<div class="av-wrap"><div class="av-stage" id="av-stage"></div><div class="av-chat" id="av-chat"></div></div>`}
       </div>
     </section>` : ""}
 
@@ -677,7 +676,7 @@
 
   /* ---------- meet your teacher (lazy init) ---------- */
   const teacherSec = document.getElementById("teacher");
-  if (teacherSec && window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key]) {
+  if (teacherSec && window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key] && !window.SAYLAVY_AVATAR[key].didAgent) {
     const tio = new IntersectionObserver((ents) => {
       ents.forEach(en => { if (en.isIntersecting) { if (window.SaylavyAvatarUI) window.SaylavyAvatarUI.init(key); tio.disconnect(); } });
     }, { rootMargin: "300px" });

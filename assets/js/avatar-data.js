@@ -35,7 +35,11 @@
         mode: "FULL",                                        // FULL -> repeat(text) speaks our answers
         // Your deployed Cloudflare Worker token endpoint (holds the API key).
         tokenEndpoint: "https://saylavy-heygen.eugen-cd1.workers.dev"
-      }
+      },
+
+      // D-ID live agent (al-Khwarizmi photo avatar). The Frame embed renders
+      // the full talking agent into this div; the <script> is in muslim.html.
+      didAgent: { targetId: "did-agent-frame" }
     }
   };
 })();
