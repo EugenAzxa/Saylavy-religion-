@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saylavy for Faith - an interactive learning page for your community</title>
+  <meta name="description" content="Saylavy builds your faith community an interactive learning page and QR code, shaped with your teachers. Scan, listen, interact, and ask questions. Powered by Saylavy.com.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="stylesheet" href="assets/css/game.css?v=3">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="Saylavy for Faith">
+        <svg class="mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="color:var(--gold-deep)">
+          <circle cx="16" cy="16" r="2.6"/><circle cx="27" cy="16" r="1.6"/><circle cx="23.8" cy="23.8" r="1.6"/><circle cx="16" cy="27" r="1.6"/><circle cx="8.2" cy="23.8" r="1.6"/><circle cx="5" cy="16" r="1.6"/><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="16" cy="5" r="1.6"/><circle cx="23.8" cy="8.2" r="1.6"/>
+        </svg>
+        Saylavy <small>Faith</small>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav-links">
+        <a href="#journey" data-i18n="nav.faiths">Faiths</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#game">Play</a>
+        <a href="#trust" data-i18n="nav.safe">Why it is safe</a>
+        <a href="#mobile">On the phone</a>
+        <a href="#communities" data-i18n="nav.communities">Communities</a>
+        <a href="#partner" data-i18n="nav.partner">Partner</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="#partner" data-i18n="cta.start">Start a collaboration</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= Cinematic hero ================= -->
+  <section class="cine-hero" id="top">
+    <video id="heroVideo" src="assets/video/hero.mp4" muted autoplay playsinline preload="auto" style="opacity:0" aria-hidden="true"></video>
+    <span class="cine-shade" aria-hidden="true"></span>
+    <div class="cine-inner">
+      <p class="eyebrow center-line reveal" data-i18n="hero.eyebrow">For faith communities</p>
+      <h1 class="reveal">Your faith, in real voices<br>you can <span class="serif-accent">talk with</span></h1>
+      <p class="lead reveal">
+        An interactive learning page and a QR code for your community.
+        Scan it, listen, ask a question out loud, and hear the answer back
+        in a voice your teachers approve.
+      </p>
+      <div class="hero-actions reveal" style="justify-content:center">
+        <a class="btn btn-gold btn-lg" href="#journey" data-i18n="hero.meet">Meet the eight faiths</a>
+        <a class="btn liquid-glass btn-lg cine-btn" href="#partner" data-i18n="cta.start">Start a collaboration</a>
+      </div>
+    </div>
+    <a class="hero-scroll" href="#journey" aria-label="Scroll to the eight faiths"><span></span></a>
+  </section>
+
+  <!-- ================= The eight faiths ================= -->
+  <section class="section faith-glass-sec" id="journey" aria-label="The eight faiths">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Every faith, an equal welcome</p>
+        <h2>Choose your path</h2>
+        <p class="lead">Here, every faith is honoured with the same care and reverence, none placed above another. Which path a family follows is theirs alone. Our work is simply to help you pass yours on, in your own voice. Each path opens a live page you can listen to, speak with, and explore.</p>
+        <div class="unity-band" id="unityBand" role="img" aria-label="The eight faiths, each honoured equally"></div>
+      </div>
+      <div class="faith-glass" id="faithGrid"><!-- cards injected by main.js --></div>
+    </div>
+  </section>
+
+  <!-- ================= How it works ================= -->
+  <section class="section band" id="how">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Scan, listen, interact, learn</p>
+        <h2>Faith you can hear, hold, and ask about</h2>
+        <p class="lead">A lesson heard once on a Sunday fades by Tuesday. Saylavy gives your community a page they can return to any day, on any screen, and truly talk with.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="num">01</span>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M8 12h8"/></svg></div>
+          <h3>We build your page</h3>
+          <p>Real voices, stories, prayers, and language, tailored to your tradition. You tell us nothing technical.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">02</span>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>Your teachers approve</h3>
+          <p>Nothing goes live until your clergy or teachers review and approve every word. The faith stays yours.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">03</span>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><path d="M13 13h3v3M20 13v.01M16 20h4M20 16v4"/></svg></div>
+          <h3>A QR code to share</h3>
+          <p>Place it in the bulletin, on the wall, or wherever people gather. It opens the page instantly.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">04</span>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8M8 14h5"/><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg></div>
+          <h3>Everyone can join in</h3>
+          <p>People listen, interact, and ask questions out loud, and hear a warm answer back. Faith that finally sticks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Feature: talk with ================= -->
+  <section class="section" id="talk">
+    <div class="wrap feature">
+      <div class="feature-media reveal">
+        <div class="scan-card">
+          <span class="glow"></span>
+          <div class="scan-inner">
+            <div class="scan-head"><span class="dot"></span><span>Live example - ask out loud</span></div>
+            <div class="qr-box"><div data-qr="index.html" data-size="150"></div></div>
+            <p class="qr-caption">A real code. Scan it to open this page.</p>
+            <div class="scan-steps">
+              <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1"/><path d="M14 4h7v7"/></svg><small>Scan</small></div>
+              <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg><small>Listen</small></div>
+              <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg><small>Ask</small></div>
+              <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><small>Learn</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Their voice, still answering</p>
+        <h2>You can speak with it, and it speaks back</h2>
+        <p class="lead">This is the heart of Saylavy. You ask a real question, by typing or out loud, and hear a warm, reverent answer, drawn only from what your teachers approved.</p>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Ask by voice or by typing, and hear every answer read aloud.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Answers stay inside your tradition, never wandering off doctrine.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Works on any phone or tablet, with nothing to install.</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-gold btn-lg" href="#journey">Open a live example</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Play & learn game ================= -->
+  <section class="section game-sec" id="game" aria-label="Play and learn">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Play and learn</p>
+        <h2>A little world children can play</h2>
+        <p class="lead game-intro">Walk around a warm community and help your neighbours with kind, everyday tasks - bake the bread, fetch the water, share a meal - learning a value that every faith holds dear. This is a taste of the game we can shape for your own community.</p>
+      </div>
+      <div id="game-host-main" class="game-host"></div>
+    </div>
+  </section>
+
+  <!-- ================= Trust ================= -->
+  <section class="section band" id="trust">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Why leaders trust it</p>
+        <h2>The faith stays entirely yours</h2>
+      </div>
+      <div class="trust">
+        <div class="t reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div><h3>Your teachers approve every page</h3><p>Nothing is published until your clergy or teachers review it. You hold the final word, always.</p></div>
+        </div>
+        <div class="t reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 5.5-9 10-9 10z"/></svg></div>
+          <div><h3>Made with real reverence</h3><p>We follow the customs of each faith with care, from the words we use to the images we never show.</p></div>
+        </div>
+        <div class="t reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div><h3>Yours to shape</h3><p>Every voice, story, and lesson is chosen with you. The page grows with your community and stays in your hands.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Your questions, answered ================= -->
+  <section class="section" id="faq" aria-label="Your questions, answered">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Your questions, answered</p>
+        <h2>The things leaders ask us first</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq reveal">
+          <summary>Does this replace our teachers?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>No. It only ever carries the words your teachers give and approve. It cannot invent doctrine or answer beyond what you provide. Think of it as their voice, still teaching between classes.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Who decides what it says?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>You do, completely. Nothing goes live until your clergy or teachers review and approve every word, and you can change or remove anything at any time.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Is our community's data private?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Yes. There are no accounts and nothing to install for children. The page simply opens in a browser, like any website, and asks for nothing.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Will it show images we do not allow?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Never. We follow each tradition's own customs on what may and may not be shown, and never depict God, the prophets, or sacred figures where a faith asks us not to.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Can it speak our community's language?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Yes. The whole page can switch into your community's language, so elders and newcomers can read it as comfortably as anyone.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>How do we begin?<span class="faq-x" aria-hidden="true"></span></summary>
+          <p>Tell us about your community and we build an example page in your own tradition, shaped with your teachers, for you to see and shape together.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= On the phone ================= -->
+  <section class="section phone-sec" id="mobile" aria-label="On a phone">
+    <div class="wrap">
+      <div class="phone-grid">
+        <div class="phone-copy reveal">
+          <p class="eyebrow">In every pocket</p>
+          <h2>It lives on their phone</h2>
+          <p class="lead">A child scans the QR code once and the whole page opens on their phone. No app to install, nothing to buy. It works the same on any phone or tablet.</p>
+          <ul class="phone-list">
+            <li><span class="pdot"></span> Scan the code, and it opens in a second</li>
+            <li><span class="pdot"></span> Tap to listen in real voices</li>
+            <li><span class="pdot"></span> Ask a question out loud and hear the answer</li>
+            <li><span class="pdot"></span> Read in your own language, right to left too</li>
+          </ul>
+        </div>
+        <div class="phone reveal" aria-hidden="true">
+          <div class="phone-glow"></div>
+          <div class="phone-frame">
+            <span class="phone-notch"></span>
+            <div class="phone-screen">
+              <div class="ps-top"><span>9:41</span><span class="ps-batt"></span></div>
+              <div class="ps-hero">
+                <span class="ps-emblem"></span>
+                <p class="ps-native">Welcome</p>
+                <h3>Your faith, in your voice</h3>
+                <p class="ps-sub">Listen, ask a question, and learn</p>
+              </div>
+              <div class="ps-chat">
+                <span class="ps-bubble ps-them">Ask me anything about your faith.</span>
+                <span class="ps-bubble ps-me">How do we begin?</span>
+                <span class="ps-bubble ps-them ps-typing"><i></i><i></i><i></i></span>
+              </div>
+              <div class="ps-bar"><span>Ask a question...</span><span class="ps-send"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Communities across the GTA ================= -->
+  <section class="section band" id="communities" aria-label="Communities across the GTA">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="eyebrow center-line">Across the Greater Toronto Area</p>
+        <h2>Built for the communities around us</h2>
+        <p class="lead">Churches, mosques, mandirs, gurdwaras, synagogues and temples, each with children learning their faith every week.</p>
+      </div>
+      <div class="gta" id="gta"><!-- filled by main.js --></div>
+    </div>
+  </section>
+
+  <!-- ================= For community leaders (translated) ================= -->
+  <section class="section leaders" id="leaders" aria-label="For community leaders">
+    <div class="wrap">
+      <div class="leaders-card liquid-glass reveal">
+        <h2 data-i18n="leaders.title">For community leaders</h2>
+        <p data-i18n="leaders.p1">Saylavy builds your community a page where children meet your faith in real voices.</p>
+        <p data-i18n="leaders.p2">They listen, ask questions out loud, and hear a warm answer back.</p>
+        <p data-i18n="leaders.p3">Nothing goes live until your teachers approve every word. The faith stays yours.</p>
+        <p data-i18n="leaders.p4">You receive a QR code for your bulletin, your wall, or a card to take home.</p>
+        <p class="leaders-close" data-i18n="leaders.p5">It would be an honour to build one together with your community.</p>
+        <a class="btn btn-gold btn-lg" href="mailto:Eugen@azxa.io" data-i18n="cta.write">Write to us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Our promise ================= -->
+  <section class="section band" id="promise" aria-label="Our promise">
+    <div class="wrap">
+      <blockquote class="promise-card liquid-glass reveal">
+        <p class="promise-eyebrow">Our promise</p>
+        <p class="promise-text">We treat every faith as we would want our own treated, with reverence, accuracy, and humility. Your words, your voices, and your teachers' final say, always. We build the tool. The faith remains entirely yours.</p>
+        <p class="promise-sign">- The Saylavy team</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ================= Partner / contact ================= -->
+  <section class="section" id="partner">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <span class="glow"></span>
+        <p class="eyebrow center-line" style="justify-content:center">Let's build one together</p>
+        <h2>Give your community a page they will remember</h2>
+        <p>Tell us about your community and where to reach you. We will build an example page in your tradition, shaped with your teachers.</p>
+        <form class="cta-form" data-mailto="Eugen@azxa.io">
+          <input type="text" name="place" placeholder="Your community or place" aria-label="Your community or place">
+          <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+          <button class="btn btn-gold btn-lg" type="submit">Start a collaboration</button>
+        </form>
+        <p class="cta-note">We reply within a day, or write to Eugen@azxa.io. Everything is shaped with your teachers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <svg class="mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="color:var(--gold-deep)">
+            <circle cx="16" cy="16" r="2.6"/><circle cx="27" cy="16" r="1.6"/><circle cx="23.8" cy="23.8" r="1.6"/><circle cx="16" cy="27" r="1.6"/><circle cx="8.2" cy="23.8" r="1.6"/><circle cx="5" cy="16" r="1.6"/><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="16" cy="5" r="1.6"/><circle cx="23.8" cy="8.2" r="1.6"/>
+          </svg>
+          Saylavy <small>Faith</small>
+        </a>
+        <p>An interactive learning page and QR code for faith communities, shaped with your teachers and told in your own voice.</p>
+        <p class="powered">Powered by <a href="https://saylavy.com" target="_blank" rel="noopener">Saylavy.com</a></p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Faiths</h4>
+          <a href="protestant.html">Protestant</a>
+          <a href="catholic.html">Catholic</a>
+          <a href="orthodox.html">Orthodox</a>
+          <a href="muslim.html">Muslim</a>
+        </div>
+        <div class="foot-col">
+          <h4>More</h4>
+          <a href="hindu.html">Hindu</a>
+          <a href="sikh.html">Sikh</a>
+          <a href="jewish.html">Jewish</a>
+          <a href="buddhist.html">Buddhist</a>
+        </div>
+        <div class="foot-col">
+          <h4>Saylavy</h4>
+          <a href="#how">How it works</a>
+          <a href="#trust">Why it is safe</a>
+          <a href="#partner">Start a collaboration</a>
+          <a href="https://saylavy.com" target="_blank" rel="noopener">Saylavy.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span>&copy; 2026 Saylavy. Made with reverence for every faith.</span>
+      <span>Scan, listen, interact, learn.</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/faith-data.js"></script>
+  <script src="assets/js/game-data.js"></script>
+  <script src="assets/js/game.js"></script>
+  <script src="assets/js/communities.js"></script>
+  <script src="assets/js/qrcode.min.js"></script>
+  <script src="assets/js/qr.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var host = document.getElementById("game-host-main");
+      if (host && window.SaylavyGame && window.SaylavyGame.has("village")) {
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) { if (en.isIntersecting) { window.SaylavyGame.mount(host, "village"); io.disconnect(); } });
+        }, { rootMargin: "250px" });
+        io.observe(host);
+      }
+      // band of eight: the faith symbols, all equal
+      var band = document.getElementById("unityBand");
+      if (band && window.FAITHS) {
+        var order = window.FAITH_ORDER || Object.keys(window.FAITHS);
+        band.innerHTML = order.map(function (k) {
+          var f = window.FAITHS[k];
+          return '<span class="unity-sym theme-' + k + '" title="' + (f.name || k) + '">' + (f.symbol || "") + "</span>";
+        }).join("");
+        // guarantee icon size even if the stylesheet is cached
+        Array.prototype.forEach.call(band.querySelectorAll("svg"), function (s) {
+          s.setAttribute("width", "22"); s.setAttribute("height", "22");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
