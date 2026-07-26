@@ -1,35 +1,46 @@
-/* HeyGen session-token endpoint - Cloudflare Worker (simplest, free)
-   ------------------------------------------------------------------
+/* LiveAvatar (HeyGen) session-token endpoint - Cloudflare Worker
+   --------------------------------------------------------------
+   HeyGen retired the old /v1/streaming.* API; this uses the new
+   LiveAvatar API (https://api.liveavatar.com/v1/sessions/token).
+   The website POSTs { mode, avatar_id }; this adds the secret key.
+
    Deploy:
-   1. https://dash.cloudflare.com -> Workers & Pages -> Create -> Worker
-   2. Paste this whole file, Deploy. You get a URL like
-      https://saylavy-heygen.<you>.workers.dev
-   3. Worker -> Settings -> Variables -> add a SECRET:
-        Name:  HEYGEN_API_KEY
-        Value: <your HeyGen API key>   (Settings -> API in HeyGen)
-   4. Put that Worker URL into avatar-data.js -> heygen.tokenEndpoint
-   The API key lives only here, never in the website.
+   1. dash.cloudflare.com -> Workers & Pages -> your Worker -> Edit code
+   2. Paste this whole file, Deploy.
+   3. Settings -> Variables and Secrets -> Secret
+        HEYGEN_API_KEY = <your HeyGen API key>
+   4. Deploy again.
 */
 export default {
   async fetch(request, env) {
     const cors = {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     };
     if (request.method === "OPTIONS") return new Response(null, { headers: cors });
+
+    let body = {};
+    try { body = await request.json(); } catch (e) {}
+    const payload = {
+      mode: body.mode || "FULL",
+      avatar_id: body.avatar_id || null,
+    };
+
     try {
-      const r = await fetch("https://api.heygen.com/v1/streaming.create_token", {
+      const r = await fetch("https://api.liveavatar.com/v1/sessions/token", {
         method: "POST",
-        headers: { "x-api-key": env.HEYGEN_API_KEY, "content-type": "application/json" },
+        headers: { "X-API-KEY": env.HEYGEN_API_KEY, "content-type": "application/json" },
+        body: JSON.stringify(payload),
       });
       const data = await r.json();
-      const token = data && data.data && data.data.token;
+      const token = data && data.data && data.data.session_token;
       return new Response(JSON.stringify({
         token: token || null,
+        sessionId: (data && data.data && data.data.session_id) || null,
         keyPresent: Boolean(env.HEYGEN_API_KEY),
-        heygenStatus: r.status,
-        heygen: token ? undefined : data,
+        status: r.status,
+        raw: token ? undefined : data,   // shows the real error when no token
       }), { headers: { ...cors, "content-type": "application/json" } });
     } catch (e) {
       return new Response(JSON.stringify({ token: null, error: String(e) }), {

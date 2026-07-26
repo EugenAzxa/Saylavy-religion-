@@ -31,10 +31,10 @@
 
       // HeyGen live photoreal avatar (al-Khwarizmi, built from the scholar photo)
       heygen: {
-        avatarId: "6fe8b0d2336e47f59f99169be9ef6773",
+        avatarId: "6fe8b0d2-336e-47f5-9f99-169be9ef6773",   // LiveAvatar avatar id (UUID)
+        mode: "FULL",                                        // FULL -> repeat(text) speaks our answers
         // Your deployed Cloudflare Worker token endpoint (holds the API key).
-        tokenEndpoint: "https://saylavy-heygen.eugen-cd1.workers.dev",
-        voiceId: ""       // optional HeyGen voice id; blank = the avatar's default
+        tokenEndpoint: "https://saylavy-heygen.eugen-cd1.workers.dev"
       }
     }
   };

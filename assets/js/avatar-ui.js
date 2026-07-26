@@ -146,7 +146,7 @@
       }
       function doMountLive() {
         var cfg = data.heygen;
-        window.SaylavyHeyGen.mount(stage, { avatarId: cfg.avatarId, tokenEndpoint: cfg.tokenEndpoint, voiceId: cfg.voiceId }).then(function (api) {
+        window.SaylavyHeyGen.mount(stage, { avatarId: cfg.avatarId, mode: cfg.mode, tokenEndpoint: cfg.tokenEndpoint }).then(function (api) {
           if (view !== "live") { api.destroy && api.destroy(); return; }
           if (engine && engine.destroy) engine.destroy();
           engine = api;
