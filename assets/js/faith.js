@@ -596,12 +596,7 @@
         <div class="sec-head center">
           <p class="eyebrow center-line">Meet your teacher</p>
           <h2>Speak with ${esc(window.SAYLAVY_AVATAR[key].name)}</h2>
-          <p class="lead">A living teacher you can talk with. Ask a question and hear him answer. Two views, a living portrait and a real 3D avatar, so you can tell us which feels right.</p>
-        </div>
-        <div class="av-toggle" role="tablist" aria-label="Choose a view">
-          <button class="av-tab is-on" data-view="portrait" role="tab" aria-selected="true">Living portrait</button>
-          <button class="av-tab" data-view="3d" role="tab" aria-selected="false">3D avatar</button>
-          <button class="av-tab" data-view="live" role="tab" aria-selected="false">Live avatar</button>
+          <p class="lead">A living teacher you can talk with. Ask a question, by typing or out loud, and hear him answer in a warm voice, drawn only from what your teachers approve.</p>
         </div>
         <div class="av-wrap">
           <div class="av-stage" id="av-stage"></div>
