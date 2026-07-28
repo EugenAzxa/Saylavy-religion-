@@ -600,12 +600,11 @@
         <div class="sec-head center">
           <p class="eyebrow center-line">Meet your guide, and the voices of ${esc(f.name)}</p>
           <h2>Speak with Sofia</h2>
-          <p class="lead">Sofia is your friendly guide for every faith. Around her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
+          <p class="lead">Sofia is your friendly guide for every faith. With her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
         </div>
         <div class="av-hub">
-          <div class="av-side av-side-left">${figureBubble(0)}${figureBubble(1)}</div>
           <div class="did-frame" id="did-agent-frame"><div class="av-loading">Waking your guide...</div></div>
-          <div class="av-side av-side-right">${figureBubble(2)}${figureBubble(3)}</div>
+          <div class="av-figures">${figureBubble(0)}${figureBubble(1)}${figureBubble(2)}${figureBubble(3)}</div>
         </div>
       </div>
     </section>

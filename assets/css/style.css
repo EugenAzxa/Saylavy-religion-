@@ -2334,11 +2334,14 @@ body.faith-page {
    faith arranged around her (tap to hear + ask them)
    ========================================================= */
 .av-hub {
-  display: flex; align-items: center; justify-content: center;
-  gap: 2rem; max-width: 1140px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2.2rem; max-width: 1000px; margin: 0 auto;
 }
-.av-hub .did-frame { flex: 0 1 470px; max-width: 470px; height: min(56vh, 452px); margin: 0; }
-.av-side { display: flex; flex-direction: column; justify-content: space-evenly; gap: 1.4rem; }
+.av-hub .did-frame { width: 100%; max-width: 460px; height: min(56vh, 460px); margin: 0; }
+.av-figures {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+  gap: 1.6rem 2.6rem; width: 100%;
+}
 .av-figure {
   display: flex; flex-direction: column; align-items: center; gap: .65rem;
   width: 188px; border: 0; background: transparent; cursor: pointer; padding: 0; color: inherit;
@@ -2369,10 +2372,10 @@ body.faith-page {
 .av-sec { padding-top: 3rem; padding-bottom: 3.5rem; }
 .av-sec .sec-head { margin-bottom: 1.75rem; }
 @media (max-width: 900px) {
-  .av-hub { flex-direction: column; gap: 1.7rem; }
-  .av-side { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1.6rem; }
-  .av-hub .did-frame { order: -1; width: 100%; flex: none; max-width: 560px; height: min(60vh, 500px); }
+  .av-hub { gap: 1.8rem; }
+  .av-hub .did-frame { max-width: 520px; height: min(60vh, 500px); }
+  .av-figures { gap: 1.4rem 1.8rem; }
   .av-figure { width: 150px; }
-  .av-figure-face { width: 136px; height: 136px; }
+  .av-figure-face { width: 138px; height: 138px; }
   .av-figure-mono { font-size: 2.7rem; }
 }
