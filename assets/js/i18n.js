@@ -32,7 +32,7 @@
       "cta.start": "Start a collaboration", "cta.write": "Write to us",
       "hero.eyebrow": "For faith communities",
       "hero.lead": "An interactive learning page and a QR code for your community. Scan it, listen, ask a question out loud, and hear the answer back in a voice your teachers approve.",
-      "hero.meet": "Meet the eight faiths",
+      "hero.meet": "Meet the twelve faiths",
       "leaders.title": "For community leaders",
       "leaders.p1": "Saylavy builds your community a page where children meet your faith in real voices.",
       "leaders.p2": "They listen, ask questions out loud, and hear a warm answer back.",

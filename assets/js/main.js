@@ -88,7 +88,7 @@
     document.title = "Saylavy for " + who;
   })();
 
-  /* ---------- The eight faiths: liquid-glass cards ---------- */
+  /* ---------- The twelve faiths: liquid-glass cards ---------- */
   const grid = document.getElementById("faithGrid");
   if (grid && window.FAITHS && window.FAITH_ORDER) {
     const TAG = {
