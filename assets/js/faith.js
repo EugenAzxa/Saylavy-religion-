@@ -391,6 +391,59 @@
     </button>`;
   };
 
+  /* ---- "Step inside" : a real, walkable 3D tour matched to this faith ----
+     Each is a public, embeddable tour (Matterport, or Kuula for the Golden
+     Temple). The iframe only loads when the visitor presses Walk inside. */
+  const SACRED_PLACES = {
+    protestant: { type: "mp", id: "TxLiWPPzK8M", name: "City Church", where: "a Protestant sanctuary",
+      blurb: "A modern Protestant sanctuary - light, plain and gathered around the pulpit. Step in and see how the whole room turns every seat toward the Word." },
+    catholic: { type: "mp", id: "otsdVSahHpE", name: "Notre Dame Cathedral Basilica", where: "",
+      blurb: "A soaring cathedral basilica of stone, stained glass and vaulted arches. Walk up the nave the way pilgrims do, then tilt your view up into the light." },
+    orthodox: { type: "mp", id: "adTHiV3ooj9", name: "the Romanian Orthodox Cathedral", where: "",
+      blurb: "Gold, icons and painted saints on every surface. In Orthodox tradition the whole church is a window to heaven - turn slowly and let your eyes travel the walls." },
+    muslim: { type: "mp", id: "ZR9AoktT9Js", name: "the Et'hem Bey Mosque", where: "Tirana, Albania",
+      blurb: "Begun in 1791, its dome and walls carry rare frescoes of trees, waterfalls and bridges. Step under the painted ceiling and turn to take it all in." },
+    hindu: { type: "mp", id: "uFrLtE9GJk2", name: "the Maneshwar Temple", where: "",
+      blurb: "A living Hindu temple, carved and coloured around its sacred centre. Walk toward the inner shrine the way worshippers approach for darshan." },
+    sikh: { type: "kuula", id: "7YXjW", name: "the Golden Temple", where: "Harmandir Sahib, Amritsar",
+      blurb: "Harmandir Sahib, the holiest gurdwara, sits on a lake of nectar and welcomes every person of every faith. Look around the golden sanctuary at the heart of the water." },
+    jewish: { type: "mp", id: "rMB3isgojbo", name: "the Synagogue de Carpentras", where: "France, 1367",
+      blurb: "The oldest working synagogue in France. Climb from the entry stair to the prayer hall and see centuries of Jewish life kept alive in one room." },
+    buddhist: { type: "mp", id: "GtNs161eqvk", name: "the Shitthaung Temple", where: "Mrauk U, Myanmar",
+      blurb: "The Temple of Victory, built in 1535, is a stone maze of passages lined with thousands of carved figures. Follow the corridors the way pilgrims have for centuries." }
+  };
+  const place = SACRED_PLACES[key];
+  const placeEmbed = !place ? "" : place.type === "kuula"
+    ? `https://kuula.co/share/${place.id}?logo=-1&info=0&fs=1&vr=1&sd=1&thumbs=1&margin=0&inst=0&keys=0&autorotate=0.22`
+    : `https://my.matterport.com/show/?m=${place.id}&play=1&qs=1&title=0&brand=0`;
+  const placeFull = !place ? "" : place.type === "kuula"
+    ? `https://kuula.co/share/${place.id}`
+    : `https://my.matterport.com/show/?m=${place.id}`;
+  const placeProvider = place && place.type === "kuula" ? "Kuula" : "Matterport";
+  const visitSection = !place ? "" : `
+    <section class="section visit-sec" id="visit">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="eyebrow center-line">Walk inside</p>
+          <h2>Step inside ${esc(place.name)}</h2>
+          <p class="lead">${esc(place.blurb)}</p>
+        </div>
+        <div class="visit-stage">
+          <div class="visit-frame" data-embed="${esc(placeEmbed)}"></div>
+          <button class="visit-play" type="button" aria-label="Walk inside ${esc(place.name)}">
+            <span class="visit-play-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="visit-play-t">Walk inside</span>
+            <span class="visit-play-s">${esc(place.name)}${place.where ? " - " + esc(place.where) : ""}</span>
+          </button>
+        </div>
+        <div class="visit-cap">
+          <p class="visit-name">${esc(place.name)}${place.where ? `<span> - ${esc(place.where)}</span>` : ""}</p>
+          <a class="visit-full" href="${esc(placeFull)}" target="_blank" rel="noopener">Open full screen</a>
+        </div>
+        <p class="visit-note">Real 3D tour via ${placeProvider}. In your own edition we would feature your community's own space.</p>
+      </div>
+    </section>`;
+
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
       ${f.video ? `<video class="faith-video" src="${esc(f.video)}" muted autoplay playsinline preload="auto" aria-hidden="true"></video><span class="cine-shade" aria-hidden="true"></span>` : ""}
@@ -610,6 +663,8 @@
       </div>
     </section>
 
+    ${visitSection}
+
     ${(window.SAYLAVY_GAME && window.SAYLAVY_GAME[key]) ? `
     <section class="section game-sec" id="game">
       <div class="wrap">
@@ -824,6 +879,18 @@
       card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
     }
   });
+
+  /* "Step inside" - load the heavy 3D tour only when the visitor asks for it */
+  const visitPlay = root.querySelector(".visit-play");
+  if (visitPlay) {
+    visitPlay.addEventListener("click", () => {
+      const stage = root.querySelector(".visit-stage");
+      const frame = root.querySelector(".visit-frame");
+      const src = frame.getAttribute("data-embed");
+      frame.innerHTML = `<iframe src="${src}" title="${esc(place.name)} - 3D tour" loading="lazy" allowfullscreen allow="xr-spatial-tracking; gyroscope; accelerometer; fullscreen; autoplay"></iframe>`;
+      stage.classList.add("is-live");
+    });
+  }
 
   /* =====================================================
      Watch + journey in time + quiz (children's learning)
