@@ -307,7 +307,7 @@ const FAITHS = {
       lead: "An interactive page for the life of Baháʼu'lláh, the oneness of God and religion, and a life of prayer and service. Reviewed by your community first."
     },
     approve: "Every story, prayer, and lesson is reviewed by your community before it goes live.",
-    guide: { name: "Roya", role: "your Baháʼí guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    guide: { name: "Roya", role: "your Baháʼí guide", g: "f" },
     greeting: "Alláh-u-Abhá, and a warm welcome. I am Roya, your Baháʼí helper. Ask me about Baháʼu'lláh, the oneness of humanity, prayer, or service.",
     learn: [
       { kind: "One God", icon: ICO.story, title: "Every religion, one source", body: "Baháʼís believe there is one God who has taught humanity again and again through messengers such as Abraham, Krishna, Moses, the Buddha, Jesus, Muhammad, and Baháʼu'lláh. Each brought guidance for their time." },
@@ -339,7 +339,7 @@ const FAITHS = {
       lead: "An interactive page for the lives of the Tirthankaras, ahimsa toward every creature, and the many-sided nature of truth. Reviewed by your teachers first."
     },
     approve: "Every story and lesson is reviewed by your teachers before it goes live.",
-    guide: { name: "Ahana", role: "your Jain guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    guide: { name: "Ahana", role: "your Jain guide", g: "f" },
     greeting: "Jai Jinendra, and a warm welcome. I am Ahana, your Jain helper. Ask me about Mahavira, ahimsa, the Tirthankaras, or reverence for all living beings.",
     learn: [
       { kind: "Ahimsa", icon: ICO.prayer, title: "Do no harm to any living being", body: "Ahimsa, non-violence, is the heart of Jain life. Jains take great care not to harm any creature, in action, in words, and even in thought, and many follow a vegetarian life." },
@@ -371,7 +371,7 @@ const FAITHS = {
       lead: "An interactive page for the teaching of Zarathustra, the sacred fire, and a life of goodness and honesty. Reviewed by your community first."
     },
     approve: "Every story and lesson is reviewed by your community before it goes live.",
-    guide: { name: "Roshan", role: "your Zoroastrian guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    guide: { name: "Roshan", role: "your Zoroastrian guide", g: "f" },
     greeting: "Ushta te, and a warm welcome. I am Roshan, your Zoroastrian helper. Ask me about Zarathustra, the sacred fire, or living with good thoughts, good words, and good deeds.",
     learn: [
       { kind: "The threefold path", icon: ICO.prayer, title: "Good thoughts, good words, good deeds", body: "Humata, Hukhta, Huvarshta. The whole of Zoroastrian life can be held in three simple choices: to think well, to speak well, and to act well, every single day." },
@@ -403,7 +403,7 @@ const FAITHS = {
       lead: "An interactive page for the wisdom of the Tao, the harmony of yin and yang, and living gently in step with nature. Reviewed by your teachers first."
     },
     approve: "Every story and lesson is reviewed by your teachers before it goes live.",
-    guide: { name: "Lian", role: "your Taoist guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    guide: { name: "Lian", role: "your Taoist guide", g: "f" },
     greeting: "A gentle welcome to you. I am Lian, your Taoist helper. Ask me about the Tao, yin and yang, Laozi, or living in harmony with nature.",
     learn: [
       { kind: "The Tao", icon: ICO.story, title: "The Way that flows through all", body: "Tao means the Way, the natural flow that runs through everything. Taoists try to live simply and gently, in step with nature rather than against it." },
