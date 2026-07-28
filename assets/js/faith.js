@@ -377,6 +377,20 @@
       <span class="person-cta">${p.persona === "about" ? "Learn about them" : "Speak with them"} ${ICON.arrow}</span>
     </article>`).join("");
 
+  // compact figure bubble for the interactive hub around Sofia
+  const figureBubble = (i) => {
+    const p = people[i];
+    if (!p) return "";
+    const face = p.img
+      ? `<img src="${esc(p.img)}" alt="" loading="lazy">`
+      : `<span class="av-figure-mono">${esc(p.mono)}</span>`;
+    return `<button class="av-figure" data-idx="${i}" aria-label="Speak with ${esc(p.name)}">
+      <span class="av-figure-face">${face}</span>
+      <span class="av-figure-name">${esc(p.name)}</span>
+      <span class="av-figure-cta">${p.persona === "about" ? "Learn about them" : "Tap to speak"}</span>
+    </button>`;
+  };
+
   root.innerHTML = `
     <section class="faith-hero hero-cosmos">
       ${f.video ? `<video class="faith-video" src="${esc(f.video)}" muted autoplay playsinline preload="auto" aria-hidden="true"></video><span class="cine-shade" aria-hidden="true"></span>` : ""}
@@ -579,25 +593,20 @@
       </div>
     </section>` : ""}
 
-    <section class="section faith-people" id="people">
-      <div class="wrap">
-        <div class="sec-head center">
-          <p class="eyebrow center-line">Voices of this faith</p>
-          <h2>People you can speak with</h2>
-          <p class="lead">Tap anyone to read their story, hear their voice, and ask them a question.${f.peopleNote ? " " + esc(f.peopleNote) : ""}</p>
-        </div>
-        <div class="people-grid">${peopleCards}</div>
-      </div>
-    </section>
+    <!-- famous figures now live in the interactive hub around Sofia (id="teacher") -->
 
     <section class="section av-sec" id="teacher">
       <div class="wrap">
         <div class="sec-head center">
-          <p class="eyebrow center-line">Meet your guide</p>
+          <p class="eyebrow center-line">Meet your guide, and the voices of ${esc(f.name)}</p>
           <h2>Speak with Sofia</h2>
-          <p class="lead">A friendly guide for every faith. Ask her about your faith, kindness, friendship, or growing up, and hear a warm answer back. She is an example of the living teacher we can shape together with your community.</p>
+          <p class="lead">Sofia is your friendly guide for every faith. Around her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
         </div>
-        <div class="did-frame" id="did-agent-frame"><div class="av-loading">Waking your guide...</div></div>
+        <div class="av-hub">
+          <div class="av-side av-side-left">${figureBubble(0)}${figureBubble(1)}</div>
+          <div class="did-frame" id="did-agent-frame"><div class="av-loading">Waking your guide...</div></div>
+          <div class="av-side av-side-right">${figureBubble(2)}${figureBubble(3)}</div>
+        </div>
       </div>
     </section>
 
@@ -808,10 +817,12 @@
     chat.ensureGreeting();
   }
 
-  root.querySelectorAll(".person").forEach(card => {
+  root.querySelectorAll(".person, .av-figure").forEach(card => {
     const open = () => openPerson(people[+card.dataset.idx], +card.dataset.idx, card);
     card.addEventListener("click", open);
-    card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+    if (card.tagName !== "BUTTON") {
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+    }
   });
 
   /* =====================================================
