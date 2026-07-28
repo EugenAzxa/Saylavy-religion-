@@ -412,6 +412,13 @@
     buddhist: { type: "mp", id: "GtNs161eqvk", name: "the Shitthaung Temple", where: "Mrauk U, Myanmar",
       blurb: "The Temple of Victory, built in 1535, is a stone maze of passages lined with thousands of carved figures. Follow the corridors the way pilgrims have for centuries." }
   };
+  /* The guide keeps one face and voice, but takes a name from each tradition. */
+  const GUIDE_NAMES = {
+    protestant: "Sofia", catholic: "Sofia", orthodox: "Sofia",
+    muslim: "Noor", jewish: "Noa", hindu: "Diya", sikh: "Simran", buddhist: "Kiran"
+  };
+  const guideName = GUIDE_NAMES[key] || "Sofia";
+
   const place = SACRED_PLACES[key];
   const placeEmbed = !place ? "" : place.type === "kuula"
     ? `https://kuula.co/share/${place.id}?logo=-1&info=0&fs=1&vr=1&sd=1&thumbs=1&margin=0&inst=0&keys=0&autorotate=0.22`
@@ -652,8 +659,8 @@
       <div class="wrap">
         <div class="sec-head center">
           <p class="eyebrow center-line">Meet your guide, and the voices of ${esc(f.name)}</p>
-          <h2>Speak with Sofia</h2>
-          <p class="lead">Sofia is your friendly guide for every faith. With her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
+          <h2>Speak with ${esc(guideName)}</h2>
+          <p class="lead">${esc(guideName)} is your friendly guide. With her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
         </div>
         <div class="av-hub">
           <div class="av-figures av-figures-left">${figureBubble(0)}${figureBubble(1)}</div>
