@@ -2352,7 +2352,7 @@ body.faith-page {
   width: 172px; border: 0; background: transparent; cursor: pointer; padding: 0; color: inherit;
 }
 .av-figure-face {
-  width: 150px; height: 150px; border-radius: 50%; overflow: hidden;
+  width: 150px; height: 150px; border-radius: 22px; overflow: hidden;
   display: grid; place-items: center;
   background: color-mix(in srgb, var(--accent, #777) 26%, #111);
   box-shadow:
