@@ -603,8 +603,9 @@
           <p class="lead">Sofia is your friendly guide for every faith. With her are famous voices of ${esc(f.name)} - tap anyone to hear their story and ask them a question.</p>
         </div>
         <div class="av-hub">
+          <div class="av-figures av-figures-left">${figureBubble(0)}${figureBubble(1)}</div>
           <div class="did-frame" id="did-agent-frame"><div class="av-loading">Waking your guide...</div></div>
-          <div class="av-figures">${figureBubble(0)}${figureBubble(1)}${figureBubble(2)}${figureBubble(3)}</div>
+          <div class="av-figures av-figures-right">${figureBubble(2)}${figureBubble(3)}</div>
         </div>
       </div>
     </section>

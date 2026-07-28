@@ -2334,20 +2334,25 @@ body.faith-page {
    faith arranged around her (tap to hear + ask them)
    ========================================================= */
 .av-hub {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 2.2rem; max-width: 1000px; margin: 0 auto;
+  display: flex; flex-direction: row; flex-wrap: nowrap;
+  align-items: center; justify-content: center;
+  gap: clamp(1.25rem, 3vw, 3rem); max-width: 1180px; margin: 0 auto;
 }
-.av-hub .did-frame { width: 100%; max-width: 460px; height: min(56vh, 460px); margin: 0; }
+.av-hub .did-frame {
+  flex: 0 1 440px; width: 100%; max-width: 440px;
+  height: min(58vh, 480px); margin: 0;
+}
 .av-figures {
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
-  gap: 1.6rem 2.6rem; width: 100%;
+  display: flex; flex-direction: column; flex: 0 0 auto;
+  align-items: center; justify-content: center;
+  gap: 2.4rem;
 }
 .av-figure {
-  display: flex; flex-direction: column; align-items: center; gap: .65rem;
-  width: 188px; border: 0; background: transparent; cursor: pointer; padding: 0; color: inherit;
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  width: 172px; border: 0; background: transparent; cursor: pointer; padding: 0; color: inherit;
 }
 .av-figure-face {
-  width: 164px; height: 164px; border-radius: 50%; overflow: hidden;
+  width: 150px; height: 150px; border-radius: 50%; overflow: hidden;
   display: grid; place-items: center;
   background: color-mix(in srgb, var(--accent, #777) 26%, #111);
   box-shadow:
@@ -2371,11 +2376,22 @@ body.faith-page {
 /* tighten the empty space around the hub */
 .av-sec { padding-top: 3rem; padding-bottom: 3.5rem; }
 .av-sec .sec-head { margin-bottom: 1.75rem; }
-@media (max-width: 900px) {
-  .av-hub { gap: 1.8rem; }
-  .av-hub .did-frame { max-width: 520px; height: min(60vh, 500px); }
-  .av-figures { gap: 1.4rem 1.8rem; }
-  .av-figure { width: 150px; }
-  .av-figure-face { width: 138px; height: 138px; }
-  .av-figure-mono { font-size: 2.7rem; }
+/* tablet: keep Sofia flanked left/right, just tighter */
+@media (max-width: 1024px) {
+  .av-hub { gap: clamp(.75rem, 2vw, 1.5rem); }
+  .av-hub .did-frame { flex-basis: 340px; max-width: 340px; height: min(52vh, 420px); }
+  .av-figures { gap: 1.6rem; }
+  .av-figure { width: 132px; }
+  .av-figure-face { width: 120px; height: 120px; }
+  .av-figure-name { font-size: 1rem; }
+  .av-figure-cta { font-size: .78rem; }
+  .av-figure-mono { font-size: 2.5rem; }
+}
+/* phone: three columns no longer fit - Sofia on top, four figures in a row below */
+@media (max-width: 720px) {
+  .av-hub { flex-direction: column; flex-wrap: wrap; gap: 1.8rem; }
+  .av-hub .did-frame { order: -1; flex-basis: auto; max-width: 460px; height: min(60vh, 460px); }
+  .av-figures { flex-direction: row; flex-wrap: wrap; }
+  .av-figure { width: 128px; }
+  .av-figure-face { width: 116px; height: 116px; }
 }
