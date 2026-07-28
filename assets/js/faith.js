@@ -590,19 +590,16 @@
       </div>
     </section>
 
-    ${(window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key]) ? `
     <section class="section av-sec" id="teacher">
       <div class="wrap">
         <div class="sec-head center">
-          <p class="eyebrow center-line">Meet your teacher</p>
-          <h2>Speak with ${esc(window.SAYLAVY_AVATAR[key].name)}</h2>
-          <p class="lead">A living teacher you can talk with. Ask a question, by typing or out loud, and hear him answer in a warm voice, drawn only from what your teachers approve.</p>
+          <p class="eyebrow center-line">Meet your guide</p>
+          <h2>Speak with Sofia</h2>
+          <p class="lead">A friendly guide for every faith. Ask her about your faith, kindness, friendship, or growing up, and hear a warm answer back. She is an example of the living teacher we can shape together with your community.</p>
         </div>
-        ${window.SAYLAVY_AVATAR[key].didAgent
-          ? `<div class="did-frame" id="${window.SAYLAVY_AVATAR[key].didAgent.targetId}"><div class="av-loading">Waking your teacher...</div></div>`
-          : `<div class="av-wrap"><div class="av-stage" id="av-stage"></div><div class="av-chat" id="av-chat"></div></div>`}
+        <div class="did-frame" id="did-agent-frame"><div class="av-loading">Waking your guide...</div></div>
       </div>
-    </section>` : ""}
+    </section>
 
     ${(window.SAYLAVY_GAME && window.SAYLAVY_GAME[key]) ? `
     <section class="section game-sec" id="game">
@@ -674,14 +671,8 @@
   if (window.SaylavyQR) window.SaylavyQR();
   if (window.SaylavyCine) window.SaylavyCine(root.querySelector(".faith-video"));
 
-  /* ---------- meet your teacher (lazy init) ---------- */
-  const teacherSec = document.getElementById("teacher");
-  if (teacherSec && window.SAYLAVY_AVATAR && window.SAYLAVY_AVATAR[key] && !window.SAYLAVY_AVATAR[key].didAgent) {
-    const tio = new IntersectionObserver((ents) => {
-      ents.forEach(en => { if (en.isIntersecting) { if (window.SaylavyAvatarUI) window.SaylavyAvatarUI.init(key); tio.disconnect(); } });
-    }, { rootMargin: "300px" });
-    tio.observe(teacherSec);
-  }
+  /* ---------- Sofia (D-ID) is a self-contained embed; the script in each
+     faith HTML shell injects her into #did-agent-frame. No init needed. ---------- */
 
   /* ---------- play & learn mini game (lazy mount) ---------- */
   const gameHost = document.getElementById("game-host");
