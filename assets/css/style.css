@@ -2442,3 +2442,9 @@ body.faith-page {
   .visit-stage { height: min(56vh, 440px); border-radius: 20px; }
   .visit-cap { justify-content: center; text-align: center; }
 }
+
+/* ===== Themes for the four added faiths ===== */
+.theme-bahai        { --accent:#3f8f6b; --accent-deep:#2f7455; --accent-soft:#d9ecdf; --accent-ink:#123528; --tint:#f3faf6; --accent-lt:#7fc3a2; --night:#061510; }
+.theme-jain         { --accent:#3a8a86; --accent-deep:#2c6f6b; --accent-soft:#d6ecea; --accent-ink:#113230; --tint:#f2fafa; --accent-lt:#6fc0bb; --night:#05161a; }
+.theme-zoroastrian  { --accent:#c2892e; --accent-deep:#a06f1f; --accent-soft:#f4e5c9; --accent-ink:#4e360c; --tint:#fdf8ee; --accent-lt:#e0ac5c; --night:#1a1206; }
+.theme-taoist       { --accent:#4f7a9a; --accent-deep:#3d6280; --accent-soft:#d9e6ef; --accent-ink:#10293a; --tint:#f2f7fb; --accent-lt:#85aecb; --night:#071018; }

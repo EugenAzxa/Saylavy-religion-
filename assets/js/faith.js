@@ -410,12 +410,17 @@
     jewish: { type: "mp", id: "rMB3isgojbo", name: "the Synagogue de Carpentras", where: "France, 1367",
       blurb: "The oldest working synagogue in France. Climb from the entry stair to the prayer hall and see centuries of Jewish life kept alive in one room." },
     buddhist: { type: "mp", id: "GtNs161eqvk", name: "the Shitthaung Temple", where: "Mrauk U, Myanmar",
-      blurb: "The Temple of Victory, built in 1535, is a stone maze of passages lined with thousands of carved figures. Follow the corridors the way pilgrims have for centuries." }
+      blurb: "The Temple of Victory, built in 1535, is a stone maze of passages lined with thousands of carved figures. Follow the corridors the way pilgrims have for centuries." },
+    bahai: { type: "mp", id: "WyNVGLJYWUs", name: "the Baháʼí House of Worship", where: "Wilmette, USA",
+      blurb: "A luminous nine-sided temple open to people of every faith, ringed by gardens. Step inside at sunrise and look up into the lace of light and script." },
+    taoist: { type: "mp", id: "xgHQDsWN2kp", name: "the Temple of Original Simplicity", where: "a Taoist temple",
+      blurb: "A quiet Taoist temple of altars, lanterns, and calm. Wander slowly through its halls and let the stillness settle, the way the Way intends." }
   };
   /* The guide keeps one face and voice, but takes a name from each tradition. */
   const GUIDE_NAMES = {
     protestant: "Sofia", catholic: "Sofia", orthodox: "Sofia",
-    muslim: "Noor", jewish: "Noa", hindu: "Diya", sikh: "Simran", buddhist: "Kiran"
+    muslim: "Noor", jewish: "Noa", hindu: "Diya", sikh: "Simran", buddhist: "Kiran",
+    bahai: "Roya", jain: "Ahana", zoroastrian: "Roshan", taoist: "Lian"
   };
   const guideName = GUIDE_NAMES[key] || "Sofia";
 

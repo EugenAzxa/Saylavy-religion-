@@ -26,7 +26,11 @@ const SYM = {
   hindu: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c.9 1.7.9 3.4 0 5.1-.9-1.7-.9-3.4 0-5.1zM7.2 5.1c1.6.9 2.5 2.3 2.8 4.2-1.8-.6-3-1.8-3.6-3.6zM16.8 5.1c-.6 1.8-1.8 3-3.6 3.6.3-1.9 1.2-3.3 2.8-4.2zM12 9.2a4.8 4.8 0 0 1 4.8 4.8c0 2.9-2.4 5.2-4.8 6.9-2.4-1.7-4.8-4-4.8-6.9A4.8 4.8 0 0 1 12 9.2zm0 2.2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2z"/></svg>`,
   sikh: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c.5 0 .9.4.9.9v6.3a3.4 3.4 0 0 1 0 6.5V21c0 .5-.4.9-.9.9s-.9-.4-.9-.9v-5.1a3.4 3.4 0 0 1 0-6.5V3.1c0-.5.4-.9.9-.9zm0 8.2a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z"/><path d="M6.4 7.2c1.4 1.1 2.1 2.7 2.1 4.8s-.7 3.7-2.1 4.8c.6-1.6.9-3.2.9-4.8s-.3-3.2-.9-4.8zM17.6 7.2c-.6 1.6-.9 3.2-.9 4.8s.3 3.2.9 4.8c-1.4-1.1-2.1-2.7-2.1-4.8s.7-3.7 2.1-4.8z"/></svg>`,
   jewish: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.6 4.5h-5.2zM12 21.5l-2.6-4.5h5.2zM4.2 7l5.2.05-2.55 4.45-2.6-4.5zm15.6 0l-2.6 4.5-2.55-4.45zM6.85 12.5L9.4 17H4.2zm10.3 0l2.65 4.5H14.6z"/><path d="M8.1 7h7.8l3.9 6.7-3.9 6.8H8.1L4.2 13.7z" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/></svg>`,
-  buddhist: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2.1a7.9 7.9 0 0 1 7.8 6.9h-3.3a4.6 4.6 0 0 0-3.5-3.5V4.2c-.3 0-.7 0-1 0zm-1 0v3.2A4.6 4.6 0 0 0 7.5 11H4.2A7.9 7.9 0 0 1 11 4.1zm2.5 2.9A4.6 4.6 0 0 0 12 7.4V4.2c.5 0 1 .1 1.5.2zM12 9.4a2.6 2.6 0 1 1 0 5.2 2.6 2.6 0 0 1 0-5.2zM4.2 13h3.3a4.6 4.6 0 0 0 3.5 3.5v3.3A7.9 7.9 0 0 1 4.2 13zm12.3 0h3.3a7.9 7.9 0 0 1-6.8 6.8v-3.3a4.6 4.6 0 0 0 3.5-3.5z"/></svg>`
+  buddhist: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2.1a7.9 7.9 0 0 1 7.8 6.9h-3.3a4.6 4.6 0 0 0-3.5-3.5V4.2c-.3 0-.7 0-1 0zm-1 0v3.2A4.6 4.6 0 0 0 7.5 11H4.2A7.9 7.9 0 0 1 11 4.1zm2.5 2.9A4.6 4.6 0 0 0 12 7.4V4.2c.5 0 1 .1 1.5.2zM12 9.4a2.6 2.6 0 1 1 0 5.2 2.6 2.6 0 0 1 0-5.2zM4.2 13h3.3a4.6 4.6 0 0 0 3.5 3.5v3.3A7.9 7.9 0 0 1 4.2 13zm12.3 0h3.3a7.9 7.9 0 0 1-6.8 6.8v-3.3a4.6 4.6 0 0 0 3.5-3.5z"/></svg>`,
+  bahai: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.54 5.77 4.89-3.43-3.43 4.89L20.77 10.7l-5.77 1.54 3.43 4.89-4.89-3.43L12 19.47l-1.54-5.77-4.89 3.43 3.43-4.89L3.23 10.7l5.77-1.54L5.57 4.27l4.89 3.43z"/></svg>`,
+  jain: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="1.3"/><path d="M4.6 9c2.2-2.5 12.6-2.5 14.8 0-2-1.1-4.9-1.7-7.4-1.7S6.6 7.9 4.6 9z"/><circle cx="7.6" cy="14" r="1.4"/><circle cx="12" cy="14" r="1.4"/><circle cx="16.4" cy="14" r="1.4"/><path d="M6 18c1.6 2.4 3.6 3.6 6 3.6s4.4-1.2 6-3.6c-1.7 1.3-3.8 2-6 2s-4.3-.7-6-2z"/></svg>`,
+  zoroastrian: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c-2 3-4 5-4 8.5 0 1.7 1 3 2.3 3.6-.3-1.5.4-2.7 1.5-3.6-.2 1.9.7 2.8.7 4.3 0 .9-.5 1.5-1.1 1.9 2.2-.5 3.4-2.2 3.4-4.5 0-1-.3-1.9-.9-2.7.1 1-.5 1.5-1 1.5-.9 0-1.1-.9-.8-1.8.6-2.2.5-4.3-.1-7.2z"/><path d="M12 22a5.5 5.5 0 0 1-5.5-5.5c0-.6.1-1.2.3-1.7.8 3.7 2.9 5.4 5.2 5.4s4.4-1.7 5.2-5.4c.2.5.3 1.1.3 1.7A5.5 5.5 0 0 1 12 22z" opacity=".45"/></svg>`,
+  taoist: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 5 5 0 0 1 0-10 5 5 0 0 0 0-10z"/><circle cx="12" cy="7" r="1.5"/><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 1.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17z" opacity=".55"/></svg>`
 };
 
 /* --- small icons reused by learn cards --- */
@@ -290,13 +294,141 @@ const FAITHS = {
       { keys: ["statue", "pray", "worship"], a: "When we bow before a statue of the Buddha, we are not worshipping it. We are showing respect and gratitude to a wise teacher, and reminding ourselves to grow calm and kind like him." }
     ],
     fallback: "What a mindful question to explore with your teacher at the temple. The Buddha welcomed every honest question. Would you like to try a moment of mindful breathing together?"
+  },
+
+  bahai: {
+    slug: "bahai", theme: "theme-bahai", accent: "#3f8f6b", shape: "star",
+    name: "Baháʼí", tradition: "Baháʼí Faith",
+    symbol: SYM.bahai,
+    place: "your Baháʼí community",
+    hero: {
+      kicker: "For your community",
+      title: "One human family, one unfolding faith",
+      lead: "An interactive page for the life of Baháʼu'lláh, the oneness of God and religion, and a life of prayer and service. Reviewed by your community first."
+    },
+    approve: "Every story, prayer, and lesson is reviewed by your community before it goes live.",
+    guide: { name: "Roya", role: "your Baháʼí guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    greeting: "Alláh-u-Abhá, and a warm welcome. I am Roya, your Baháʼí helper. Ask me about Baháʼu'lláh, the oneness of humanity, prayer, or service.",
+    learn: [
+      { kind: "One God", icon: ICO.story, title: "Every religion, one source", body: "Baháʼís believe there is one God who has taught humanity again and again through messengers such as Abraham, Krishna, Moses, the Buddha, Jesus, Muhammad, and Baháʼu'lláh. Each brought guidance for their time." },
+      { kind: "Prayer", icon: ICO.prayer, title: "A daily turning of the heart", body: "Baháʼís pray each day and read from the sacred writings morning and evening, turning the heart toward God and toward kindness in the world." },
+      { kind: "Values", icon: ICO.language, title: "The oneness of humanity", body: "Baháʼu'lláh taught that the earth is one country and all people its citizens. Baháʼís work for unity, justice, and the equality of women and men." }
+    ],
+    suggest: ["Who was Baháʼu'lláh?", "What do Baháʼís believe?", "Why a nine-pointed star?"],
+    qa: [
+      { keys: ["bahaullah", "baha'u'llah", "founder", "who"], a: "Baháʼu'lláh, whose name means the Glory of God, was born in Persia in 1817. Baháʼís believe he was the messenger of God for our age, teaching the oneness of God, of religion, and of the whole human family. He spent much of his life in prison and exile for his teaching." },
+      { keys: ["believe", "teach", "faith", "about"], a: "Baháʼís believe in one God, that all the great religions come from that one God, and that humanity is one family. We are taught to pray, to serve others, to seek truth for ourselves, and to work for unity and justice." },
+      { keys: ["oneness", "unity", "humanity", "family"], a: "Baháʼu'lláh wrote that the earth is but one country, and mankind its citizens. Baháʼís believe every person, of every race and nation, is a member of one human family." },
+      { keys: ["nine", "star", "symbol"], a: "The nine-pointed star is a symbol of the Baháʼí Faith. Nine is the highest single number, and it stands for completeness and the coming together of all the world's religions in one." },
+      { keys: ["bab", "the bab", "herald"], a: "The Báb, which means the Gate, was a young messenger in Persia who prepared the way for Baháʼu'lláh, much as John the Baptist prepared the way for Jesus. His shrine with its golden dome stands on Mount Carmel." },
+      { keys: ["abdul", "abdu'l-baha", "son"], a: "ʻAbdu'l-Bahá was the son of Baháʼu'lláh and the perfect example of his teaching. He travelled the world speaking of peace, kindness to the poor, and the unity of all people." },
+      { keys: ["pray", "prayer", "worship", "temple"], a: "Baháʼís pray every day and gather in Houses of Worship, nine-sided temples open to people of every faith. There is no clergy, so the community learns and serves together." },
+      { keys: ["service", "help", "work", "justice"], a: "Baháʼís believe that work done in the spirit of service to others is a form of worship. We are asked to care for our neighbours and to build unity and justice in the world." }
+    ],
+    fallback: "What a thoughtful question to explore with your community. Baháʼu'lláh welcomed the independent search for truth. Would you like to hear about the oneness of humanity, or about daily prayer?"
+  },
+
+  jain: {
+    slug: "jain", theme: "theme-jain", accent: "#3a8a86", shape: "lotus",
+    name: "Jain", tradition: "Jain - Jainism",
+    symbol: SYM.jain,
+    place: "your temple",
+    hero: {
+      kicker: "For your temple",
+      title: "Non-violence, truth, and reverence for all life",
+      lead: "An interactive page for the lives of the Tirthankaras, ahimsa toward every creature, and the many-sided nature of truth. Reviewed by your teachers first."
+    },
+    approve: "Every story and lesson is reviewed by your teachers before it goes live.",
+    guide: { name: "Ahana", role: "your Jain guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    greeting: "Jai Jinendra, and a warm welcome. I am Ahana, your Jain helper. Ask me about Mahavira, ahimsa, the Tirthankaras, or reverence for all living beings.",
+    learn: [
+      { kind: "Ahimsa", icon: ICO.prayer, title: "Do no harm to any living being", body: "Ahimsa, non-violence, is the heart of Jain life. Jains take great care not to harm any creature, in action, in words, and even in thought, and many follow a vegetarian life." },
+      { kind: "Mahavira", icon: ICO.story, title: "The great teacher", body: "Mahavira was the twenty-fourth and last Tirthankara, a great teacher who showed the path of non-violence, truth, and self-control more than 2500 years ago." },
+      { kind: "Values", icon: ICO.language, title: "Anekantavada, many-sided truth", body: "Jains teach that truth has many sides, and no single view holds all of it. This gentle idea grows humility, respect, and peace between people who see differently." }
+    ],
+    suggest: ["Who was Mahavira?", "What is ahimsa?", "What is a Tirthankara?"],
+    qa: [
+      { keys: ["mahavira", "founder", "who"], a: "Mahavira, whose name means great hero, was the twenty-fourth Tirthankara. Born a prince in India about 2500 years ago, he gave up everything to seek truth, and taught the path of non-violence, truth, non-stealing, self-control, and non-attachment." },
+      { keys: ["ahimsa", "non-violence", "harm", "violence"], a: "Ahimsa means non-violence, and it is the first and greatest teaching of the Jains. We try never to harm any living being, not by our hands, our words, or even our thoughts. This is why many Jains are careful vegetarians." },
+      { keys: ["tirthankara", "teacher", "24", "twenty"], a: "A Tirthankara is a great soul who has crossed over the ocean of life and shows others the way. Jains honour twenty-four Tirthankaras, and Mahavira was the last of them for our age." },
+      { keys: ["anekant", "many", "truth", "sides"], a: "Anekantavada means the many-sidedness of truth. Jains teach that reality has many sides, and each of us sees only a part. Like people touching different parts of an elephant, we should stay humble and listen to one another." },
+      { keys: ["vegetarian", "food", "eat", "animal"], a: "Because Jains cherish every living being, most follow a vegetarian life, and some take even greater care to avoid harming the smallest creatures. It is love and respect for all life, put into practice at every meal." },
+      { keys: ["parshva", "parshvanatha"], a: "Parshvanatha was the twenty-third Tirthankara, who lived before Mahavira and taught non-violence, truth, non-stealing, and non-possession. He is often shown with a canopy of serpent hoods above his head." },
+      { keys: ["forgive", "michhami", "pardon"], a: "Jains have a beautiful custom called Michhami Dukkadam. Once a year, and whenever needed, we ask forgiveness of everyone for any harm we may have caused, and we forgive freely in return." },
+      { keys: ["temple", "worship", "derasar", "pray"], a: "Jains gather in temples, sometimes called derasars, to honour the Tirthankaras and reflect on their example. We do not ask them for favours, but we remember their teaching and try to live by it." }
+    ],
+    fallback: "A thoughtful question to bring to your teacher at the temple. Jains treasure the gentle search for truth. Would you like to hear about ahimsa, or about the life of Mahavira?"
+  },
+
+  zoroastrian: {
+    slug: "zoroastrian", theme: "theme-zoroastrian", accent: "#c2892e", shape: "flame",
+    name: "Zoroastrian", tradition: "Zoroastrian - Parsi",
+    symbol: SYM.zoroastrian,
+    place: "your fire temple",
+    hero: {
+      kicker: "For your community",
+      title: "Good thoughts, good words, good deeds",
+      lead: "An interactive page for the teaching of Zarathustra, the sacred fire, and a life of goodness and honesty. Reviewed by your community first."
+    },
+    approve: "Every story and lesson is reviewed by your community before it goes live.",
+    guide: { name: "Roshan", role: "your Zoroastrian guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    greeting: "Ushta te, and a warm welcome. I am Roshan, your Zoroastrian helper. Ask me about Zarathustra, the sacred fire, or living with good thoughts, good words, and good deeds.",
+    learn: [
+      { kind: "The threefold path", icon: ICO.prayer, title: "Good thoughts, good words, good deeds", body: "Humata, Hukhta, Huvarshta. The whole of Zoroastrian life can be held in three simple choices: to think well, to speak well, and to act well, every single day." },
+      { kind: "Zarathustra", icon: ICO.story, title: "The prophet of one God", body: "Long ago in ancient Persia, the prophet Zarathustra taught that there is one wise God, Ahura Mazda, and that each person is free to choose between good and evil." },
+      { kind: "The fire", icon: ICO.language, title: "Fire, a symbol of light", body: "Zoroastrians keep a sacred fire in the temple as a symbol of God's light, truth, and purity. They do not worship the fire, but turn toward its light as they pray." }
+    ],
+    suggest: ["Who was Zarathustra?", "Why the sacred fire?", "What do Zoroastrians believe?"],
+    qa: [
+      { keys: ["zarathustra", "zoroaster", "prophet", "founder", "who"], a: "Zarathustra, also called Zoroaster, was a prophet of ancient Persia who may have lived more than 3000 years ago. He taught that there is one wise Creator, Ahura Mazda, and that every person is free to choose between good and evil." },
+      { keys: ["believe", "teach", "faith", "about"], a: "Zoroastrians believe in one God, Ahura Mazda, the Wise Lord, and in the free choice between good and evil. The whole of the faith is captured in three words: good thoughts, good words, and good deeds." },
+      { keys: ["fire", "temple", "flame", "worship"], a: "Zoroastrians keep a sacred fire burning in the temple as a symbol of God's light, warmth, and truth. They do not worship the fire itself. They face its light as a reminder to keep their own hearts pure." },
+      { keys: ["good thoughts", "good words", "good deeds", "humata", "threefold"], a: "Humata, Hukhta, Huvarshta: good thoughts, good words, good deeds. This is the golden thread of the Zoroastrian life. Choose a kind thought, a true word, and a helpful action, and you walk the good path." },
+      { keys: ["ahura mazda", "god", "one god"], a: "Ahura Mazda means the Wise Lord. Zoroastrians believe in this one good and wise God, the Creator of all that is bright and true, who asks us to choose goodness freely." },
+      { keys: ["cyrus", "great"], a: "Cyrus the Great was a Persian king remembered for his kindness and tolerance. He freed captive peoples and let them keep their own faiths. His famous cylinder is sometimes called an early charter of human rights." },
+      { keys: ["parsi", "india", "persia"], a: "Long ago, many Zoroastrians left Persia and settled in India, where they became known as the Parsis. They kept their faith alive and gave much to the world through learning, industry, and generosity." },
+      { keys: ["navjote", "sudreh", "kusti"], a: "When a Zoroastrian child is old enough, they receive a sacred shirt called the sudreh and a cord called the kusti in a ceremony called the navjote. From then on they tie the cord in prayer as a reminder to choose the good." }
+    ],
+    fallback: "A bright question to bring to your community. Zoroastrians treasure the free and honest search for truth. Would you like to hear about the sacred fire, or about good thoughts, good words, and good deeds?"
+  },
+
+  taoist: {
+    slug: "taoist", theme: "theme-taoist", accent: "#4f7a9a", shape: "wave",
+    name: "Taoist", tradition: "Taoist - Daoism",
+    symbol: SYM.taoist,
+    place: "your temple",
+    hero: {
+      kicker: "For your temple",
+      title: "The Way of nature, balance, and ease",
+      lead: "An interactive page for the wisdom of the Tao, the harmony of yin and yang, and living gently in step with nature. Reviewed by your teachers first."
+    },
+    approve: "Every story and lesson is reviewed by your teachers before it goes live.",
+    guide: { name: "Lian", role: "your Taoist guide", g: "f", avatar: "assets/img/avatars/scholar.jpg" },
+    greeting: "A gentle welcome to you. I am Lian, your Taoist helper. Ask me about the Tao, yin and yang, Laozi, or living in harmony with nature.",
+    learn: [
+      { kind: "The Tao", icon: ICO.story, title: "The Way that flows through all", body: "Tao means the Way, the natural flow that runs through everything. Taoists try to live simply and gently, in step with nature rather than against it." },
+      { kind: "Wu wei", icon: ICO.prayer, title: "Effortless action, like water", body: "Wu wei means acting without forcing, like water that flows around a stone. The highest good is like water, which nourishes all things and does not struggle." },
+      { kind: "Values", icon: ICO.language, title: "Yin and yang, gentle balance", body: "Day and night, rest and movement, stillness and change: yin and yang are the two sides that balance each other. A good life keeps them in gentle harmony." }
+    ],
+    suggest: ["Who was Laozi?", "What is the Tao?", "What is yin and yang?"],
+    qa: [
+      { keys: ["laozi", "lao tzu", "founder", "who"], a: "Laozi, whose name means the Old Master, is honoured as the founder of Taoism. He is said to have written the Tao Te Ching, a small book of deep wisdom about living simply and gently in harmony with the Way." },
+      { keys: ["tao", "the way", "dao"], a: "Tao means the Way, the quiet natural flow that runs through all of nature and life. Taoists teach that when we stop struggling and move with the Way, like a leaf on a stream, life becomes calm and clear." },
+      { keys: ["yin", "yang", "balance"], a: "Yin and yang are the two sides of everything: dark and light, rest and movement, soft and firm. They are not enemies but partners, each holding a little of the other, always turning into balance." },
+      { keys: ["wu wei", "effort", "water", "force"], a: "Wu wei means effortless action, doing without forcing. Think of water, which is soft yet wears away stone, and flows around whatever stands in its way. The wise act like water, gentle and unhurried." },
+      { keys: ["tao te ching", "book", "writing"], a: "The Tao Te Ching is a short and beautiful book of eighty-one small chapters, said to be written by Laozi. It teaches simplicity, humility, and living in harmony with the Way." },
+      { keys: ["zhuangzi", "butterfly", "dream"], a: "Zhuangzi was a joyful Taoist teacher who loved stories. He once dreamed he was a butterfly, and woke wondering whether he was a man who had dreamed of a butterfly, or a butterfly now dreaming he was a man." },
+      { keys: ["nature", "simple", "harmony"], a: "Taoists love nature and try to live simply and gently within it. Watching a river, a mountain, or a growing tree, we learn to be patient, humble, and at peace." },
+      { keys: ["immortal", "temple", "worship", "sage"], a: "Taoists gather in peaceful temples and honour wise sages who lived in harmony with the Way. There we grow quiet, breathe slowly, and remember to live in balance." }
+    ],
+    fallback: "A gentle question to carry to your teacher at the temple. The Way welcomes a calm and curious heart. Would you like to hear about the Tao, or about yin and yang?"
   }
 
 };
 
 /* People live in faith-people.js (single source of truth). */
 
-const FAITH_ORDER = ["protestant", "catholic", "orthodox", "muslim", "hindu", "sikh", "jewish", "buddhist"];
+const FAITH_ORDER = ["protestant", "catholic", "orthodox", "muslim", "hindu", "sikh", "jewish", "buddhist", "bahai", "jain", "zoroastrian", "taoist"];
 
 
 // Each faith automatically uses its hero video when the file exists
@@ -360,6 +492,34 @@ var FAITH_SCRIPTS = {
     "translit": "Namo Buddhaya",
     "meaning": "Homage to the awakened one",
     "lang": "sa",
+    "dir": "ltr"
+  },
+  "bahai": {
+    "text": "Alláh-u-Abhá",
+    "translit": "",
+    "meaning": "God is the All-Glorious",
+    "lang": "ar",
+    "dir": "ltr"
+  },
+  "jain": {
+    "text": "जय जिनेन्द्र",
+    "translit": "Jai Jinendra",
+    "meaning": "Honour to the victorious ones",
+    "lang": "hi",
+    "dir": "ltr"
+  },
+  "zoroastrian": {
+    "text": "Ušta tē",
+    "translit": "Ushta te",
+    "meaning": "May light be upon you",
+    "lang": "ae",
+    "dir": "ltr"
+  },
+  "taoist": {
+    "text": "上善若水",
+    "translit": "Shàng shàn ruò shuǐ",
+    "meaning": "The highest good is like water",
+    "lang": "zh",
     "dir": "ltr"
   }
 };

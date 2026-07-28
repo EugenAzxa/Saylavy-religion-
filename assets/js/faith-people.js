@@ -453,4 +453,208 @@
       ],
       fallback: "My friend, be kind, and you will be happy. What would you like to ask?" }
   ];
+
+  FAITHS.bahai.people = [
+    { mono: "BA", name: "Baháʼu'lláh", tag: "Founder of the Baháʼí Faith", note: "Taught the oneness of God, religion, and the whole human family.",
+      persona: "about", voice: { g: "m", pitch: 0.9, rate: 0.9 },
+      bio: "Baháʼu'lláh, whose name means the Glory of God, was born in Persia in 1817. Baháʼís believe he was the messenger of God for this age. He gave up wealth and comfort, and spent forty years in prison and exile, yet he wrote thousands of pages calling humanity to unity, justice, and peace.",
+      quote: "The earth is but one country, and mankind its citizens.",
+      greeting: "Welcome. I can tell you about Baháʼu'lláh and his teaching of the oneness of humanity. What would you like to know?",
+      suggest: ["What did Baháʼu'lláh teach?", "Why was he imprisoned?", "What is the oneness of humanity?"],
+      qa: [
+        { keys: ["teach", "message", "oneness", "unity"], a: "Baháʼu'lláh taught three great truths: that God is one, that all religions come from that one God, and that humanity is one family. He called every person to work for unity, justice, and peace." },
+        { keys: ["prison", "exile", "suffer", "persia"], a: "Because his teaching challenged the powerful, Baháʼu'lláh was stripped of his wealth and sent from prison to prison across the empire. Through it all he never returned harm, and kept writing of love and unity." },
+        { keys: ["earth", "country", "citizen", "world"], a: "He wrote that the earth is but one country, and mankind its citizens. Baháʼís hold this close: that we belong to one another across every border and race." }
+      ],
+      fallback: "Baháʼu'lláh is deeply revered as the founder of the Baháʼí Faith. He taught the oneness of all people. What would you like to know about him?" },
+    { mono: "BB", name: "The Báb", tag: "The Herald, 1800s", note: "Prepared the way for Baháʼu'lláh in nineteenth-century Persia.",
+      persona: "about", voice: { g: "m", pitch: 0.95, rate: 0.92 },
+      bio: "The Báb, whose title means the Gate, was a young merchant in Persia who in 1844 announced that a great messenger of God was soon to come. He taught renewal and hope, gathered many followers, and gave his life for his message at just thirty years of age. His golden-domed shrine stands on Mount Carmel.",
+      quote: "Ye are the fruits of one tree, and the leaves of one branch.",
+      greeting: "Welcome. I can tell you about the Báb, who prepared the way for Baháʼu'lláh. What would you like to know?",
+      suggest: ["Who was the Báb?", "What does the Gate mean?", "Where is his shrine?"],
+      qa: [
+        { keys: ["herald", "prepare", "gate", "way"], a: "The Báb prepared the way for Baháʼu'lláh, much as John the Baptist prepared the way for Jesus. He announced that a new messenger of God was about to appear to unite humanity." },
+        { keys: ["young", "life", "give", "martyr"], a: "The Báb was young, and his message of renewal stirred great hope and great opposition. He gave his life for it at thirty, but his followers carried his message forward." },
+        { keys: ["shrine", "carmel", "haifa", "dome"], a: "The Shrine of the Báb, with its shining golden dome and beautiful terraced gardens, rises on Mount Carmel in Haifa. It is one of the most sacred places for Baháʼís." }
+      ],
+      fallback: "The Báb is honoured as the herald of the Baháʼí Faith. He prepared the way with a message of hope. What would you like to know about him?" },
+    { mono: "AB", name: "ʻAbdu'l-Bahá", tag: "The Exemplar, 1844-1921", note: "The perfect example of his father's teaching, and a servant of all.",
+      persona: "about", voice: { g: "m", pitch: 0.92, rate: 0.93 },
+      bio: "ʻAbdu'l-Bahá was the eldest son of Baháʼu'lláh and, Baháʼís believe, the perfect example of how to live his teaching. He shared his father's imprisonment, cared for the poor and the sick, and in old age travelled across Europe and America speaking of peace and the unity of humanity.",
+      quote: "Let your heart burn with loving kindness for all who may cross your path.",
+      greeting: "Welcome. I can tell you about ʻAbdu'l-Bahá, the example of the Baháʼí life. What would you like to know?",
+      suggest: ["Who was ʻAbdu'l-Bahá?", "What did he do for the poor?", "Why did he travel?"],
+      qa: [
+        { keys: ["son", "example", "exemplar", "who"], a: "ʻAbdu'l-Bahá was the son of Baháʼu'lláh and the living example of his teaching. Baháʼís look to his life to see what love, humility, and service truly mean." },
+        { keys: ["poor", "sick", "kind", "serve"], a: "He was known simply as the Master, and he cared tenderly for the poor and the sick, often giving away what little he had. Service to others was the joy of his life." },
+        { keys: ["travel", "peace", "america", "europe"], a: "In his later years he journeyed across Europe and North America, speaking in churches, synagogues, and halls about peace, justice, and the oneness of all people." }
+      ],
+      fallback: "ʻAbdu'l-Bahá is loved as the perfect example of the Baháʼí life, a servant of all. What would you like to know about him?" },
+    { mono: "TA", name: "Táhirih", tag: "Poet and reformer, 1800s", note: "A brilliant poet who called for the dignity of women.",
+      voice: { g: "f", pitch: 1.06, rate: 0.98 },
+      bio: "I was a poet and scholar in Persia, and one of the first followers of the Báb. I believed a new day had dawned for humanity, and that women too were meant to be free and learned. I spoke and wrote boldly, and gave my life for my faith.",
+      quote: "You can kill me as soon as you like, but you cannot stop the emancipation of women.",
+      greeting: "Peace to you. I am Táhirih, a poet of the new day. Ask me about my poems, my faith, or the dignity of women.",
+      suggest: ["Why is your story remembered?", "What did you write?", "Why speak for women?"],
+      qa: [
+        { keys: ["woman", "women", "free", "equal", "dignity"], a: "I believed that women are the equals of men in the sight of God, made for learning and for freedom. I said they could kill me, but they could not stop the emancipation of women." },
+        { keys: ["poet", "poem", "write", "scholar"], a: "I loved words and learning from a young age, and I wrote poems of longing and hope that are still read today. Poetry was the way my heart spoke of God." },
+        { keys: ["bab", "faith", "believe", "new day"], a: "I was among the first to follow the Báb, believing that a new dawn had come for the world. My faith gave me courage I never knew I had." }
+      ],
+      fallback: "A fine question. I gave my life for my faith and for the dignity of women. What more would you like to ask?" }
+  ];
+
+  FAITHS.jain.people = [
+    { mono: "MA", name: "Mahavira", tag: "The 24th Tirthankara", note: "The great teacher of non-violence, truth, and self-control.",
+      persona: "about", voice: { g: "m", pitch: 0.9, rate: 0.9 },
+      bio: "Mahavira, whose name means great hero, was the twenty-fourth and last Tirthankara of this age. Born a prince in India about 2500 years ago, he left his palace at thirty to seek truth, and after long meditation taught the path of ahimsa, non-violence, truth, non-stealing, self-control, and non-attachment.",
+      quote: "Non-violence is the highest religion.",
+      greeting: "Welcome. I can tell you about Mahavira, the great teacher of non-violence. What would you like to know?",
+      suggest: ["Who was Mahavira?", "What did he teach?", "Why did he leave the palace?"],
+      qa: [
+        { keys: ["teach", "path", "vow", "principle"], a: "Mahavira taught five great vows: non-violence, truth, not stealing, self-control, and non-attachment. Above all he taught ahimsa, doing no harm to any living being." },
+        { keys: ["palace", "leave", "prince", "give up"], a: "Though born a prince with every comfort, Mahavira felt a deeper calling. At thirty he gave up his riches and set out with nothing, to seek the truth about life and freedom." },
+        { keys: ["non-violence", "ahimsa", "harm", "life"], a: "Mahavira taught that non-violence is the highest religion. He asked us to protect every living being, even the smallest, in thought, word, and deed." }
+      ],
+      fallback: "Mahavira is deeply revered as the twenty-fourth Tirthankara. He taught the path of non-violence. What would you like to know about him?" },
+    { mono: "PA", name: "Parshvanatha", tag: "The 23rd Tirthankara", note: "Taught non-violence and compassion long before Mahavira.",
+      persona: "about", voice: { g: "m", pitch: 0.92, rate: 0.9 },
+      bio: "Parshvanatha was the twenty-third Tirthankara, who lived in India before Mahavira. A prince who became a great teacher, he taught four vows of non-violence, truth, non-stealing, and non-possession. He is often pictured serene, with a canopy of serpent hoods shielding him.",
+      quote: "Have compassion for all beings.",
+      greeting: "Welcome. I can tell you about Parshvanatha, the twenty-third Tirthankara. What would you like to know?",
+      suggest: ["Who was Parshvanatha?", "What did he teach?", "Why the serpent hoods?"],
+      qa: [
+        { keys: ["teach", "vow", "four", "principle"], a: "Parshvanatha taught four vows: non-violence, truth, not stealing, and non-possession. Mahavira later added a fifth, self-control, to complete the path." },
+        { keys: ["serpent", "snake", "hood", "canopy"], a: "In a well-loved story, Parshvanatha gently saved a pair of serpents from a fire. Later, as a canopy of serpent hoods, they sheltered him in gratitude. It shows how compassion returns as protection." },
+        { keys: ["before", "mahavira", "when", "old"], a: "Parshvanatha lived about 250 years before Mahavira, and prepared the way for his teaching. Both showed the same gentle path of non-violence and truth." }
+      ],
+      fallback: "Parshvanatha is honoured as the twenty-third Tirthankara, a teacher of compassion. What would you like to know about him?" },
+    { mono: "CH", name: "Chandanabala", tag: "First Jain nun", note: "Rose from captivity to lead the community of Jain nuns.",
+      voice: { g: "f", pitch: 1.05, rate: 0.96 },
+      bio: "I was born a princess, but war made me a captive, and I knew hunger and hardship. When I offered my simple food to Mahavira, my heart found peace, and I became the first of his nuns. In time I led thousands of women on the path of non-violence and truth.",
+      quote: "Even from sorrow, a life of service can grow.",
+      greeting: "Jai Jinendra. I am Chandanabala, the first Jain nun. Ask me about my story, or about the life of a nun.",
+      suggest: ["What is your story?", "How did you meet Mahavira?", "What do Jain nuns do?"],
+      qa: [
+        { keys: ["story", "captive", "princess", "hardship"], a: "I was born a princess, but war took everything and I became a captive. Yet even in hardship I kept a gentle heart, and that gentleness led me to a new life." },
+        { keys: ["mahavira", "meet", "food", "offer"], a: "One day, hungry myself, I offered my small bowl of food to the wandering Mahavira. In that simple act of giving, my sorrow lifted, and I found the path I was seeking." },
+        { keys: ["nun", "women", "lead", "community"], a: "I became the first of Mahavira's nuns, and in time I guided thousands of women on the path of non-violence, study, and service. The door of the path is open to all." }
+      ],
+      fallback: "A kind question. My life turned from sorrow to service. What more would you like to ask?" },
+    { mono: "VG", name: "Virchand Gandhi", tag: "Scholar, 1800s", note: "Carried Jain teachings of non-violence to the wider world.",
+      voice: { g: "m", pitch: 0.95, rate: 0.96 },
+      bio: "I was a Jain scholar and lawyer from India. In 1893 I travelled to the great Parliament of Religions in Chicago and spoke of non-violence, vegetarianism, and respect for every faith. Many listened, and I spent my life building understanding between traditions.",
+      quote: "The system of ahimsa is the highest ideal of humanity.",
+      greeting: "Jai Jinendra. I am Virchand Gandhi. Ask me about Jainism, non-violence, or bringing faiths together.",
+      suggest: ["Why go to Chicago?", "What did you teach the world?", "What is ahimsa to you?"],
+      qa: [
+        { keys: ["chicago", "parliament", "world", "travel"], a: "In 1893 I sailed to the Parliament of Religions in Chicago, one of the first to carry Jain teaching to the West. I spoke of non-violence and respect between all faiths, and people listened warmly." },
+        { keys: ["ahimsa", "non-violence", "vegetarian", "harm"], a: "I taught that ahimsa, non-violence, is the highest ideal of humanity. I also spoke for a gentle, vegetarian life that spares harm to living beings." },
+        { keys: ["respect", "faith", "together", "understand"], a: "I believed every religion holds truth and deserves respect. My work was to build understanding, so that people of different faiths could learn from one another in friendship." }
+      ],
+      fallback: "A thoughtful question. I spent my life sharing the gentle wisdom of the Jains. What more would you like to ask?" }
+  ];
+
+  FAITHS.zoroastrian.people = [
+    { mono: "ZA", name: "Zarathustra", tag: "The Prophet", note: "Taught one wise God and the free choice of good over evil.",
+      persona: "about", voice: { g: "m", pitch: 0.9, rate: 0.9 },
+      bio: "Zarathustra, also called Zoroaster, was a prophet of ancient Persia who may have lived more than 3000 years ago. In a world of many gods, he taught that there is one wise Creator, Ahura Mazda, and that each person is free to choose between good and evil, with good thoughts, good words, and good deeds.",
+      quote: "Good thoughts, good words, good deeds.",
+      greeting: "Welcome. I can tell you about Zarathustra, the prophet of ancient Persia. What would you like to know?",
+      suggest: ["Who was Zarathustra?", "What did he teach?", "What is Ahura Mazda?"],
+      qa: [
+        { keys: ["teach", "message", "good", "choice"], a: "Zarathustra taught that there is one wise God, and that we are each free to choose good or evil. He gave the world a simple golden rule: good thoughts, good words, and good deeds." },
+        { keys: ["ahura mazda", "god", "one", "wise"], a: "He taught of Ahura Mazda, the Wise Lord, the one good Creator of all that is bright and true. This was one of the earliest teachings of a single God." },
+        { keys: ["persia", "ancient", "when", "old"], a: "Zarathustra lived long ago in ancient Persia, perhaps more than 3000 years past. His teaching shaped great empires and touched many later faiths." }
+      ],
+      fallback: "Zarathustra is revered as the prophet who taught good thoughts, good words, and good deeds. What would you like to know about him?" },
+    { mono: "CY", name: "Cyrus the Great", tag: "Persian king, 500s BCE", note: "Ruled with tolerance and freed captive peoples.",
+      voice: { g: "m", pitch: 0.9, rate: 0.92 },
+      bio: "I was Cyrus, king of Persia. I built a great empire, yet I am best remembered for how I ruled: I let conquered peoples keep their own faiths and customs, and I freed those held in captivity. My words on the Cyrus Cylinder are sometimes called an early charter of human rights.",
+      quote: "I let every person worship freely in their own way.",
+      greeting: "Greetings. I am Cyrus of Persia. Ask me about my empire, tolerance, or the freeing of captives.",
+      suggest: ["Why are you remembered?", "What is the Cyrus Cylinder?", "How did you treat other faiths?"],
+      qa: [
+        { keys: ["remember", "known", "empire", "great"], a: "I built one of the largest empires the world had seen, but I am remembered most for ruling with respect. I did not force my ways on others, and that is a greater victory than any battle." },
+        { keys: ["cylinder", "rights", "charter"], a: "On a clay cylinder I recorded that peoples could return home and worship as they wished. Many today call it an early charter of human rights." },
+        { keys: ["free", "captive", "faith", "tolerance", "other"], a: "I freed peoples held in captivity and let each keep their own faith and customs. In my time, that mercy was rare, and it flowed from the Zoroastrian value of goodness." }
+      ],
+      fallback: "A fine question. I tried to rule with justice and mercy. What more would you like to ask?" },
+    { mono: "JT", name: "Jamsetji Tata", tag: "Industrialist, 1800s", note: "A Parsi pioneer who built industry to serve his people.",
+      voice: { g: "m", pitch: 0.92, rate: 0.95 },
+      bio: "I was a Parsi Zoroastrian from India, and I believed industry could lift a nation. I built mills, dreamed of steel and clean power, and planned schools and hospitals. I always held that what came from the community should return to it in service.",
+      quote: "What advances a nation is the welfare of its people.",
+      greeting: "Ushta te. I am Jamsetji Tata. Ask me about building industry, service, or giving back.",
+      suggest: ["What did you build?", "Why give back to society?", "What guided your work?"],
+      qa: [
+        { keys: ["build", "industry", "steel", "work"], a: "I built textile mills and laid the foundations for steel, power, and great institutes of learning in India. I wanted my country to stand strong on its own two feet." },
+        { keys: ["give", "charity", "service", "community"], a: "I always believed that wealth is a trust. What comes from the people should return to them, in schools, hospitals, and fair work. Service was the purpose of it all." },
+        { keys: ["parsi", "zoroastrian", "faith", "value"], a: "As a Parsi Zoroastrian, I was raised on good thoughts, good words, and good deeds. Honest work done well, for the good of others, was my way of living that faith." }
+      ],
+      fallback: "A good question. I believed in building for the good of all. What more would you like to ask?" },
+    { mono: "DN", name: "Dadabhai Naoroji", tag: "Statesman, 1800s", note: "A Parsi reformer who worked for justice and dignity.",
+      voice: { g: "m", pitch: 0.9, rate: 0.94 },
+      bio: "I was a Parsi Zoroastrian scholar and reformer, sometimes called the Grand Old Man of India. I taught mathematics, spoke for the poor, and in 1892 became one of the first people of Indian origin elected to the British Parliament, always pleading for fairness and dignity.",
+      quote: "Justice and fair play are the birthright of every people.",
+      greeting: "Ushta te. I am Dadabhai Naoroji. Ask me about justice, learning, or speaking up for others.",
+      suggest: ["What did you fight for?", "Why enter Parliament?", "What did your faith teach you?"],
+      qa: [
+        { keys: ["fight", "justice", "poor", "fair"], a: "I spent my life pleading for justice and fair treatment for my people, and showing with careful study how poverty could be eased. Truth and patience were my tools." },
+        { keys: ["parliament", "britain", "elect", "first"], a: "In 1892 I was elected to the British Parliament, among the first of Indian origin to sit there. I used that seat to speak for those who had no voice." },
+        { keys: ["faith", "zoroastrian", "good", "value"], a: "My Zoroastrian faith taught me good thoughts, good words, and good deeds. I tried to carry that honesty into public life, standing for what was right even when it was hard." }
+      ],
+      fallback: "A worthy question. I gave my life to justice and learning. What more would you like to ask?" }
+  ];
+
+  FAITHS.taoist.people = [
+    { mono: "LA", name: "Laozi", tag: "The Old Master", note: "Honoured as the founder of Taoism and author of the Tao Te Ching.",
+      persona: "about", voice: { g: "m", pitch: 0.9, rate: 0.88 },
+      bio: "Laozi, whose name means the Old Master, is honoured as the founder of Taoism. Legend says he was a wise keeper of records who, weary of the world, rode west on an ox. At a mountain pass a guard asked him to write down his wisdom, and so came the Tao Te Ching, a small book of deep and gentle truth.",
+      quote: "The journey of a thousand miles begins with a single step.",
+      greeting: "Welcome, gently. I can tell you about Laozi and the Way. What would you like to know?",
+      suggest: ["Who was Laozi?", "What is the Tao Te Ching?", "What did he teach?"],
+      qa: [
+        { keys: ["teach", "way", "tao", "wisdom"], a: "Laozi taught the Way, the Tao: to live simply, humbly, and in harmony with nature, and to act gently rather than by force. Like water, the soft can overcome the hard." },
+        { keys: ["book", "tao te ching", "write", "ox"], a: "As Laozi rode west to leave the world, a gatekeeper asked him to leave behind his wisdom. He wrote the Tao Te Ching, eighty-one short chapters that people have treasured ever since." },
+        { keys: ["thousand", "step", "journey", "begin"], a: "Laozi taught that the journey of a thousand miles begins with a single step. Great things grow gently, one small and patient step at a time." }
+      ],
+      fallback: "Laozi is honoured as the Old Master, the founder of Taoism. He taught the gentle Way. What would you like to know about him?" },
+    { mono: "ZH", name: "Zhuangzi", tag: "Taoist sage, 300s BCE", note: "A joyful teacher who taught freedom through playful stories.",
+      voice: { g: "m", pitch: 0.95, rate: 0.95 },
+      bio: "I was a Taoist teacher who loved stories and laughter. I taught that we should be free and easy, flowing with the Way rather than clinging or striving. Once I dreamed I was a butterfly, and woke unsure whether I was a man who had dreamed of a butterfly, or a butterfly dreaming he was a man.",
+      quote: "Flow with whatever may happen, and let your mind be free.",
+      greeting: "A cheerful welcome. I am Zhuangzi. Ask me about the butterfly dream, freedom, or the Way.",
+      suggest: ["Tell me the butterfly dream", "What is freedom to you?", "How should we live?"],
+      qa: [
+        { keys: ["butterfly", "dream", "wake"], a: "I once dreamed I was a butterfly, flitting happily among the flowers. When I woke, I could not tell: was I a man who had dreamed of a butterfly, or am I now a butterfly dreaming I am a man? So gently do things flow into one another." },
+        { keys: ["free", "easy", "flow", "let go"], a: "I taught to be free and easy, to flow with whatever comes rather than grasping or forcing. A mind that lets go is a mind at peace." },
+        { keys: ["live", "how", "nature", "simple"], a: "Live simply, laugh often, and move with nature like a leaf on a stream. When we stop struggling against the Way, life carries us gently." }
+      ],
+      fallback: "A delightful question. I taught freedom and ease through simple stories. What more would you like to ask?" },
+    { mono: "SS", name: "Sun Simiao", tag: "Physician, 600s", note: "The King of Medicine, who healed with skill and compassion.",
+      voice: { g: "m", pitch: 0.92, rate: 0.93 },
+      bio: "I was a Taoist physician in China, later called the King of Medicine. I gathered remedies, wrote them down so all could use them, and treated rich and poor alike. I taught that a good healer must have a heart of great compassion before any skill of hand.",
+      quote: "A great doctor must first develop a heart of compassion.",
+      greeting: "A gentle welcome. I am Sun Simiao, a physician of the Way. Ask me about healing, compassion, or living well.",
+      suggest: ["What did you teach doctors?", "How did you heal?", "How can we stay well?"],
+      qa: [
+        { keys: ["doctor", "heal", "compassion", "heart"], a: "I taught that a great physician must first grow a heart of deep compassion, treating every patient, rich or poor, as if they were family. Skill without kindness is empty." },
+        { keys: ["medicine", "remedy", "write", "book"], a: "I gathered thousands of remedies and wrote them plainly, so that ordinary people, not only the learned, could care for the sick. Knowledge shared is knowledge doubled." },
+        { keys: ["well", "health", "long", "live"], a: "I taught that we stay well by living in balance: eating simply, moving gently, resting enough, and keeping a calm and contented heart. Prevention is the finest cure." }
+      ],
+      fallback: "A caring question. I healed with compassion and the wisdom of the Way. What more would you like to ask?" },
+    { mono: "ZD", name: "Zhang Daoling", tag: "First Celestial Master, 100s", note: "Gathered the first Taoist community of the Celestial Masters.",
+      voice: { g: "m", pitch: 0.9, rate: 0.9 },
+      bio: "I lived in China long ago, and I gathered the first great community of Taoism, called the Way of the Celestial Masters. We cared for one another, shared grain with the hungry, healed the sick, and taught people to live honestly and in harmony with the Tao.",
+      quote: "The Way is kept by a sincere and honest heart.",
+      greeting: "A peaceful welcome. I am Zhang Daoling. Ask me about the first Taoist community, healing, or living honestly.",
+      suggest: ["What did you start?", "How did your community help?", "What did you teach?"],
+      qa: [
+        { keys: ["start", "community", "celestial", "master"], a: "I gathered the first organised community of Taoism, the Way of the Celestial Masters. Together we tried to live the teaching of Laozi, not only to read it." },
+        { keys: ["help", "grain", "sick", "care"], a: "We built simple shelters along the roads with free grain for travellers, cared for the sick, and asked wrongdoers to mend their ways through honest work rather than punishment." },
+        { keys: ["teach", "honest", "way", "live"], a: "I taught that the Way is kept by a sincere and honest heart. Confess your faults, do good quietly, and live in harmony with nature and your neighbours." }
+      ],
+      fallback: "A thoughtful question. I gathered the first Taoist community to live the Way together. What more would you like to ask?" }
+  ];
 })();

@@ -135,6 +135,70 @@
         { q: "Under what tree did he awaken?", options: ["An apple tree", "The Bodhi tree", "A palm tree"], correct: 1 },
         { q: "Metta means...", options: ["being sleepy", "being loud", "loving kindness"], correct: 2 }
       ]
+    },
+
+    bahai: {
+      videos: [],
+      history: [
+        { era: "1844", title: "The Báb announces", text: "In Persia, a young messenger called the Báb announced that a great teacher of God was soon to come to unite humanity." },
+        { era: "1817-1892", title: "Baháʼu'lláh", text: "Baháʼu'lláh taught the oneness of God, of religion, and of the whole human family, even through years of prison and exile." },
+        { era: "Around the world", title: "ʻAbdu'l-Bahá travels", text: "His son ʻAbdu'l-Bahá journeyed far, speaking of peace, kindness to the poor, and the unity of all people." },
+        { era: "Houses of Worship", title: "Nine-sided temples", text: "Baháʼís built beautiful nine-sided Houses of Worship, open to people of every faith to pray together." },
+        { era: "Today", title: "One human family", text: "Baháʼís in every land work for unity, justice, and the equality of women and men, as one family." }
+      ],
+      quiz: [
+        { q: "Baháʼu'lláh taught that humanity is...", options: ["many strangers", "one family", "always at war"], correct: 1 },
+        { q: "The Baháʼí star has how many points?", options: ["Five", "Seven", "Nine"], correct: 2 },
+        { q: "Baháʼí Houses of Worship are open to...", options: ["only Baháʼís", "people of every faith", "no visitors"], correct: 1 }
+      ]
+    },
+
+    jain: {
+      videos: [],
+      history: [
+        { era: "Long ago", title: "The Tirthankaras", text: "Great teachers called Tirthankaras showed the path of non-violence and truth, one after another through the ages." },
+        { era: "About 2500 years ago", title: "Mahavira", text: "Born a prince, Mahavira gave up everything to seek truth, and taught ahimsa, non-violence toward every living being." },
+        { era: "The five vows", title: "A gentle path", text: "Jains follow vows of non-violence, truth, non-stealing, self-control, and non-attachment." },
+        { era: "Through time", title: "Temples and care for life", text: "Jains built beautiful temples and cared tenderly for every creature, even the smallest." },
+        { era: "Today", title: "Ahimsa in daily life", text: "Jains around the world live gently, many as vegetarians, honouring the life in all beings." }
+      ],
+      quiz: [
+        { q: "Ahimsa means...", options: ["non-violence", "loud singing", "fast running"], correct: 0 },
+        { q: "Mahavira was the last...", options: ["king of Persia", "Tirthankara of this age", "Roman emperor"], correct: 1 },
+        { q: "Many Jains follow a diet that is...", options: ["vegetarian", "meat only", "no vegetables"], correct: 0 }
+      ]
+    },
+
+    zoroastrian: {
+      videos: [],
+      history: [
+        { era: "Ancient Persia", title: "Zarathustra", text: "The prophet Zarathustra taught that there is one wise God, Ahura Mazda, and that we may freely choose good over evil." },
+        { era: "The threefold path", title: "Good thoughts, words, deeds", text: "The whole faith is held in three choices: to think well, speak well, and act well, every day." },
+        { era: "Great empires", title: "Kings of Persia", text: "Kings like Cyrus the Great ruled with tolerance, letting many peoples keep their own faiths." },
+        { era: "A journey to India", title: "The Parsis", text: "Many Zoroastrians settled in India as the Parsis, keeping the sacred fire and their faith alive." },
+        { era: "Today", title: "Keepers of the flame", text: "Zoroastrians tend the sacred fire and live by goodness, honesty, and care for the earth." }
+      ],
+      quiz: [
+        { q: "The Zoroastrian golden rule is good thoughts, good words, and...", options: ["good deeds", "loud songs", "big houses"], correct: 0 },
+        { q: "The sacred fire is a symbol of...", options: ["God's light", "anger", "winter"], correct: 0 },
+        { q: "Zoroastrians in India are called...", options: ["Parsis", "Vikings", "Romans"], correct: 0 }
+      ]
+    },
+
+    taoist: {
+      videos: [],
+      history: [
+        { era: "Long ago", title: "Laozi and the Way", text: "The Old Master Laozi taught the Tao, the Way, and left behind the small, wise book called the Tao Te Ching." },
+        { era: "Playful wisdom", title: "Zhuangzi's stories", text: "The joyful sage Zhuangzi taught freedom and ease through gentle tales, like his dream of the butterfly." },
+        { era: "Yin and yang", title: "Gentle balance", text: "Taoists learned to keep life in balance, like day and night, rest and movement, soft and firm." },
+        { era: "Through time", title: "Temples in the mountains", text: "Taoists built peaceful temples among mountains and streams, and honoured wise sages of the Way." },
+        { era: "Today", title: "Living with nature", text: "People still practise the Tao, breathing slowly, living simply, and moving gently with nature." }
+      ],
+      quiz: [
+        { q: "Tao means...", options: ["the Way", "a loud drum", "a tall tower"], correct: 0 },
+        { q: "Wu wei is like...", options: ["forcing hard", "water flowing gently", "shouting"], correct: 1 },
+        { q: "Yin and yang are...", options: ["enemies forever", "two sides in balance", "the same thing"], correct: 1 }
+      ]
     }
   };
 })();
