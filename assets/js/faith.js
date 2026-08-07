@@ -13,7 +13,10 @@
   if (!root || !window.FAITHS) return;
 
   const key = root.getAttribute("data-faith");
-  const f = window.FAITHS[key];
+  let LANG = "en";
+  try { LANG = new URLSearchParams(location.search).get("lang") || window.SAYLAVY_LANG || "en"; } catch (e) {}
+  const useRU = LANG === "ru" && !!(window.FAITHS_RU && window.FAITHS_RU[key]);
+  const f = useRU ? window.FAITHS_RU[key] : window.FAITHS[key];
   if (!f) { root.innerHTML = "<p style='padding:3rem'>Faith not found.</p>"; return; }
 
   document.body.classList.add("faith-page", f.theme);
@@ -301,7 +304,7 @@
       </button>
     </article>`).join("");
 
-  const learn = (window.FAITH_LEARN || {})[key] || null;
+  const learn = (useRU && window.FAITH_LEARN_RU ? window.FAITH_LEARN_RU[key] : (window.FAITH_LEARN || {})[key]) || null;
   // BBC disables embedding, so cards open the video on YouTube in a new tab.
   const vidCards = learn ? learn.videos.map(v => `
     <a class="yt-lite" target="_blank" rel="noopener"
@@ -317,7 +320,7 @@
   const forWhom = (_q.get("for") || "").replace(/[<>]/g, "").trim().slice(0, 80);
   if (forWhom) document.title = "Saylavy for " + forWhom;
 
-  const lang = (window.FAITH_LANG || {})[key] || null;
+  const lang = useRU ? null : ((window.FAITH_LANG || {})[key] || null);
   const phraseCards = lang ? lang.phrases.map(ph => `
     <div class="pcard reveal">
       <p class="pscript" lang="${lang.langCode}" dir="${lang.dir}">${esc(ph.script)}</p>
@@ -332,7 +335,7 @@
   const MOSQUES = { blue: "mosque-blue", zayed: "mosque-zayed", pink: "mosque-pink", badshahi: "mosque-badshahi" };
   const _scene = MOSQUES[_q.get("scene")] || "mosque-zayed";
   const SCENE = { muslim: "assets/img/scenes/" + _scene + ".jpg" };
-  const pray = (window.FAITH_PRAY || {})[key] || null;
+  const pray = useRU ? null : ((window.FAITH_PRAY || {})[key] || null);
   const prayerTimes = (key === "muslim" && window.SaylavyPrayer) ? window.SaylavyPrayer : null;
 
   const stepCards = pray ? pray.steps.map((st, i) => `
@@ -422,7 +425,7 @@
     muslim: "Noor", jewish: "Noa", hindu: "Diya", sikh: "Simran", buddhist: "Kiran",
     bahai: "Roya", jain: "Ahana", zoroastrian: "Roshan", taoist: "Lian"
   };
-  const guideName = GUIDE_NAMES[key] || "Sofia";
+  const guideName = useRU ? "София" : (GUIDE_NAMES[key] || "Sofia");
 
   const place = SACRED_PLACES[key];
   const placeEmbed = !place ? "" : place.type === "kuula"
@@ -1003,6 +1006,49 @@
     window.setInterval(tick, 1000);
     window.setInterval(paint, 60000);
   }
+
+  /* ---- Russian chrome for the Orthodox page (page content is already Russian) ---- */
+  function translateRU() {
+    const set = (sel, txt) => { const el = root.querySelector(sel); if (el) el.textContent = txt; };
+    const setAll = (sel, txt) => root.querySelectorAll(sel).forEach(el => { el.textContent = txt; });
+    try {
+      const bl = root.querySelector(".back-link"); if (bl) bl.innerHTML = bl.innerHTML.replace("All faiths", "Все религии");
+      root.querySelectorAll(".hero-actions a").forEach(a => {
+        const t = a.textContent.trim();
+        if (t === "Ask a question") a.textContent = "Задать вопрос";
+        else if (t === "Meet the people") a.textContent = "Познакомиться с людьми";
+      });
+      root.querySelectorAll(".ask-text").forEach(el => el.setAttribute("placeholder", "Задайте вопрос..."));
+      setAll(".ps-bar span:first-child", "Задайте вопрос...");
+      set("#ask .ask-foot", "Живой демонстрационный голос. На настоящей странице вы услышите голоса ваших собственных учителей.");
+      set("#mobile .eyebrow", "В каждом кармане");
+      set("#mobile h2", "Она живёт в их телефоне");
+      set("#mobile .phone-copy .lead", "Ребёнок один раз сканирует QR-код, и вся эта страница открывается на его телефоне. Ничего не нужно устанавливать или покупать. Она одинаково работает на любом телефоне или планшете.");
+      const pl = ["Отсканируйте код, и она откроется за секунду", "Нажмите, чтобы слушать живые голоса", "Задайте вопрос вслух и услышьте ответ", "Читайте на своём языке, в том числе справа налево"];
+      root.querySelectorAll(".phone-list li").forEach((li, i) => { if (pl[i]) li.innerHTML = '<span class="pdot"></span> ' + pl[i]; });
+      set("#explore .eyebrow", "Сканируйте, слушайте, общайтесь, учитесь");
+      set("#explore h2", "Что можно изучить");
+      set("#explore .lead", "Небольшой обзор страницы. Каждая карточка звучит живым голосом и создаётся вместе с вашей церковью.");
+      set("#time .eyebrow", "Путешествие во времени");
+      set("#time h2", "Как разворачивалась история");
+      set("#time .lead", "Пройдите историю шаг за шагом, послушайте каждый шаг и попробуйте небольшую викторину.");
+      root.querySelectorAll(".tl-listen").forEach(b => { b.setAttribute("data-label", "Слушать"); const l = b.querySelector(".lbl"); if (l) l.textContent = "Слушать"; });
+      set("#teacher .eyebrow", "Познакомьтесь с проводником и голосами Православия");
+      set("#teacher h2", "Поговорите с София");
+      set("#teacher .lead", "София — ваш дружелюбный проводник. Рядом с ней — известные голоса Православия: коснитесь любого, чтобы услышать его историю и задать вопрос.");
+      set(".av-loading", "Пробуждаем вашего проводника...");
+      setAll(".av-figure-cta", "Нажмите, чтобы говорить");
+      set("#visit .eyebrow", "Загляните внутрь");
+      set("#visit h2", "Загляните в собор святого Илии");
+      set("#visit .lead", "Иконы и лики святых покрывают каждую стену и купол. В православной традиции весь храм — это окно в небо: встаньте в проходе и дайте глазам пройти по фрескам.");
+      set(".visit-play-t", "Войти внутрь");
+      set(".visit-play-s", "Собор святого Илии");
+      set(".visit-name", "Собор святого Илии");
+      set(".visit-full", "Открыть на весь экран");
+      set(".visit-note", "Настоящий 3D-тур на платформе Matterport. В вашем издании здесь было бы пространство вашей общины.");
+    } catch (e) {}
+  }
+  if (useRU) translateRU();
 
   if (window.SaylavyReveal) window.SaylavyReveal();
 })();

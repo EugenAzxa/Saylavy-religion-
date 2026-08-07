@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=8">
+  <link rel="stylesheet" href="assets/css/style.css?v=9">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -31,6 +31,10 @@
         <a href="index.html#about">Why it is safe</a>
         <a href="#ask">Live sample</a>
       </nav>
+      <div class="lang-toggle" role="group" aria-label="Language / Язык">
+        <a href="orthodox.html" data-l="en">EN</a>
+        <a href="orthodox.html?lang=ru" data-l="ru">Рус</a>
+      </div>
     </div>
   </header>
 
@@ -109,6 +113,39 @@
     data-monitor="true"
     data-target-id="did-agent-frame">
   </script>
+  <script src="assets/js/faith-ru.js"></script>
   <script src="assets/js/faith.js"></script>
+  <script>
+  /* EN/RU toggle: highlight the active option and translate the static shell (header, footer, QR card) */
+  (function () {
+    var ru = /[?&]lang=ru\b/.test(location.search);
+    document.querySelectorAll(".lang-toggle a").forEach(function (a) {
+      a.classList.toggle("active", (a.dataset.l === "ru") === ru);
+    });
+    if (!ru) return;
+    document.documentElement.setAttribute("lang", "ru");
+    var map = {
+      "All faiths": "Все религии", "How it works": "Как это работает",
+      "Why it is safe": "Почему это безопасно", "Live sample": "Живой пример",
+      "Explore": "Разделы", "Start a collaboration": "Начать сотрудничество",
+      "Contact us": "Связаться с нами",
+      "In your church": "В вашем храме", "Scan, and your faith comes alive": "Отсканируйте — и ваша вера оживает",
+      "Try it here": "Попробуйте здесь"
+    };
+    document.querySelectorAll(".nav-links a, .foot-col a, .foot-col h4, .qr-showcase .eyebrow, .qr-showcase h2, .qr-showcase .btn").forEach(function (el) {
+      var t = el.textContent.trim();
+      if (map[t]) el.textContent = map[t];
+    });
+    var lead = document.querySelector(".qr-showcase .lead");
+    if (lead) lead.textContent = "Поставьте небольшую карточку Saylavy в храме. Ребёнок сканирует её, и вся эта страница открывается на его телефоне — на вашем языке, словами ваших учителей.";
+    var brandP = document.querySelector(".foot-brand > p");
+    if (brandP) brandP.textContent = "Интерактивная страница обучения и QR-код для религиозных общин, созданные вместе с вашими учителями.";
+    var powered = document.querySelector(".powered");
+    if (powered) powered.innerHTML = 'Работает на <a href="https://saylavy.com" target="_blank" rel="noopener">Saylavy.com</a>';
+    var fb = document.querySelectorAll(".foot-bottom span");
+    if (fb[0]) fb[0].textContent = "© 2026 Saylavy. Сделано с благоговением к каждой вере.";
+    if (fb[1]) fb[1].textContent = "Сканируйте, слушайте, общайтесь, учитесь.";
+  })();
+  </script>
 </body>
 </html>
